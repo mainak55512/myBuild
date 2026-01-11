@@ -1,0 +1,4 @@
+BasedOnStyle: LLVM # Or your preferred base style (e.g., Google, WebKit)
+UseTab: Always
+IndentWidth: 4
+TabWidth: 4

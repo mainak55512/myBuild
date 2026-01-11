@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/mainak/programs/myBuild/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

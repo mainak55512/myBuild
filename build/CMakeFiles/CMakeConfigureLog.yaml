@@ -1,0 +1,3240 @@
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineSystem.cmake:12 (find_program)"
+      - "CMakeLists.txt:3 (project)"
+    mode: "program"
+    variable: "CMAKE_UNAME"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "uname"
+    candidate_directories:
+      - "/home/mainak/.detaspace/bin/"
+      - "/home/mainak/.bun/bin/"
+      - "/home/mainak/.nix-profile/bin/"
+      - "/nix/var/nix/profiles/default/bin/"
+      - "/home/mainak/.local/share/nvim/mason/bin/"
+      - "/home/mainak/.local/bin/"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/"
+      - "/home/mainak/.cargo/bin/"
+      - "/home/mainak/Applications/"
+      - "/home/mainak/v/"
+      - "/home/mainak/zig/"
+      - "/home/mainak/go/bin/"
+      - "/home/linuxbrew/.linuxbrew/bin/"
+      - "/home/mainak/Applications/nvim-linux64/bin/"
+      - "/home/mainak/Applications/Lua/bin/"
+      - "/usr/local/go/bin/"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/"
+    searched_directories:
+      - "/home/mainak/.detaspace/bin/uname"
+      - "/home/mainak/.bun/bin/uname"
+      - "/home/mainak/.nix-profile/bin/uname"
+      - "/nix/var/nix/profiles/default/bin/uname"
+      - "/home/mainak/.local/share/nvim/mason/bin/uname"
+      - "/home/mainak/.local/bin/uname"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/uname"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/uname"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/uname"
+      - "/usr/local/sbin/uname"
+      - "/usr/local/bin/uname"
+      - "/usr/sbin/uname"
+    found: "/usr/bin/uname"
+    search_context:
+      ENV{PATH}:
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/bin"
+        - "/home/mainak/.sdkman/candidates/maven/current/bin"
+        - "/home/mainak/.sdkman/candidates/gradle/current/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nvm/versions/node/v22.19.0/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineSystem.cmake:212 (message)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      The system is: Linux - 6.0.12-76060012-generic - x86_64
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeUnixFindMake.cmake:5 (find_program)"
+      - "CMakeLists.txt:3 (project)"
+    mode: "program"
+    variable: "CMAKE_MAKE_PROGRAM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "gmake"
+      - "make"
+      - "smake"
+    candidate_directories:
+      - "/home/mainak/.detaspace/bin/"
+      - "/home/mainak/.bun/bin/"
+      - "/home/mainak/.nix-profile/bin/"
+      - "/nix/var/nix/profiles/default/bin/"
+      - "/home/mainak/.local/share/nvim/mason/bin/"
+      - "/home/mainak/.local/bin/"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/usr/bin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/"
+      - "/home/mainak/.cargo/bin/"
+      - "/home/mainak/Applications/"
+      - "/home/mainak/v/"
+      - "/home/mainak/zig/"
+      - "/home/mainak/go/bin/"
+      - "/home/linuxbrew/.linuxbrew/bin/"
+      - "/home/mainak/Applications/nvim-linux64/bin/"
+      - "/home/mainak/Applications/Lua/bin/"
+      - "/usr/local/go/bin/"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/"
+    searched_directories:
+      - "/home/mainak/.detaspace/bin/gmake"
+      - "/home/mainak/.bun/bin/gmake"
+      - "/home/mainak/.nix-profile/bin/gmake"
+      - "/nix/var/nix/profiles/default/bin/gmake"
+      - "/home/mainak/.local/share/nvim/mason/bin/gmake"
+      - "/home/mainak/.local/bin/gmake"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/gmake"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/gmake"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/gmake"
+      - "/usr/local/sbin/gmake"
+      - "/usr/local/bin/gmake"
+      - "/usr/sbin/gmake"
+      - "/usr/bin/gmake"
+      - "/sbin/gmake"
+      - "/bin/gmake"
+      - "/usr/games/gmake"
+      - "/usr/local/games/gmake"
+      - "/snap/bin/gmake"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/gmake"
+      - "/home/mainak/.cargo/bin/gmake"
+      - "/home/mainak/Applications/gmake"
+      - "/home/mainak/v/gmake"
+      - "/home/mainak/zig/gmake"
+      - "/home/mainak/go/bin/gmake"
+      - "/home/linuxbrew/.linuxbrew/bin/gmake"
+      - "/home/mainak/Applications/nvim-linux64/bin/gmake"
+      - "/home/mainak/Applications/Lua/bin/gmake"
+      - "/usr/local/go/bin/gmake"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/gmake"
+      - "/home/mainak/.detaspace/bin/make"
+      - "/home/mainak/.bun/bin/make"
+      - "/home/mainak/.nix-profile/bin/make"
+      - "/nix/var/nix/profiles/default/bin/make"
+      - "/home/mainak/.local/share/nvim/mason/bin/make"
+      - "/home/mainak/.local/bin/make"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/make"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/make"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/make"
+      - "/usr/local/sbin/make"
+      - "/usr/local/bin/make"
+      - "/usr/sbin/make"
+    found: "/usr/bin/make"
+    search_context:
+      ENV{PATH}:
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/bin"
+        - "/home/mainak/.sdkman/candidates/maven/current/bin"
+        - "/home/mainak/.sdkman/candidates/gradle/current/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nvm/versions/node/v22.19.0/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/"
+    found: "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/bin"
+        - "/home/mainak/.sdkman/candidates/maven/current/bin"
+        - "/home/mainak/.sdkman/candidates/gradle/current/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nvm/versions/node/v22.19.0/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /usr/bin/clang-18 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+      
+      The C compiler identification is Clang, found in:
+        /home/mainak/programs/myBuild/build/CMakeFiles/4.1.2/CompilerIdC/a.out
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:3 (project)"
+    mode: "program"
+    variable: "CMAKE_AR"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-ar-18"
+      - "llvm-ar"
+      - "ar-18"
+      - "ar"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/home/mainak/.detaspace/bin/"
+      - "/home/mainak/.bun/bin/"
+      - "/home/mainak/.nix-profile/bin/"
+      - "/nix/var/nix/profiles/default/bin/"
+      - "/home/mainak/.local/share/nvim/mason/bin/"
+      - "/home/mainak/.local/bin/"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/"
+      - "/home/mainak/.cargo/bin/"
+      - "/home/mainak/Applications/"
+      - "/home/mainak/v/"
+      - "/home/mainak/zig/"
+      - "/home/mainak/go/bin/"
+      - "/home/linuxbrew/.linuxbrew/bin/"
+      - "/home/mainak/Applications/nvim-linux64/bin/"
+      - "/home/mainak/Applications/Lua/bin/"
+      - "/usr/local/go/bin/"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/"
+    found: "/usr/bin/llvm-ar-18"
+    search_context:
+      ENV{PATH}:
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/bin"
+        - "/home/mainak/.sdkman/candidates/maven/current/bin"
+        - "/home/mainak/.sdkman/candidates/gradle/current/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nvm/versions/node/v22.19.0/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:3 (project)"
+    mode: "program"
+    variable: "CMAKE_RANLIB"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-ranlib-18"
+      - "llvm-ranlib"
+      - "ranlib-18"
+      - "ranlib"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/home/mainak/.detaspace/bin/"
+      - "/home/mainak/.bun/bin/"
+      - "/home/mainak/.nix-profile/bin/"
+      - "/nix/var/nix/profiles/default/bin/"
+      - "/home/mainak/.local/share/nvim/mason/bin/"
+      - "/home/mainak/.local/bin/"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/"
+      - "/home/mainak/.cargo/bin/"
+      - "/home/mainak/Applications/"
+      - "/home/mainak/v/"
+      - "/home/mainak/zig/"
+      - "/home/mainak/go/bin/"
+      - "/home/linuxbrew/.linuxbrew/bin/"
+      - "/home/mainak/Applications/nvim-linux64/bin/"
+      - "/home/mainak/Applications/Lua/bin/"
+      - "/usr/local/go/bin/"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/"
+    found: "/usr/bin/llvm-ranlib-18"
+    search_context:
+      ENV{PATH}:
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/bin"
+        - "/home/mainak/.sdkman/candidates/maven/current/bin"
+        - "/home/mainak/.sdkman/candidates/gradle/current/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nvm/versions/node/v22.19.0/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:3 (project)"
+    mode: "program"
+    variable: "CMAKE_STRIP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-strip-18"
+      - "llvm-strip"
+      - "strip-18"
+      - "strip"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/home/mainak/.detaspace/bin/"
+      - "/home/mainak/.bun/bin/"
+      - "/home/mainak/.nix-profile/bin/"
+      - "/nix/var/nix/profiles/default/bin/"
+      - "/home/mainak/.local/share/nvim/mason/bin/"
+      - "/home/mainak/.local/bin/"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/"
+      - "/home/mainak/.cargo/bin/"
+      - "/home/mainak/Applications/"
+      - "/home/mainak/v/"
+      - "/home/mainak/zig/"
+      - "/home/mainak/go/bin/"
+      - "/home/linuxbrew/.linuxbrew/bin/"
+      - "/home/mainak/Applications/nvim-linux64/bin/"
+      - "/home/mainak/Applications/Lua/bin/"
+      - "/usr/local/go/bin/"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/"
+    found: "/usr/bin/llvm-strip-18"
+    search_context:
+      ENV{PATH}:
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/bin"
+        - "/home/mainak/.sdkman/candidates/maven/current/bin"
+        - "/home/mainak/.sdkman/candidates/gradle/current/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nvm/versions/node/v22.19.0/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:3 (project)"
+    mode: "program"
+    variable: "CMAKE_LINKER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ld.lld-18"
+      - "ld.lld"
+      - "ld-18"
+      - "ld"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/home/mainak/.detaspace/bin/"
+      - "/home/mainak/.bun/bin/"
+      - "/home/mainak/.nix-profile/bin/"
+      - "/nix/var/nix/profiles/default/bin/"
+      - "/home/mainak/.local/share/nvim/mason/bin/"
+      - "/home/mainak/.local/bin/"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/"
+      - "/home/mainak/.cargo/bin/"
+      - "/home/mainak/Applications/"
+      - "/home/mainak/v/"
+      - "/home/mainak/zig/"
+      - "/home/mainak/go/bin/"
+      - "/home/linuxbrew/.linuxbrew/bin/"
+      - "/home/mainak/Applications/nvim-linux64/bin/"
+      - "/home/mainak/Applications/Lua/bin/"
+      - "/usr/local/go/bin/"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/"
+    searched_directories:
+      - "/usr/bin/ld.lld-18"
+      - "/home/mainak/.detaspace/bin/ld.lld-18"
+      - "/home/mainak/.bun/bin/ld.lld-18"
+      - "/home/mainak/.nix-profile/bin/ld.lld-18"
+      - "/nix/var/nix/profiles/default/bin/ld.lld-18"
+      - "/home/mainak/.local/share/nvim/mason/bin/ld.lld-18"
+      - "/home/mainak/.local/bin/ld.lld-18"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/ld.lld-18"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/ld.lld-18"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/ld.lld-18"
+      - "/usr/local/sbin/ld.lld-18"
+      - "/usr/local/bin/ld.lld-18"
+      - "/usr/sbin/ld.lld-18"
+      - "/sbin/ld.lld-18"
+      - "/bin/ld.lld-18"
+      - "/usr/games/ld.lld-18"
+      - "/usr/local/games/ld.lld-18"
+      - "/snap/bin/ld.lld-18"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/ld.lld-18"
+      - "/home/mainak/.cargo/bin/ld.lld-18"
+      - "/home/mainak/Applications/ld.lld-18"
+      - "/home/mainak/v/ld.lld-18"
+      - "/home/mainak/zig/ld.lld-18"
+      - "/home/mainak/go/bin/ld.lld-18"
+      - "/home/linuxbrew/.linuxbrew/bin/ld.lld-18"
+      - "/home/mainak/Applications/nvim-linux64/bin/ld.lld-18"
+      - "/home/mainak/Applications/Lua/bin/ld.lld-18"
+      - "/usr/local/go/bin/ld.lld-18"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/ld.lld-18"
+      - "/usr/bin/ld.lld"
+      - "/home/mainak/.detaspace/bin/ld.lld"
+      - "/home/mainak/.bun/bin/ld.lld"
+      - "/home/mainak/.nix-profile/bin/ld.lld"
+      - "/nix/var/nix/profiles/default/bin/ld.lld"
+      - "/home/mainak/.local/share/nvim/mason/bin/ld.lld"
+      - "/home/mainak/.local/bin/ld.lld"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/ld.lld"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/ld.lld"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/ld.lld"
+      - "/usr/local/sbin/ld.lld"
+      - "/usr/local/bin/ld.lld"
+      - "/usr/sbin/ld.lld"
+      - "/sbin/ld.lld"
+      - "/bin/ld.lld"
+      - "/usr/games/ld.lld"
+      - "/usr/local/games/ld.lld"
+      - "/snap/bin/ld.lld"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/ld.lld"
+      - "/home/mainak/.cargo/bin/ld.lld"
+      - "/home/mainak/Applications/ld.lld"
+      - "/home/mainak/v/ld.lld"
+      - "/home/mainak/zig/ld.lld"
+      - "/home/mainak/go/bin/ld.lld"
+      - "/home/linuxbrew/.linuxbrew/bin/ld.lld"
+      - "/home/mainak/Applications/nvim-linux64/bin/ld.lld"
+      - "/home/mainak/Applications/Lua/bin/ld.lld"
+      - "/usr/local/go/bin/ld.lld"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/ld.lld"
+      - "/usr/bin/ld-18"
+      - "/home/mainak/.detaspace/bin/ld-18"
+      - "/home/mainak/.bun/bin/ld-18"
+      - "/home/mainak/.nix-profile/bin/ld-18"
+      - "/nix/var/nix/profiles/default/bin/ld-18"
+      - "/home/mainak/.local/share/nvim/mason/bin/ld-18"
+      - "/home/mainak/.local/bin/ld-18"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/ld-18"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/ld-18"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/ld-18"
+      - "/usr/local/sbin/ld-18"
+      - "/usr/local/bin/ld-18"
+      - "/usr/sbin/ld-18"
+      - "/sbin/ld-18"
+      - "/bin/ld-18"
+      - "/usr/games/ld-18"
+      - "/usr/local/games/ld-18"
+      - "/snap/bin/ld-18"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/ld-18"
+      - "/home/mainak/.cargo/bin/ld-18"
+      - "/home/mainak/Applications/ld-18"
+      - "/home/mainak/v/ld-18"
+      - "/home/mainak/zig/ld-18"
+      - "/home/mainak/go/bin/ld-18"
+      - "/home/linuxbrew/.linuxbrew/bin/ld-18"
+      - "/home/mainak/Applications/nvim-linux64/bin/ld-18"
+      - "/home/mainak/Applications/Lua/bin/ld-18"
+      - "/usr/local/go/bin/ld-18"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/ld-18"
+    found: "/usr/bin/ld"
+    search_context:
+      ENV{PATH}:
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/bin"
+        - "/home/mainak/.sdkman/candidates/maven/current/bin"
+        - "/home/mainak/.sdkman/candidates/gradle/current/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nvm/versions/node/v22.19.0/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:3 (project)"
+    mode: "program"
+    variable: "CMAKE_NM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-nm-18"
+      - "llvm-nm"
+      - "nm-18"
+      - "nm"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/home/mainak/.detaspace/bin/"
+      - "/home/mainak/.bun/bin/"
+      - "/home/mainak/.nix-profile/bin/"
+      - "/nix/var/nix/profiles/default/bin/"
+      - "/home/mainak/.local/share/nvim/mason/bin/"
+      - "/home/mainak/.local/bin/"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/"
+      - "/home/mainak/.cargo/bin/"
+      - "/home/mainak/Applications/"
+      - "/home/mainak/v/"
+      - "/home/mainak/zig/"
+      - "/home/mainak/go/bin/"
+      - "/home/linuxbrew/.linuxbrew/bin/"
+      - "/home/mainak/Applications/nvim-linux64/bin/"
+      - "/home/mainak/Applications/Lua/bin/"
+      - "/usr/local/go/bin/"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/"
+    found: "/usr/bin/llvm-nm-18"
+    search_context:
+      ENV{PATH}:
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/bin"
+        - "/home/mainak/.sdkman/candidates/maven/current/bin"
+        - "/home/mainak/.sdkman/candidates/gradle/current/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nvm/versions/node/v22.19.0/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:3 (project)"
+    mode: "program"
+    variable: "CMAKE_OBJDUMP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-objdump-18"
+      - "llvm-objdump"
+      - "objdump-18"
+      - "objdump"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/home/mainak/.detaspace/bin/"
+      - "/home/mainak/.bun/bin/"
+      - "/home/mainak/.nix-profile/bin/"
+      - "/nix/var/nix/profiles/default/bin/"
+      - "/home/mainak/.local/share/nvim/mason/bin/"
+      - "/home/mainak/.local/bin/"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/"
+      - "/home/mainak/.cargo/bin/"
+      - "/home/mainak/Applications/"
+      - "/home/mainak/v/"
+      - "/home/mainak/zig/"
+      - "/home/mainak/go/bin/"
+      - "/home/linuxbrew/.linuxbrew/bin/"
+      - "/home/mainak/Applications/nvim-linux64/bin/"
+      - "/home/mainak/Applications/Lua/bin/"
+      - "/usr/local/go/bin/"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/"
+    found: "/usr/bin/llvm-objdump-18"
+    search_context:
+      ENV{PATH}:
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/bin"
+        - "/home/mainak/.sdkman/candidates/maven/current/bin"
+        - "/home/mainak/.sdkman/candidates/gradle/current/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nvm/versions/node/v22.19.0/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:3 (project)"
+    mode: "program"
+    variable: "CMAKE_OBJCOPY"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-objcopy-18"
+      - "llvm-objcopy"
+      - "objcopy-18"
+      - "objcopy"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/home/mainak/.detaspace/bin/"
+      - "/home/mainak/.bun/bin/"
+      - "/home/mainak/.nix-profile/bin/"
+      - "/nix/var/nix/profiles/default/bin/"
+      - "/home/mainak/.local/share/nvim/mason/bin/"
+      - "/home/mainak/.local/bin/"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/"
+      - "/home/mainak/.cargo/bin/"
+      - "/home/mainak/Applications/"
+      - "/home/mainak/v/"
+      - "/home/mainak/zig/"
+      - "/home/mainak/go/bin/"
+      - "/home/linuxbrew/.linuxbrew/bin/"
+      - "/home/mainak/Applications/nvim-linux64/bin/"
+      - "/home/mainak/Applications/Lua/bin/"
+      - "/usr/local/go/bin/"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/"
+    found: "/usr/bin/llvm-objcopy-18"
+    search_context:
+      ENV{PATH}:
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/bin"
+        - "/home/mainak/.sdkman/candidates/maven/current/bin"
+        - "/home/mainak/.sdkman/candidates/gradle/current/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nvm/versions/node/v22.19.0/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:3 (project)"
+    mode: "program"
+    variable: "CMAKE_READELF"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-readelf-18"
+      - "llvm-readelf"
+      - "readelf-18"
+      - "readelf"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/home/mainak/.detaspace/bin/"
+      - "/home/mainak/.bun/bin/"
+      - "/home/mainak/.nix-profile/bin/"
+      - "/nix/var/nix/profiles/default/bin/"
+      - "/home/mainak/.local/share/nvim/mason/bin/"
+      - "/home/mainak/.local/bin/"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/"
+      - "/home/mainak/.cargo/bin/"
+      - "/home/mainak/Applications/"
+      - "/home/mainak/v/"
+      - "/home/mainak/zig/"
+      - "/home/mainak/go/bin/"
+      - "/home/linuxbrew/.linuxbrew/bin/"
+      - "/home/mainak/Applications/nvim-linux64/bin/"
+      - "/home/mainak/Applications/Lua/bin/"
+      - "/usr/local/go/bin/"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/"
+    found: "/usr/bin/llvm-readelf-18"
+    search_context:
+      ENV{PATH}:
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/bin"
+        - "/home/mainak/.sdkman/candidates/maven/current/bin"
+        - "/home/mainak/.sdkman/candidates/gradle/current/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nvm/versions/node/v22.19.0/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:3 (project)"
+    mode: "program"
+    variable: "CMAKE_DLLTOOL"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-dlltool-18"
+      - "llvm-dlltool"
+      - "dlltool-18"
+      - "dlltool"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/home/mainak/.detaspace/bin/"
+      - "/home/mainak/.bun/bin/"
+      - "/home/mainak/.nix-profile/bin/"
+      - "/nix/var/nix/profiles/default/bin/"
+      - "/home/mainak/.local/share/nvim/mason/bin/"
+      - "/home/mainak/.local/bin/"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/"
+      - "/home/mainak/.cargo/bin/"
+      - "/home/mainak/Applications/"
+      - "/home/mainak/v/"
+      - "/home/mainak/zig/"
+      - "/home/mainak/go/bin/"
+      - "/home/linuxbrew/.linuxbrew/bin/"
+      - "/home/mainak/Applications/nvim-linux64/bin/"
+      - "/home/mainak/Applications/Lua/bin/"
+      - "/usr/local/go/bin/"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/"
+    found: "/usr/bin/llvm-dlltool-18"
+    search_context:
+      ENV{PATH}:
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/bin"
+        - "/home/mainak/.sdkman/candidates/maven/current/bin"
+        - "/home/mainak/.sdkman/candidates/gradle/current/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nvm/versions/node/v22.19.0/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:3 (project)"
+    mode: "program"
+    variable: "CMAKE_ADDR2LINE"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-addr2line-18"
+      - "llvm-addr2line"
+      - "addr2line-18"
+      - "addr2line"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/home/mainak/.detaspace/bin/"
+      - "/home/mainak/.bun/bin/"
+      - "/home/mainak/.nix-profile/bin/"
+      - "/nix/var/nix/profiles/default/bin/"
+      - "/home/mainak/.local/share/nvim/mason/bin/"
+      - "/home/mainak/.local/bin/"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/"
+      - "/home/mainak/.cargo/bin/"
+      - "/home/mainak/Applications/"
+      - "/home/mainak/v/"
+      - "/home/mainak/zig/"
+      - "/home/mainak/go/bin/"
+      - "/home/linuxbrew/.linuxbrew/bin/"
+      - "/home/mainak/Applications/nvim-linux64/bin/"
+      - "/home/mainak/Applications/Lua/bin/"
+      - "/usr/local/go/bin/"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/"
+    found: "/usr/bin/llvm-addr2line-18"
+    search_context:
+      ENV{PATH}:
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/bin"
+        - "/home/mainak/.sdkman/candidates/maven/current/bin"
+        - "/home/mainak/.sdkman/candidates/gradle/current/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nvm/versions/node/v22.19.0/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeFindBinUtils.cmake:238 (find_program)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:3 (project)"
+    mode: "program"
+    variable: "CMAKE_TAPI"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "tapi-18"
+      - "tapi"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/home/mainak/.detaspace/bin/"
+      - "/home/mainak/.bun/bin/"
+      - "/home/mainak/.nix-profile/bin/"
+      - "/nix/var/nix/profiles/default/bin/"
+      - "/home/mainak/.local/share/nvim/mason/bin/"
+      - "/home/mainak/.local/bin/"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/"
+      - "/home/mainak/.cargo/bin/"
+      - "/home/mainak/Applications/"
+      - "/home/mainak/v/"
+      - "/home/mainak/zig/"
+      - "/home/mainak/go/bin/"
+      - "/home/linuxbrew/.linuxbrew/bin/"
+      - "/home/mainak/Applications/nvim-linux64/bin/"
+      - "/home/mainak/Applications/Lua/bin/"
+      - "/usr/local/go/bin/"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/"
+    searched_directories:
+      - "/usr/bin/tapi-18"
+      - "/home/mainak/.detaspace/bin/tapi-18"
+      - "/home/mainak/.bun/bin/tapi-18"
+      - "/home/mainak/.nix-profile/bin/tapi-18"
+      - "/nix/var/nix/profiles/default/bin/tapi-18"
+      - "/home/mainak/.local/share/nvim/mason/bin/tapi-18"
+      - "/home/mainak/.local/bin/tapi-18"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/tapi-18"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/tapi-18"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/tapi-18"
+      - "/usr/local/sbin/tapi-18"
+      - "/usr/local/bin/tapi-18"
+      - "/usr/sbin/tapi-18"
+      - "/sbin/tapi-18"
+      - "/bin/tapi-18"
+      - "/usr/games/tapi-18"
+      - "/usr/local/games/tapi-18"
+      - "/snap/bin/tapi-18"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/tapi-18"
+      - "/home/mainak/.cargo/bin/tapi-18"
+      - "/home/mainak/Applications/tapi-18"
+      - "/home/mainak/v/tapi-18"
+      - "/home/mainak/zig/tapi-18"
+      - "/home/mainak/go/bin/tapi-18"
+      - "/home/linuxbrew/.linuxbrew/bin/tapi-18"
+      - "/home/mainak/Applications/nvim-linux64/bin/tapi-18"
+      - "/home/mainak/Applications/Lua/bin/tapi-18"
+      - "/usr/local/go/bin/tapi-18"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/tapi-18"
+      - "/usr/bin/tapi"
+      - "/home/mainak/.detaspace/bin/tapi"
+      - "/home/mainak/.bun/bin/tapi"
+      - "/home/mainak/.nix-profile/bin/tapi"
+      - "/nix/var/nix/profiles/default/bin/tapi"
+      - "/home/mainak/.local/share/nvim/mason/bin/tapi"
+      - "/home/mainak/.local/bin/tapi"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/tapi"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/tapi"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/tapi"
+      - "/usr/local/sbin/tapi"
+      - "/usr/local/bin/tapi"
+      - "/usr/sbin/tapi"
+      - "/sbin/tapi"
+      - "/bin/tapi"
+      - "/usr/games/tapi"
+      - "/usr/local/games/tapi"
+      - "/snap/bin/tapi"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/tapi"
+      - "/home/mainak/.cargo/bin/tapi"
+      - "/home/mainak/Applications/tapi"
+      - "/home/mainak/v/tapi"
+      - "/home/mainak/zig/tapi"
+      - "/home/mainak/go/bin/tapi"
+      - "/home/linuxbrew/.linuxbrew/bin/tapi"
+      - "/home/mainak/Applications/nvim-linux64/bin/tapi"
+      - "/home/mainak/Applications/Lua/bin/tapi"
+      - "/usr/local/go/bin/tapi"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/tapi"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/bin"
+        - "/home/mainak/.sdkman/candidates/maven/current/bin"
+        - "/home/mainak/.sdkman/candidates/gradle/current/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nvm/versions/node/v22.19.0/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/Compiler/Clang-FindBinUtils.cmake:26 (find_program)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:201 (include)"
+      - "CMakeLists.txt:3 (project)"
+    mode: "program"
+    variable: "CMAKE_C_COMPILER_AR"
+    description: "LLVM archiver"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-ar-18.1"
+      - "llvm-ar-18"
+      - "llvm-ar18"
+      - "llvm-ar"
+    candidate_directories:
+      - "/usr/lib/llvm-18/bin/"
+      - "/usr/bin/"
+      - "/home/mainak/.detaspace/bin/"
+      - "/home/mainak/.bun/bin/"
+      - "/home/mainak/.nix-profile/bin/"
+      - "/nix/var/nix/profiles/default/bin/"
+      - "/home/mainak/.local/share/nvim/mason/bin/"
+      - "/home/mainak/.local/bin/"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/"
+      - "/home/mainak/.cargo/bin/"
+      - "/home/mainak/Applications/"
+      - "/home/mainak/v/"
+      - "/home/mainak/zig/"
+      - "/home/mainak/go/bin/"
+      - "/home/linuxbrew/.linuxbrew/bin/"
+      - "/home/mainak/Applications/nvim-linux64/bin/"
+      - "/home/mainak/Applications/Lua/bin/"
+      - "/usr/local/go/bin/"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/"
+    searched_directories:
+      - "/usr/lib/llvm-18/bin/llvm-ar-18.1"
+      - "/usr/bin/llvm-ar-18.1"
+      - "/home/mainak/.detaspace/bin/llvm-ar-18.1"
+      - "/home/mainak/.bun/bin/llvm-ar-18.1"
+      - "/home/mainak/.nix-profile/bin/llvm-ar-18.1"
+      - "/nix/var/nix/profiles/default/bin/llvm-ar-18.1"
+      - "/home/mainak/.local/share/nvim/mason/bin/llvm-ar-18.1"
+      - "/home/mainak/.local/bin/llvm-ar-18.1"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/llvm-ar-18.1"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/llvm-ar-18.1"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/llvm-ar-18.1"
+      - "/usr/local/sbin/llvm-ar-18.1"
+      - "/usr/local/bin/llvm-ar-18.1"
+      - "/usr/sbin/llvm-ar-18.1"
+      - "/sbin/llvm-ar-18.1"
+      - "/bin/llvm-ar-18.1"
+      - "/usr/games/llvm-ar-18.1"
+      - "/usr/local/games/llvm-ar-18.1"
+      - "/snap/bin/llvm-ar-18.1"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/llvm-ar-18.1"
+      - "/home/mainak/.cargo/bin/llvm-ar-18.1"
+      - "/home/mainak/Applications/llvm-ar-18.1"
+      - "/home/mainak/v/llvm-ar-18.1"
+      - "/home/mainak/zig/llvm-ar-18.1"
+      - "/home/mainak/go/bin/llvm-ar-18.1"
+      - "/home/linuxbrew/.linuxbrew/bin/llvm-ar-18.1"
+      - "/home/mainak/Applications/nvim-linux64/bin/llvm-ar-18.1"
+      - "/home/mainak/Applications/Lua/bin/llvm-ar-18.1"
+      - "/usr/local/go/bin/llvm-ar-18.1"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/llvm-ar-18.1"
+      - "/usr/lib/llvm-18/bin/llvm-ar-18"
+    found: "/usr/bin/llvm-ar-18"
+    search_context:
+      ENV{PATH}:
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/bin"
+        - "/home/mainak/.sdkman/candidates/maven/current/bin"
+        - "/home/mainak/.sdkman/candidates/gradle/current/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nvm/versions/node/v22.19.0/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/Compiler/Clang-FindBinUtils.cmake:38 (find_program)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:201 (include)"
+      - "CMakeLists.txt:3 (project)"
+    mode: "program"
+    variable: "CMAKE_C_COMPILER_RANLIB"
+    description: "Generate index for LLVM archive"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "llvm-ranlib-18.1"
+      - "llvm-ranlib-18"
+      - "llvm-ranlib18"
+      - "llvm-ranlib"
+    candidate_directories:
+      - "/usr/lib/llvm-18/bin/"
+      - "/usr/bin/"
+      - "/home/mainak/.detaspace/bin/"
+      - "/home/mainak/.bun/bin/"
+      - "/home/mainak/.nix-profile/bin/"
+      - "/nix/var/nix/profiles/default/bin/"
+      - "/home/mainak/.local/share/nvim/mason/bin/"
+      - "/home/mainak/.local/bin/"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/"
+      - "/home/mainak/.cargo/bin/"
+      - "/home/mainak/Applications/"
+      - "/home/mainak/v/"
+      - "/home/mainak/zig/"
+      - "/home/mainak/go/bin/"
+      - "/home/linuxbrew/.linuxbrew/bin/"
+      - "/home/mainak/Applications/nvim-linux64/bin/"
+      - "/home/mainak/Applications/Lua/bin/"
+      - "/usr/local/go/bin/"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/"
+    searched_directories:
+      - "/usr/lib/llvm-18/bin/llvm-ranlib-18.1"
+      - "/usr/bin/llvm-ranlib-18.1"
+      - "/home/mainak/.detaspace/bin/llvm-ranlib-18.1"
+      - "/home/mainak/.bun/bin/llvm-ranlib-18.1"
+      - "/home/mainak/.nix-profile/bin/llvm-ranlib-18.1"
+      - "/nix/var/nix/profiles/default/bin/llvm-ranlib-18.1"
+      - "/home/mainak/.local/share/nvim/mason/bin/llvm-ranlib-18.1"
+      - "/home/mainak/.local/bin/llvm-ranlib-18.1"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/llvm-ranlib-18.1"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/llvm-ranlib-18.1"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/llvm-ranlib-18.1"
+      - "/usr/local/sbin/llvm-ranlib-18.1"
+      - "/usr/local/bin/llvm-ranlib-18.1"
+      - "/usr/sbin/llvm-ranlib-18.1"
+      - "/sbin/llvm-ranlib-18.1"
+      - "/bin/llvm-ranlib-18.1"
+      - "/usr/games/llvm-ranlib-18.1"
+      - "/usr/local/games/llvm-ranlib-18.1"
+      - "/snap/bin/llvm-ranlib-18.1"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/llvm-ranlib-18.1"
+      - "/home/mainak/.cargo/bin/llvm-ranlib-18.1"
+      - "/home/mainak/Applications/llvm-ranlib-18.1"
+      - "/home/mainak/v/llvm-ranlib-18.1"
+      - "/home/mainak/zig/llvm-ranlib-18.1"
+      - "/home/mainak/go/bin/llvm-ranlib-18.1"
+      - "/home/linuxbrew/.linuxbrew/bin/llvm-ranlib-18.1"
+      - "/home/mainak/Applications/nvim-linux64/bin/llvm-ranlib-18.1"
+      - "/home/mainak/Applications/Lua/bin/llvm-ranlib-18.1"
+      - "/usr/local/go/bin/llvm-ranlib-18.1"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/llvm-ranlib-18.1"
+      - "/usr/lib/llvm-18/bin/llvm-ranlib-18"
+    found: "/usr/bin/llvm-ranlib-18"
+    search_context:
+      ENV{PATH}:
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/bin"
+        - "/home/mainak/.sdkman/candidates/maven/current/bin"
+        - "/home/mainak/.sdkman/candidates/gradle/current/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nvm/versions/node/v22.19.0/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/Compiler/Clang-FindBinUtils.cmake:50 (find_program)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCCompiler.cmake:201 (include)"
+      - "CMakeLists.txt:3 (project)"
+    mode: "program"
+    variable: "CMAKE_C_COMPILER_CLANG_SCAN_DEPS"
+    description: "`clang-scan-deps` dependency scanner"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "clang-scan-deps-18.1"
+      - "clang-scan-deps-18"
+      - "clang-scan-deps18"
+      - "clang-scan-deps"
+    candidate_directories:
+      - "/usr/lib/llvm-18/bin/"
+      - "/usr/bin/"
+      - "/home/mainak/.detaspace/bin/"
+      - "/home/mainak/.bun/bin/"
+      - "/home/mainak/.nix-profile/bin/"
+      - "/nix/var/nix/profiles/default/bin/"
+      - "/home/mainak/.local/share/nvim/mason/bin/"
+      - "/home/mainak/.local/bin/"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/"
+      - "/home/mainak/.cargo/bin/"
+      - "/home/mainak/Applications/"
+      - "/home/mainak/v/"
+      - "/home/mainak/zig/"
+      - "/home/mainak/go/bin/"
+      - "/home/linuxbrew/.linuxbrew/bin/"
+      - "/home/mainak/Applications/nvim-linux64/bin/"
+      - "/home/mainak/Applications/Lua/bin/"
+      - "/usr/local/go/bin/"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/"
+    searched_directories:
+      - "/usr/lib/llvm-18/bin/clang-scan-deps-18.1"
+      - "/usr/bin/clang-scan-deps-18.1"
+      - "/home/mainak/.detaspace/bin/clang-scan-deps-18.1"
+      - "/home/mainak/.bun/bin/clang-scan-deps-18.1"
+      - "/home/mainak/.nix-profile/bin/clang-scan-deps-18.1"
+      - "/nix/var/nix/profiles/default/bin/clang-scan-deps-18.1"
+      - "/home/mainak/.local/share/nvim/mason/bin/clang-scan-deps-18.1"
+      - "/home/mainak/.local/bin/clang-scan-deps-18.1"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/clang-scan-deps-18.1"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/clang-scan-deps-18.1"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/clang-scan-deps-18.1"
+      - "/usr/local/sbin/clang-scan-deps-18.1"
+      - "/usr/local/bin/clang-scan-deps-18.1"
+      - "/usr/sbin/clang-scan-deps-18.1"
+      - "/sbin/clang-scan-deps-18.1"
+      - "/bin/clang-scan-deps-18.1"
+      - "/usr/games/clang-scan-deps-18.1"
+      - "/usr/local/games/clang-scan-deps-18.1"
+      - "/snap/bin/clang-scan-deps-18.1"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/clang-scan-deps-18.1"
+      - "/home/mainak/.cargo/bin/clang-scan-deps-18.1"
+      - "/home/mainak/Applications/clang-scan-deps-18.1"
+      - "/home/mainak/v/clang-scan-deps-18.1"
+      - "/home/mainak/zig/clang-scan-deps-18.1"
+      - "/home/mainak/go/bin/clang-scan-deps-18.1"
+      - "/home/linuxbrew/.linuxbrew/bin/clang-scan-deps-18.1"
+      - "/home/mainak/Applications/nvim-linux64/bin/clang-scan-deps-18.1"
+      - "/home/mainak/Applications/Lua/bin/clang-scan-deps-18.1"
+      - "/usr/local/go/bin/clang-scan-deps-18.1"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/clang-scan-deps-18.1"
+      - "/usr/lib/llvm-18/bin/clang-scan-deps-18"
+    found: "/usr/bin/clang-scan-deps-18"
+    search_context:
+      ENV{PATH}:
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/bin"
+        - "/home/mainak/.sdkman/candidates/maven/current/bin"
+        - "/home/mainak/.sdkman/candidates/gradle/current/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nvm/versions/node/v22.19.0/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCompiler.cmake:54 (find_program)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCXXCompiler.cmake:69 (_cmake_find_compiler)"
+      - "CMakeLists.txt:3 (project)"
+    mode: "program"
+    variable: "CMAKE_CXX_COMPILER"
+    description: "CXX compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "c++"
+      - "CC"
+      - "g++"
+      - "aCC"
+      - "cl"
+      - "bcc"
+      - "xlC"
+      - "icpx"
+      - "icx"
+      - "clang++"
+    candidate_directories:
+      - "/usr/bin/"
+    found: "/usr/bin/c++"
+    search_context:
+      ENV{PATH}:
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/bin"
+        - "/home/mainak/.sdkman/candidates/maven/current/bin"
+        - "/home/mainak/.sdkman/candidates/gradle/current/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nvm/versions/node/v22.19.0/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:462 (find_file)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:500 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/"
+    found: "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/bin"
+        - "/home/mainak/.sdkman/candidates/maven/current/bin"
+        - "/home/mainak/.sdkman/candidates/gradle/current/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nvm/versions/node/v22.19.0/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /usr/bin/c++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+      
+      The CXX compiler identification is GNU, found in:
+        /home/mainak/programs/myBuild/build/CMakeFiles/4.1.2/CompilerIdCXX/a.out
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/Compiler/GNU-FindBinUtils.cmake:18 (find_program)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCXXCompiler.cmake:207 (include)"
+      - "CMakeLists.txt:3 (project)"
+    mode: "program"
+    variable: "CMAKE_CXX_COMPILER_AR"
+    description: "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "gcc-ar-9.4"
+      - "gcc-ar-9"
+      - "gcc-ar9"
+      - "gcc-ar"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/home/mainak/.detaspace/bin/"
+      - "/home/mainak/.bun/bin/"
+      - "/home/mainak/.nix-profile/bin/"
+      - "/nix/var/nix/profiles/default/bin/"
+      - "/home/mainak/.local/share/nvim/mason/bin/"
+      - "/home/mainak/.local/bin/"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/"
+      - "/home/mainak/.cargo/bin/"
+      - "/home/mainak/Applications/"
+      - "/home/mainak/v/"
+      - "/home/mainak/zig/"
+      - "/home/mainak/go/bin/"
+      - "/home/linuxbrew/.linuxbrew/bin/"
+      - "/home/mainak/Applications/nvim-linux64/bin/"
+      - "/home/mainak/Applications/Lua/bin/"
+      - "/usr/local/go/bin/"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/"
+    searched_directories:
+      - "/usr/bin/gcc-ar-9.4"
+      - "/home/mainak/.detaspace/bin/gcc-ar-9.4"
+      - "/home/mainak/.bun/bin/gcc-ar-9.4"
+      - "/home/mainak/.nix-profile/bin/gcc-ar-9.4"
+      - "/nix/var/nix/profiles/default/bin/gcc-ar-9.4"
+      - "/home/mainak/.local/share/nvim/mason/bin/gcc-ar-9.4"
+      - "/home/mainak/.local/bin/gcc-ar-9.4"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/gcc-ar-9.4"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/gcc-ar-9.4"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/gcc-ar-9.4"
+      - "/usr/local/sbin/gcc-ar-9.4"
+      - "/usr/local/bin/gcc-ar-9.4"
+      - "/usr/sbin/gcc-ar-9.4"
+      - "/sbin/gcc-ar-9.4"
+      - "/bin/gcc-ar-9.4"
+      - "/usr/games/gcc-ar-9.4"
+      - "/usr/local/games/gcc-ar-9.4"
+      - "/snap/bin/gcc-ar-9.4"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/gcc-ar-9.4"
+      - "/home/mainak/.cargo/bin/gcc-ar-9.4"
+      - "/home/mainak/Applications/gcc-ar-9.4"
+      - "/home/mainak/v/gcc-ar-9.4"
+      - "/home/mainak/zig/gcc-ar-9.4"
+      - "/home/mainak/go/bin/gcc-ar-9.4"
+      - "/home/linuxbrew/.linuxbrew/bin/gcc-ar-9.4"
+      - "/home/mainak/Applications/nvim-linux64/bin/gcc-ar-9.4"
+      - "/home/mainak/Applications/Lua/bin/gcc-ar-9.4"
+      - "/usr/local/go/bin/gcc-ar-9.4"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/gcc-ar-9.4"
+    found: "/usr/bin/gcc-ar-9"
+    search_context:
+      ENV{PATH}:
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/bin"
+        - "/home/mainak/.sdkman/candidates/maven/current/bin"
+        - "/home/mainak/.sdkman/candidates/gradle/current/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nvm/versions/node/v22.19.0/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/Compiler/GNU-FindBinUtils.cmake:30 (find_program)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCXXCompiler.cmake:207 (include)"
+      - "CMakeLists.txt:3 (project)"
+    mode: "program"
+    variable: "CMAKE_CXX_COMPILER_RANLIB"
+    description: "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "gcc-ranlib-9.4"
+      - "gcc-ranlib-9"
+      - "gcc-ranlib9"
+      - "gcc-ranlib"
+    candidate_directories:
+      - "/usr/bin/"
+      - "/home/mainak/.detaspace/bin/"
+      - "/home/mainak/.bun/bin/"
+      - "/home/mainak/.nix-profile/bin/"
+      - "/nix/var/nix/profiles/default/bin/"
+      - "/home/mainak/.local/share/nvim/mason/bin/"
+      - "/home/mainak/.local/bin/"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/"
+      - "/usr/local/sbin/"
+      - "/usr/local/bin/"
+      - "/usr/sbin/"
+      - "/sbin/"
+      - "/bin/"
+      - "/usr/games/"
+      - "/usr/local/games/"
+      - "/snap/bin/"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/"
+      - "/home/mainak/.cargo/bin/"
+      - "/home/mainak/Applications/"
+      - "/home/mainak/v/"
+      - "/home/mainak/zig/"
+      - "/home/mainak/go/bin/"
+      - "/home/linuxbrew/.linuxbrew/bin/"
+      - "/home/mainak/Applications/nvim-linux64/bin/"
+      - "/home/mainak/Applications/Lua/bin/"
+      - "/usr/local/go/bin/"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/"
+    searched_directories:
+      - "/usr/bin/gcc-ranlib-9.4"
+      - "/home/mainak/.detaspace/bin/gcc-ranlib-9.4"
+      - "/home/mainak/.bun/bin/gcc-ranlib-9.4"
+      - "/home/mainak/.nix-profile/bin/gcc-ranlib-9.4"
+      - "/nix/var/nix/profiles/default/bin/gcc-ranlib-9.4"
+      - "/home/mainak/.local/share/nvim/mason/bin/gcc-ranlib-9.4"
+      - "/home/mainak/.local/bin/gcc-ranlib-9.4"
+      - "/home/mainak/.sdkman/candidates/maven/current/bin/gcc-ranlib-9.4"
+      - "/home/mainak/.sdkman/candidates/gradle/current/bin/gcc-ranlib-9.4"
+      - "/home/mainak/.nvm/versions/node/v22.19.0/bin/gcc-ranlib-9.4"
+      - "/usr/local/sbin/gcc-ranlib-9.4"
+      - "/usr/local/bin/gcc-ranlib-9.4"
+      - "/usr/sbin/gcc-ranlib-9.4"
+      - "/sbin/gcc-ranlib-9.4"
+      - "/bin/gcc-ranlib-9.4"
+      - "/usr/games/gcc-ranlib-9.4"
+      - "/usr/local/games/gcc-ranlib-9.4"
+      - "/snap/bin/gcc-ranlib-9.4"
+      - "/usr/lib/jvm/java-11-openjdk-amd64/bin/gcc-ranlib-9.4"
+      - "/home/mainak/.cargo/bin/gcc-ranlib-9.4"
+      - "/home/mainak/Applications/gcc-ranlib-9.4"
+      - "/home/mainak/v/gcc-ranlib-9.4"
+      - "/home/mainak/zig/gcc-ranlib-9.4"
+      - "/home/mainak/go/bin/gcc-ranlib-9.4"
+      - "/home/linuxbrew/.linuxbrew/bin/gcc-ranlib-9.4"
+      - "/home/mainak/Applications/nvim-linux64/bin/gcc-ranlib-9.4"
+      - "/home/mainak/Applications/Lua/bin/gcc-ranlib-9.4"
+      - "/usr/local/go/bin/gcc-ranlib-9.4"
+      - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin/gcc-ranlib-9.4"
+    found: "/usr/bin/gcc-ranlib-9"
+    search_context:
+      ENV{PATH}:
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.local/share/nvim/mason/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/home/mainak/.local/bin"
+        - "/home/mainak/.sdkman/candidates/maven/current/bin"
+        - "/home/mainak/.sdkman/candidates/gradle/current/bin"
+        - "/home/mainak/.detaspace/bin"
+        - "/home/mainak/.bun/bin"
+        - "/home/mainak/.nvm/versions/node/v22.19.0/bin"
+        - "/home/mainak/.nix-profile/bin"
+        - "/nix/var/nix/profiles/default/bin"
+        - "/usr/local/sbin"
+        - "/usr/local/bin"
+        - "/usr/sbin"
+        - "/usr/bin"
+        - "/sbin"
+        - "/bin"
+        - "/usr/games"
+        - "/usr/local/games"
+        - "/snap/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+        - "/usr/lib/jvm/java-11-openjdk-amd64//bin"
+        - "/home/mainak/.cargo/bin"
+        - "/home/mainak/Applications"
+        - "/home/mainak/v"
+        - "/home/mainak/zig"
+        - "/home/mainak/go/bin/"
+        - "/home/linuxbrew/.linuxbrew/bin/"
+        - "/home/mainak/Applications/nvim-linux64/bin/"
+        - "/home/mainak/Applications/Lua/bin/"
+        - "/usr/local/go/bin"
+        - "/home/mainak/Applications/snow-cli/mainak/ServiceNow CLI/bin"
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/home/mainak/programs/myBuild/build/CMakeFiles/CMakeScratch/TryCompile-IZjHov"
+      binary: "/home/mainak/programs/myBuild/build/CMakeFiles/CMakeScratch/TryCompile-IZjHov"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/mainak/programs/myBuild/build/CMakeFiles/CMakeScratch/TryCompile-IZjHov'
+        
+        Run Build Command(s): /home/mainak/.local/lib/python3.13/site-packages/cmake/data/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_d2475/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_d2475.dir/build.make CMakeFiles/cmTC_d2475.dir/build
+        make[1]: Entering directory '/home/mainak/programs/myBuild/build/CMakeFiles/CMakeScratch/TryCompile-IZjHov'
+        Building C object CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o
+        /usr/bin/clang-18   -v -MD -MT CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o -c /home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeCCompilerABI.c
+        Ubuntu clang version 18.1.8 (11~20.04.2)
+        Target: x86_64-pc-linux-gnu
+        Thread model: posix
+        InstalledDir: /usr/bin
+        Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/10
+        Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/13
+        Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/8
+        Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/9
+        Selected GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/13
+        Candidate multilib: .;@m64
+        Selected multilib: .;@m64
+         (in-process)
+         "/usr/lib/llvm-18/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -fdebug-compilation-dir=/home/mainak/programs/myBuild/build/CMakeFiles/CMakeScratch/TryCompile-IZjHov -v -fcoverage-compilation-dir=/home/mainak/programs/myBuild/build/CMakeFiles/CMakeScratch/TryCompile-IZjHov -resource-dir /usr/lib/llvm-18/lib/clang/18 -dependency-file CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o -sys-header-deps -internal-isystem /usr/lib/llvm-18/lib/clang/18/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -ferror-limit 19 -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -dwarf-debug-flags "/usr/lib/llvm-18/bin/clang -v -MD -MT CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o -c /home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeCCompilerABI.c" -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o -x c /home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeCCompilerABI.c
+        clang -cc1 version 18.1.8 based upon LLVM 18.1.8 default target x86_64-pc-linux-gnu
+        ignoring nonexistent directory "/usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include"
+        ignoring nonexistent directory "/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/lib/llvm-18/lib/clang/18/include
+         /usr/local/include
+         /usr/include/x86_64-linux-gnu
+         /usr/include
+        End of search list.
+        Linking C executable cmTC_d2475
+        /home/mainak/.local/lib/python3.13/site-packages/cmake/data/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d2475.dir/link.txt --verbose=1
+        Ubuntu clang version 18.1.8 (11~20.04.2)
+        Target: x86_64-pc-linux-gnu
+        Thread model: posix
+        InstalledDir: /usr/bin
+        Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/10
+        Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/13
+        Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/8
+        Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/9
+        Selected GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/13
+        Candidate multilib: .;@m64
+        Selected multilib: .;@m64
+         "/usr/bin/ld" -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -pie -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_d2475 /lib/x86_64-linux-gnu/Scrt1.o /lib/x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/13 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/lib -L/usr/lib -v CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib/gcc/x86_64-linux-gnu/13/crtendS.o /lib/x86_64-linux-gnu/crtn.o
+        GNU ld (GNU Binutils for Ubuntu) 2.34
+        /usr/bin/clang-18  -v -Wl,-v CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o -o cmTC_d2475
+        make[1]: Leaving directory '/home/mainak/programs/myBuild/build/CMakeFiles/CMakeScratch/TryCompile-IZjHov'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:217 (message)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/lib/llvm-18/lib/clang/18/include]
+          add: [/usr/local/include]
+          add: [/usr/include/x86_64-linux-gnu]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/usr/lib/llvm-18/lib/clang/18/include] ==> [/usr/lib/llvm-18/lib/clang/18/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/usr/lib/llvm-18/lib/clang/18/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
+        ignore line: [Change Dir: '/home/mainak/programs/myBuild/build/CMakeFiles/CMakeScratch/TryCompile-IZjHov']
+        ignore line: []
+        ignore line: [Run Build Command(s): /home/mainak/.local/lib/python3.13/site-packages/cmake/data/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_d2475/fast]
+        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_d2475.dir/build.make CMakeFiles/cmTC_d2475.dir/build]
+        ignore line: [make[1]: Entering directory '/home/mainak/programs/myBuild/build/CMakeFiles/CMakeScratch/TryCompile-IZjHov']
+        ignore line: [Building C object CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/clang-18   -v -MD -MT CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o -c /home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeCCompilerABI.c]
+        ignore line: [Ubuntu clang version 18.1.8 (11~20.04.2)]
+        ignore line: [Target: x86_64-pc-linux-gnu]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /usr/bin]
+        ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/10]
+        ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/13]
+        ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/8]
+        ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/9]
+        ignore line: [Selected GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/13]
+        ignore line: [Candidate multilib: .]
+        ignore line: [@m64]
+        ignore line: [Selected multilib: .]
+        ignore line: [@m64]
+        ignore line: [ (in-process)]
+        ignore line: [ "/usr/lib/llvm-18/bin/clang" -cc1 -triple x86_64-pc-linux-gnu -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -fdebug-compilation-dir=/home/mainak/programs/myBuild/build/CMakeFiles/CMakeScratch/TryCompile-IZjHov -v -fcoverage-compilation-dir=/home/mainak/programs/myBuild/build/CMakeFiles/CMakeScratch/TryCompile-IZjHov -resource-dir /usr/lib/llvm-18/lib/clang/18 -dependency-file CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o -sys-header-deps -internal-isystem /usr/lib/llvm-18/lib/clang/18/include -internal-isystem /usr/local/include -internal-isystem /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -ferror-limit 19 -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -dwarf-debug-flags "/usr/lib/llvm-18/bin/clang -v -MD -MT CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o -c /home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeCCompilerABI.c" -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o -x c /home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeCCompilerABI.c]
+        ignore line: [clang -cc1 version 18.1.8 based upon LLVM 18.1.8 default target x86_64-pc-linux-gnu]
+        ignore line: [ignoring nonexistent directory "/usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include"]
+        ignore line: [ignoring nonexistent directory "/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/lib/llvm-18/lib/clang/18/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/include/x86_64-linux-gnu]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [Linking C executable cmTC_d2475]
+        ignore line: [/home/mainak/.local/lib/python3.13/site-packages/cmake/data/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d2475.dir/link.txt --verbose=1]
+        ignore line: [Ubuntu clang version 18.1.8 (11~20.04.2)]
+        ignore line: [Target: x86_64-pc-linux-gnu]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /usr/bin]
+        ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/10]
+        ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/13]
+        ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/8]
+        ignore line: [Found candidate GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/9]
+        ignore line: [Selected GCC installation: /usr/bin/../lib/gcc/x86_64-linux-gnu/13]
+        ignore line: [Candidate multilib: .]
+        ignore line: [@m64]
+        ignore line: [Selected multilib: .]
+        ignore line: [@m64]
+        link line: [ "/usr/bin/ld" -z relro --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -pie -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_d2475 /lib/x86_64-linux-gnu/Scrt1.o /lib/x86_64-linux-gnu/crti.o /usr/bin/../lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/bin/../lib/gcc/x86_64-linux-gnu/13 -L/usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib64 -L/lib -L/usr/lib -v CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/bin/../lib/gcc/x86_64-linux-gnu/13/crtendS.o /lib/x86_64-linux-gnu/crtn.o]
+          arg [/usr/bin/ld] ==> ignore
+          arg [-zrelro] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [-pie] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_d2475] ==> ignore
+          arg [/lib/x86_64-linux-gnu/Scrt1.o] ==> obj [/lib/x86_64-linux-gnu/Scrt1.o]
+          arg [/lib/x86_64-linux-gnu/crti.o] ==> obj [/lib/x86_64-linux-gnu/crti.o]
+          arg [/usr/bin/../lib/gcc/x86_64-linux-gnu/13/crtbeginS.o] ==> obj [/usr/bin/../lib/gcc/x86_64-linux-gnu/13/crtbeginS.o]
+          arg [-L/usr/bin/../lib/gcc/x86_64-linux-gnu/13] ==> dir [/usr/bin/../lib/gcc/x86_64-linux-gnu/13]
+          arg [-L/usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../lib64] ==> dir [/usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../lib64]
+          arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+          arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+          arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+          arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+          arg [-L/lib] ==> dir [/lib]
+          arg [-L/usr/lib] ==> dir [/usr/lib]
+          arg [-v] ==> ignore
+          arg [CMakeFiles/cmTC_d2475.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [-lgcc] ==> lib [gcc]
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--no-as-needed] ==> ignore
+          arg [-lc] ==> lib [c]
+          arg [-lgcc] ==> lib [gcc]
+          arg [--as-needed] ==> ignore
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [--no-as-needed] ==> ignore
+          arg [/usr/bin/../lib/gcc/x86_64-linux-gnu/13/crtendS.o] ==> obj [/usr/bin/../lib/gcc/x86_64-linux-gnu/13/crtendS.o]
+          arg [/lib/x86_64-linux-gnu/crtn.o] ==> obj [/lib/x86_64-linux-gnu/crtn.o]
+        linker tool for 'C': /usr/bin/ld
+        collapse obj [/usr/bin/../lib/gcc/x86_64-linux-gnu/13/crtbeginS.o] ==> [/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o]
+        collapse obj [/usr/bin/../lib/gcc/x86_64-linux-gnu/13/crtendS.o] ==> [/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o]
+        collapse library dir [/usr/bin/../lib/gcc/x86_64-linux-gnu/13] ==> [/usr/lib/gcc/x86_64-linux-gnu/13]
+        collapse library dir [/usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../lib64] ==> [/usr/lib64]
+        collapse library dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+        collapse library dir [/lib/../lib64] ==> [/lib64]
+        collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+        collapse library dir [/lib] ==> [/lib]
+        collapse library dir [/usr/lib] ==> [/usr/lib]
+        implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+        implicit objs: [/lib/x86_64-linux-gnu/Scrt1.o;/lib/x86_64-linux-gnu/crti.o;/usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o;/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o;/lib/x86_64-linux-gnu/crtn.o]
+        implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/13;/usr/lib64;/lib/x86_64-linux-gnu;/lib64;/usr/lib/x86_64-linux-gnu;/lib;/usr/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/Internal/CMakeDetermineLinkerId.cmake:36 (message)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Running the C compiler's linker: "/usr/bin/ld" "-v"
+      GNU ld (GNU Binutils for Ubuntu) 2.34
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/home/mainak/programs/myBuild/build/CMakeFiles/CMakeScratch/TryCompile-O6iYmw"
+      binary: "/home/mainak/programs/myBuild/build/CMakeFiles/CMakeScratch/TryCompile-O6iYmw"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/mainak/programs/myBuild/build/CMakeFiles/CMakeScratch/TryCompile-O6iYmw'
+        
+        Run Build Command(s): /home/mainak/.local/lib/python3.13/site-packages/cmake/data/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_37525/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_37525.dir/build.make CMakeFiles/cmTC_37525.dir/build
+        make[1]: Entering directory '/home/mainak/programs/myBuild/build/CMakeFiles/CMakeScratch/TryCompile-O6iYmw'
+        Building CXX object CMakeFiles/cmTC_37525.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/c++   -v -o CMakeFiles/cmTC_37525.dir/CMakeCXXCompilerABI.cpp.o -c /home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeCXXCompilerABI.cpp
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/c++
+        OFFLOAD_TARGET_NAMES=nvptx-none:hsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 9.4.0-1ubuntu1~20.04.2' --with-bugurl=file:///usr/share/doc/gcc-9/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++,gm2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-9 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-9-9QDOt0/gcc-9-9.4.0/debian/tmp-nvptx/usr,hsa --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+        Thread model: posix
+        gcc version 9.4.0 (Ubuntu 9.4.0-1ubuntu1~20.04.2) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_37525.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+         /usr/lib/gcc/x86_64-linux-gnu/9/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_37525.dir/CMakeCXXCompilerABI.cpp.o -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccMdRGD8.s
+        GNU C++14 (Ubuntu 9.4.0-1ubuntu1~20.04.2) version 9.4.0 (x86_64-linux-gnu)
+        	compiled by GNU C version 9.4.0, GMP version 6.2.0, MPFR version 4.0.2, MPC version 1.1.0, isl version isl-0.22.1-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        ignoring duplicate directory "/usr/include/x86_64-linux-gnu/c++/9"
+        ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/9/include-fixed"
+        ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/9/../../../../x86_64-linux-gnu/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /usr/include/c++/9
+         /usr/include/x86_64-linux-gnu/c++/9
+         /usr/include/c++/9/backward
+         /usr/lib/gcc/x86_64-linux-gnu/9/include
+         /usr/local/include
+         /usr/include/x86_64-linux-gnu
+         /usr/include
+        End of search list.
+        GNU C++14 (Ubuntu 9.4.0-1ubuntu1~20.04.2) version 9.4.0 (x86_64-linux-gnu)
+        	compiled by GNU C version 9.4.0, GMP version 6.2.0, MPFR version 4.0.2, MPC version 1.1.0, isl version isl-0.22.1-GMP
+        
+        GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+        Compiler executable checksum: 3d1eba838554fa2348dba760e4770469
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_37525.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+         as -v --64 -o CMakeFiles/cmTC_37525.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccMdRGD8.s
+        GNU assembler version 2.34 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.34
+        COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_37525.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+        Linking CXX executable cmTC_37525
+        /home/mainak/.local/lib/python3.13/site-packages/cmake/data/bin/cmake -E cmake_link_script CMakeFiles/cmTC_37525.dir/link.txt --verbose=1
+        Using built-in specs.
+        COLLECT_GCC=/usr/bin/c++
+        COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/9/lto-wrapper
+        OFFLOAD_TARGET_NAMES=nvptx-none:hsa
+        OFFLOAD_TARGET_DEFAULT=1
+        Target: x86_64-linux-gnu
+        Configured with: ../src/configure -v --with-pkgversion='Ubuntu 9.4.0-1ubuntu1~20.04.2' --with-bugurl=file:///usr/share/doc/gcc-9/README.Bugs --enable-languages=c,ada,c++,go,brig,d,fortran,objc,obj-c++,gm2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-9 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-9-9QDOt0/gcc-9-9.4.0/debian/tmp-nvptx/usr,hsa --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+        Thread model: posix
+        gcc version 9.4.0 (Ubuntu 9.4.0-1ubuntu1~20.04.2) 
+        COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/
+        LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../:/lib/:/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_37525' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+         /usr/lib/gcc/x86_64-linux-gnu/9/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/9/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/9/lto-wrapper -plugin-opt=-fresolution=/tmp/cc6Jc9yE.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_37525 /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/9/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/9 -L/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/9/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/9/../../.. -v CMakeFiles/cmTC_37525.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/9/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crtn.o
+        collect2 version 9.4.0
+        /usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/9/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/9/lto-wrapper -plugin-opt=-fresolution=/tmp/cc6Jc9yE.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_37525 /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/9/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/9 -L/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/9/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/9/../../.. -v CMakeFiles/cmTC_37525.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/9/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crtn.o
+        GNU ld (GNU Binutils for Ubuntu) 2.34
+        COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_37525' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+        /usr/bin/c++  -v -Wl,-v CMakeFiles/cmTC_37525.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_37525
+        make[1]: Leaving directory '/home/mainak/programs/myBuild/build/CMakeFiles/CMakeScratch/TryCompile-O6iYmw'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:217 (message)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/usr/include/c++/9]
+          add: [/usr/include/x86_64-linux-gnu/c++/9]
+          add: [/usr/include/c++/9/backward]
+          add: [/usr/lib/gcc/x86_64-linux-gnu/9/include]
+          add: [/usr/local/include]
+          add: [/usr/include/x86_64-linux-gnu]
+          add: [/usr/include]
+        end of search list found
+        collapse include dir [/usr/include/c++/9] ==> [/usr/include/c++/9]
+        collapse include dir [/usr/include/x86_64-linux-gnu/c++/9] ==> [/usr/include/x86_64-linux-gnu/c++/9]
+        collapse include dir [/usr/include/c++/9/backward] ==> [/usr/include/c++/9/backward]
+        collapse include dir [/usr/lib/gcc/x86_64-linux-gnu/9/include] ==> [/usr/lib/gcc/x86_64-linux-gnu/9/include]
+        collapse include dir [/usr/local/include] ==> [/usr/local/include]
+        collapse include dir [/usr/include/x86_64-linux-gnu] ==> [/usr/include/x86_64-linux-gnu]
+        collapse include dir [/usr/include] ==> [/usr/include]
+        implicit include dirs: [/usr/include/c++/9;/usr/include/x86_64-linux-gnu/c++/9;/usr/include/c++/9/backward;/usr/lib/gcc/x86_64-linux-gnu/9/include;/usr/local/include;/usr/include/x86_64-linux-gnu;/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
+        ignore line: [Change Dir: '/home/mainak/programs/myBuild/build/CMakeFiles/CMakeScratch/TryCompile-O6iYmw']
+        ignore line: []
+        ignore line: [Run Build Command(s): /home/mainak/.local/lib/python3.13/site-packages/cmake/data/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_37525/fast]
+        ignore line: [/usr/bin/make  -f CMakeFiles/cmTC_37525.dir/build.make CMakeFiles/cmTC_37525.dir/build]
+        ignore line: [make[1]: Entering directory '/home/mainak/programs/myBuild/build/CMakeFiles/CMakeScratch/TryCompile-O6iYmw']
+        ignore line: [Building CXX object CMakeFiles/cmTC_37525.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_37525.dir/CMakeCXXCompilerABI.cpp.o -c /home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/c++]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:hsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 9.4.0-1ubuntu1~20.04.2' --with-bugurl=file:///usr/share/doc/gcc-9/README.Bugs --enable-languages=c ada c++ go brig d fortran objc obj-c++ gm2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-9 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-9-9QDOt0/gcc-9-9.4.0/debian/tmp-nvptx/usr hsa --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu]
+        ignore line: [Thread model: posix]
+        ignore line: [gcc version 9.4.0 (Ubuntu 9.4.0-1ubuntu1~20.04.2) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_37525.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/9/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_37525.dir/CMakeCXXCompilerABI.cpp.o -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccMdRGD8.s]
+        ignore line: [GNU C++14 (Ubuntu 9.4.0-1ubuntu1~20.04.2) version 9.4.0 (x86_64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 9.4.0  GMP version 6.2.0  MPFR version 4.0.2  MPC version 1.1.0  isl version isl-0.22.1-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [ignoring duplicate directory "/usr/include/x86_64-linux-gnu/c++/9"]
+        ignore line: [ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/9/include-fixed"]
+        ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/9/../../../../x86_64-linux-gnu/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /usr/include/c++/9]
+        ignore line: [ /usr/include/x86_64-linux-gnu/c++/9]
+        ignore line: [ /usr/include/c++/9/backward]
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/9/include]
+        ignore line: [ /usr/local/include]
+        ignore line: [ /usr/include/x86_64-linux-gnu]
+        ignore line: [ /usr/include]
+        ignore line: [End of search list.]
+        ignore line: [GNU C++14 (Ubuntu 9.4.0-1ubuntu1~20.04.2) version 9.4.0 (x86_64-linux-gnu)]
+        ignore line: [	compiled by GNU C version 9.4.0  GMP version 6.2.0  MPFR version 4.0.2  MPC version 1.1.0  isl version isl-0.22.1-GMP]
+        ignore line: []
+        ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+        ignore line: [Compiler executable checksum: 3d1eba838554fa2348dba760e4770469]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_37525.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_37525.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccMdRGD8.s]
+        ignore line: [GNU assembler version 2.34 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.34]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_37525.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+        ignore line: [Linking CXX executable cmTC_37525]
+        ignore line: [/home/mainak/.local/lib/python3.13/site-packages/cmake/data/bin/cmake -E cmake_link_script CMakeFiles/cmTC_37525.dir/link.txt --verbose=1]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=/usr/bin/c++]
+        ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/9/lto-wrapper]
+        ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:hsa]
+        ignore line: [OFFLOAD_TARGET_DEFAULT=1]
+        ignore line: [Target: x86_64-linux-gnu]
+        ignore line: [Configured with: ../src/configure -v --with-pkgversion='Ubuntu 9.4.0-1ubuntu1~20.04.2' --with-bugurl=file:///usr/share/doc/gcc-9/README.Bugs --enable-languages=c ada c++ go brig d fortran objc obj-c++ gm2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-9 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --with-default-libstdcxx-abi=new --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32 m64 mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-9-9QDOt0/gcc-9-9.4.0/debian/tmp-nvptx/usr hsa --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu]
+        ignore line: [Thread model: posix]
+        ignore line: [gcc version 9.4.0 (Ubuntu 9.4.0-1ubuntu1~20.04.2) ]
+        ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/]
+        ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/9/../../../:/lib/:/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_37525' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+        link line: [ /usr/lib/gcc/x86_64-linux-gnu/9/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/9/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/9/lto-wrapper -plugin-opt=-fresolution=/tmp/cc6Jc9yE.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_37525 /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/9/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/9 -L/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/9/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/9/../../.. -v CMakeFiles/cmTC_37525.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/9/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crtn.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/9/collect2] ==> ignore
+          arg [-plugin] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/9/liblto_plugin.so] ==> ignore
+          arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/9/lto-wrapper] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/cc6Jc9yE.res] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lc] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+          arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+          arg [--build-id] ==> ignore
+          arg [--eh-frame-hdr] ==> ignore
+          arg [-m] ==> ignore
+          arg [elf_x86_64] ==> ignore
+          arg [--hash-style=gnu] ==> ignore
+          arg [--as-needed] ==> ignore
+          arg [-dynamic-linker] ==> ignore
+          arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+          arg [-pie] ==> ignore
+          arg [-znow] ==> ignore
+          arg [-zrelro] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_37525] ==> ignore
+          arg [/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/Scrt1.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crti.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/9/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/9/crtbeginS.o]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/9] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/9]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/9/../../../../lib] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/9/../../../../lib]
+          arg [-L/lib/x86_64-linux-gnu] ==> dir [/lib/x86_64-linux-gnu]
+          arg [-L/lib/../lib] ==> dir [/lib/../lib]
+          arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
+          arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
+          arg [-L/usr/lib/gcc/x86_64-linux-gnu/9/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/9/../../..]
+          arg [-v] ==> ignore
+          arg [CMakeFiles/cmTC_37525.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [-lstdc++] ==> lib [stdc++]
+          arg [-lm] ==> lib [m]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [-lc] ==> lib [c]
+          arg [-lgcc_s] ==> lib [gcc_s]
+          arg [-lgcc] ==> lib [gcc]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/9/crtendS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/9/crtendS.o]
+          arg [/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crtn.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [collect2 version 9.4.0]
+        ignore line: [/usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/9/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/9/lto-wrapper -plugin-opt=-fresolution=/tmp/cc6Jc9yE.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_37525 /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/9/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/9 -L/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/9/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/9/../../.. -v CMakeFiles/cmTC_37525.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/9/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crtn.o]
+        linker tool for 'CXX': /usr/bin/ld
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/Scrt1.o] ==> [/usr/lib/x86_64-linux-gnu/Scrt1.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crti.o] ==> [/usr/lib/x86_64-linux-gnu/crti.o]
+        collapse obj [/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu/crtn.o] ==> [/usr/lib/x86_64-linux-gnu/crtn.o]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/9] ==> [/usr/lib/gcc/x86_64-linux-gnu/9]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/9/../../../x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/9/../../../../lib] ==> [/usr/lib]
+        collapse library dir [/lib/x86_64-linux-gnu] ==> [/lib/x86_64-linux-gnu]
+        collapse library dir [/lib/../lib] ==> [/lib]
+        collapse library dir [/usr/lib/x86_64-linux-gnu] ==> [/usr/lib/x86_64-linux-gnu]
+        collapse library dir [/usr/lib/../lib] ==> [/usr/lib]
+        collapse library dir [/usr/lib/gcc/x86_64-linux-gnu/9/../../..] ==> [/usr/lib]
+        implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+        implicit objs: [/usr/lib/x86_64-linux-gnu/Scrt1.o;/usr/lib/x86_64-linux-gnu/crti.o;/usr/lib/gcc/x86_64-linux-gnu/9/crtbeginS.o;/usr/lib/gcc/x86_64-linux-gnu/9/crtendS.o;/usr/lib/x86_64-linux-gnu/crtn.o]
+        implicit dirs: [/usr/lib/gcc/x86_64-linux-gnu/9;/usr/lib/x86_64-linux-gnu;/usr/lib;/lib/x86_64-linux-gnu;/lib]
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/Internal/CMakeDetermineLinkerId.cmake:36 (message)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
+      - "/home/mainak/.local/lib/python3.13/site-packages/cmake/data/share/cmake-4.1/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:3 (project)"
+    message: |
+      Running the CXX compiler's linker: "/usr/bin/ld" "-v"
+      GNU ld (GNU Binutils for Ubuntu) 2.34
+...

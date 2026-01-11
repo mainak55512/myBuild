@@ -1,0 +1,1 @@
+/usr/bin/clang-18 CMakeFiles/myBuild.dir/main.c.o -o myBuild  /home/mainak/programs/myBuild/deps/lib/libyyjson.a /home/mainak/programs/myBuild/deps/lib/libarena.a /home/mainak/programs/myBuild/deps/lib/libcstring.a /home/mainak/programs/myBuild/deps/lib/libccontainer.a
