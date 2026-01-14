@@ -109,8 +109,9 @@ String *generateBuildList(Arena *str_arena, String *path) {
 			(STR_CMP(dot, ".c") == 0 || STR_CMP(dot, ".cpp") == 0)) {
 			// printf("%s\n", entry->d_name);
 
-			src_files = string_concat_cstr(str_arena, 5, string(src_files), " ",
-										   string(path), "/", entry->d_name);
+			src_files =
+				string_concat_cstr(str_arena, 6, string(src_files), "\n\"",
+								   string(path), "/", entry->d_name, "\"");
 		}
 	}
 	// printf("Src files: %s\n", string(src_files));
@@ -148,7 +149,7 @@ void generateCompileFlags() {
 		yyjson_val *elem;
 		yyjson_arr_foreach(dep_headers, index, max_val, elem) {
 			header_str = string_concat_cstr(
-				str_arena, 6, string(header_str), "-I./", "deps/",
+				str_arena, 7, string(header_str), "-I./", "deps/",
 				yyjson_get_str(key), "/", yyjson_get_str(elem), "\n");
 		}
 	}
@@ -298,15 +299,16 @@ String *buildProject(Arena *global_str_arena) {
 	yyjson_val *val, *key;
 
 	yyjson_arr_foreach(header_arr, idx, max, val) {
-		header_list = string_concat_cstr(str_arena, 3, string(header_list),
-										 " -I./", (char *)yyjson_get_str(val));
+		header_list =
+			string_concat_cstr(str_arena, 4, string(header_list), "\n\"-I./",
+							   (char *)yyjson_get_str(val), "\"");
 	}
 
 	idx = 0, max = 0;
 
 	yyjson_arr_foreach(src_arr, idx, max, val) {
 		src_list = string_concat_cstr(
-			str_arena, 3, string(src_list), " ",
+			str_arena, 2, string(src_list),
 			string(generateBuildList(
 				str_arena, string_concat_cstr(str_arena, 2, "./",
 											  (char *)yyjson_get_str(val)))));
@@ -327,7 +329,7 @@ String *buildProject(Arena *global_str_arena) {
 			index = 0, max_val = 0;
 			yyjson_arr_foreach(dep_src_arr, index, max_val, elem) {
 				src_list = string_concat_cstr(
-					str_arena, 3, string(src_list), " ",
+					str_arena, 2, string(src_list),
 					string(generateBuildList(
 						str_arena, string_concat_cstr(
 									   str_arena, 4, "./deps/", key_str, "/",
@@ -337,8 +339,8 @@ String *buildProject(Arena *global_str_arena) {
 			index = 0, max_val = 0;
 			yyjson_arr_foreach(dep_include_arr, index, max_val, elem) {
 				header_list = string_concat_cstr(
-					str_arena, 6, string(header_list), " -I", "./deps/",
-					key_str, "/", (char *)yyjson_get_str(elem));
+					str_arena, 7, string(header_list), "\n\"-I", "./deps/",
+					key_str, "/", (char *)yyjson_get_str(elem), "\"");
 			}
 		}
 	}
@@ -346,19 +348,28 @@ String *buildProject(Arena *global_str_arena) {
 	yyjson_doc_free(doc);
 
 	String *headers, *src;
-	headers = string_concat_cstr(str_arena, 2, " ",
-								 string(string_trim(str_arena, header_list)));
+	headers = string_trim(str_arena, header_list);
 	src = string_trim(str_arena, src_list);
 
 	// printf("Headers: %s\n", string(headers));
 	// printf("SRCs: %s\n", string(src));
 
+	String *response_content =
+		string_concat_cstr(str_arena, 5, string(headers), string(src), "\n-o",
+						   "\n./build/", string(project_name));
+
+	MAKE_DIR("./build/.cache");
+	createOrAppendFile("./build/.cache/build.rsp", string(response_content));
+
+	/*
 	command = string_concat_cstr(str_arena, 6, string(compiler), string(src),
 								 string(headers), " -o ", "./build/",
 								 string(project_name));
 
 	// printf("Compile Command: %s\n", string(command));
-	system(string(command));
+	*/
+	system(string(string_concat_cstr(str_arena, 2, string(compiler),
+									 " @./build/.cache/build.rsp")));
 	String *output = string_concat_cstr(global_str_arena, 2, "./build/",
 										string(project_name));
 
