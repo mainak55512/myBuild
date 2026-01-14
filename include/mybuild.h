@@ -23,6 +23,6 @@ int createOrAppendFile(char *file_path, char *content);
 void createMyBuildConfig(char *config_file_path, char *project_name,
 						 char *project_lang, char *compiler_path);
 int checkProjectLang(char *lang);
-void buildProject();
+String *buildProject(Arena *global_str_arena);
 void fetchLibrary(char *libURL);
 int initProject();

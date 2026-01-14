@@ -30,9 +30,7 @@ void createMyBuildConfig(char *config_file_path, char *project_name,
 	yyjson_mut_val *headers = yyjson_mut_arr(doc);
 	yyjson_mut_val *sources = yyjson_mut_arr(doc);
 
-	yyjson_mut_arr_add_str(
-		doc, sources,
-		string(string_concat_cstr(str_arena, 2, "src/main.", project_lang)));
+	yyjson_mut_arr_add_str(doc, sources, "src");
 	yyjson_mut_obj_add_val(doc, root, "include_paths", headers);
 	yyjson_mut_obj_add_val(doc, root, "src", sources);
 
@@ -53,16 +51,15 @@ CLEANUP:
 	arena_free(&str_arena);
 }
 
-/*
-void generateBuildList() {
-	char *path = "./test/src";
+String *generateBuildList(Arena *str_arena, String *path) {
+	String *src_files = string_from(str_arena, "");
 #ifdef _WIN32
 	WIN32_FIND_DATA findData;
 	HANDLE hFind;
 	char searchPath[MAX_PATH];
 
 	// Create search pattern (path\*.*)
-	snprintf(searchPath, MAX_PATH, "%s\\*.*", path);
+	snprintf(searchPath, MAX_PATH, "%s\\*.*", string(path));
 
 	hFind = FindFirstFile(searchPath, &findData);
 
@@ -93,12 +90,14 @@ void generateBuildList() {
 	DIR *dir;
 	struct dirent *entry;
 
-	dir = opendir(path);
+	dir = opendir(string(path));
 
 	if (dir == NULL) {
 		perror("Unable to open directory");
-		return;
+		return NULL;
 	}
+
+	// printf("Path: %s\n", string(path));
 
 	while ((entry = readdir(dir)) != NULL) {
 		if (STR_CMP(entry->d_name, ".") == 0 ||
@@ -108,14 +107,17 @@ void generateBuildList() {
 		char *dot = strrchr(entry->d_name, '.');
 		if (dot != NULL &&
 			(STR_CMP(dot, ".c") == 0 || STR_CMP(dot, ".cpp") == 0)) {
-			printf("%s\n", entry->d_name);
+			// printf("%s\n", entry->d_name);
+
+			src_files = string_concat_cstr(str_arena, 5, string(src_files), " ",
+										   string(path), "/", entry->d_name);
 		}
 	}
-
+	// printf("Src files: %s\n", string(src_files));
 	closedir(dir);
 #endif
+	return src_files;
 }
-*/
 
 int checkProjectLang(char *lang) {
 	if (STR_CMP(lang, "c++") == 0 || STR_CMP(lang, "cpp") == 0) {
@@ -262,7 +264,7 @@ CLEANUP:
 	return ret;
 }
 
-void buildProject() {
+String *buildProject(Arena *global_str_arena) {
 	String *command;
 
 	MAKE_DIR("build");
@@ -303,8 +305,11 @@ void buildProject() {
 	idx = 0, max = 0;
 
 	yyjson_arr_foreach(src_arr, idx, max, val) {
-		src_list = string_concat_cstr(str_arena, 3, string(src_list), " ./",
-									  (char *)yyjson_get_str(val));
+		src_list = string_concat_cstr(
+			str_arena, 3, string(src_list), " ",
+			string(generateBuildList(
+				str_arena, string_concat_cstr(str_arena, 2, "./",
+											  (char *)yyjson_get_str(val)))));
 	}
 
 	idx = 0, max = 0;
@@ -321,9 +326,12 @@ void buildProject() {
 
 			index = 0, max_val = 0;
 			yyjson_arr_foreach(dep_src_arr, index, max_val, elem) {
-				src_list = string_concat_cstr(str_arena, 6, string(src_list),
-											  " ", "./deps/", key_str, "/",
-											  (char *)yyjson_get_str(elem));
+				src_list = string_concat_cstr(
+					str_arena, 3, string(src_list), " ",
+					string(generateBuildList(
+						str_arena, string_concat_cstr(
+									   str_arena, 4, "./deps/", key_str, "/",
+									   (char *)yyjson_get_str(elem)))));
 			}
 
 			index = 0, max_val = 0;
@@ -341,8 +349,9 @@ void buildProject() {
 	headers = string_concat_cstr(str_arena, 2, " ",
 								 string(string_trim(str_arena, header_list)));
 	src = string_trim(str_arena, src_list);
-	// printf("%s\n", string(headers));
-	// printf("%s\n", string(src));
+
+	// printf("Headers: %s\n", string(headers));
+	// printf("SRCs: %s\n", string(src));
 
 	command = string_concat_cstr(str_arena, 6, string(compiler), string(src),
 								 string(headers), " -o ", "./build/",
@@ -350,9 +359,12 @@ void buildProject() {
 
 	// printf("Compile Command: %s\n", string(command));
 	system(string(command));
+	String *output = string_concat_cstr(global_str_arena, 2, "./build/",
+										string(project_name));
 
 CLEANUP:
 	arena_free(&str_arena);
+	return output;
 }
 
 char *get_repo_name(Arena *arena, const char *git_url) {
@@ -450,7 +462,12 @@ void fetchLibrary(char *libURL) {
 	arena_free(&str_arena);
 }
 
+void runProject(Arena *global_str_arena) {
+	system(string(buildProject(global_str_arena)));
+}
+
 int main(int argc, char *argv[]) {
+	Arena *global_str_arena = arena_init(1024);
 	if (argc < 2) {
 		printf("Usage: myBuild <command> [args]\n");
 		printf("Commands: init, add <url>, build\n");
@@ -464,11 +481,13 @@ int main(int argc, char *argv[]) {
 	} else if (STR_CMP(opt, "add") == 0) {
 		fetchLibrary(argv[2]);
 	} else if (STR_CMP(opt, "build") == 0) {
-		buildProject();
+		buildProject(global_str_arena);
+	} else if (STR_CMP(opt, "run") == 0) {
+		runProject(global_str_arena);
 	} else {
 		printf("Unknown command: %s\n", opt);
 		return 1;
 	}
-
+	arena_free(&global_str_arena);
 	return 0;
 }
