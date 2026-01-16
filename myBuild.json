@@ -1,0 +1,54 @@
+{
+    "project_name": "myBuild",
+    "project_language": "c",
+    "version": "0.0.3",
+    "compiler_path": "/usr/bin/clang-18",
+    "include_paths": [
+        "include"
+    ],
+    "src": [
+        "src"
+    ],
+    "dependencies": {
+        "arena": {
+            "version": "0.1.1",
+            "include_paths": [
+                "include"
+            ],
+            "src": [
+                "lib"
+            ],
+            "remote": "https://github.com/mainak55512/arena"
+        },
+        "CString": {
+            "version": "0.1.1",
+            "include_paths": [
+                "include"
+            ],
+            "src": [
+                "lib"
+            ],
+            "remote": "https://github.com/mainak55512/CString"
+        },
+        "container": {
+            "version": "0.1.1",
+            "include_paths": [
+                "include"
+            ],
+            "src": [
+                "lib"
+            ],
+            "remote": "https://github.com/mainak55512/container"
+        },
+        "yyjson": {
+            "version": "0.12.0",
+            "include_paths": [
+                "include"
+            ],
+            "src": [
+                "src"
+            ],
+            "remote": "https://github.com/ibireme/yyjson"
+        }
+    }
+}

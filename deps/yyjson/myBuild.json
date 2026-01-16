@@ -1,0 +1,13 @@
+{
+    "project_name": "yyjson",
+    "project_language": "c",
+    "version": "0.12.0",
+    "compiler_path": "/usr/bin/clang-18",
+    "include_paths": [
+        "include"
+    ],
+    "src": [
+        "src"
+    ],
+    "dependencies": {}
+}

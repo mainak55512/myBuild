@@ -1,5 +1,3 @@
-#include "cstring.h"
-#include "yyjson.h"
 #include <mybuild.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -408,7 +406,43 @@ char *get_repo_name(Arena *arena, const char *git_url) {
 	return repo_name;
 }
 
-void fetchLibrary(char *libURL) {
+bool set_contains(Vector *v, char *elem) {
+
+	for (int i = 0; i < length(v); i++) {
+		if (STR_CMP(at(char *, v, i), elem) == 0) {
+			return true;
+		}
+	}
+	return false;
+}
+
+void set_add(Vector *v, char *elem) {
+	if (!set_contains(v, elem)) {
+		append(char *, v, elem);
+	}
+}
+
+void addLibrary(char *libURL) {
+	yyjson_read_err err;
+	yyjson_doc *current_doc = yyjson_read_file("./myBuild.json", 0, NULL, &err);
+	yyjson_val *current_root = yyjson_doc_get_root(current_doc);
+	yyjson_val *dependencies = yyjson_obj_get(current_root, "dependencies");
+	Vector *set = vector_init(char *);
+	int idx = 0, max = 0;
+	yyjson_val *val, *key;
+	yyjson_obj_foreach(dependencies, idx, max, key, val) {
+		yyjson_val *remote = yyjson_obj_get(val, "remote");
+		set_add(set, (char *)yyjson_get_str(remote));
+	}
+	yyjson_doc_free(current_doc);
+	if (!set_contains(set, libURL)) {
+		set_add(set, libURL);
+		fetchLibrary(set, libURL);
+	}
+	vector_free(set);
+}
+
+void fetchLibrary(Vector *v, char *libURL) {
 	String *command, *repo_name, *dep_mybuild_path;
 	Arena *str_arena;
 	yyjson_read_err err;
@@ -469,8 +503,20 @@ void fetchLibrary(char *libURL) {
 	generateCompileFlags();
 
 	yyjson_mut_doc_free(current_mut_doc);
+
+	yyjson_val *dep_dependencies = yyjson_obj_get(dep_root, "dependencies");
+	int idx = 0, max = 0;
+	yyjson_val *val, *key;
+	yyjson_obj_foreach(dep_dependencies, idx, max, key, val) {
+		yyjson_val *remote = yyjson_obj_get(val, "remote");
+		if (!set_contains(v, (char *)yyjson_get_str(remote))) {
+			set_add(v, (char *)yyjson_get_str(remote));
+			fetchLibrary(v, (char *)yyjson_get_str(remote));
+		}
+	}
 	yyjson_doc_free(dep_doc);
 	arena_free(&str_arena);
+	return;
 }
 
 void runProject(Arena *global_str_arena) {
@@ -490,7 +536,7 @@ int main(int argc, char *argv[]) {
 	if (STR_CMP(opt, "init") == 0) {
 		initProject();
 	} else if (STR_CMP(opt, "add") == 0) {
-		fetchLibrary(argv[2]);
+		addLibrary(argv[2]);
 	} else if (STR_CMP(opt, "build") == 0) {
 		buildProject(global_str_arena);
 	} else if (STR_CMP(opt, "run") == 0) {

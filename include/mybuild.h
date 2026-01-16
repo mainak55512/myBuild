@@ -1,4 +1,5 @@
 #include <arena.h>
+#include <container.h>
 #include <cstring.h>
 #include <sys/stat.h>
 #include <yyjson.h>
@@ -24,5 +25,5 @@ void createMyBuildConfig(char *config_file_path, char *project_name,
 						 char *project_lang, char *compiler_path);
 int checkProjectLang(char *lang);
 String *buildProject(Arena *global_str_arena);
-void fetchLibrary(char *libURL);
+void fetchLibrary(Vector *v, char *libURL);
 int initProject();
