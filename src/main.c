@@ -1,3 +1,4 @@
+#include "cstring.h"
 #include <mybuild.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -49,7 +50,7 @@ CLEANUP:
 	arena_free(&str_arena);
 }
 
-String *generateBuildList(Arena *str_arena, String *path) {
+String *collect_src_files(Arena *str_arena, String *path) {
 	String *src_files = string_from(str_arena, "");
 #ifdef _WIN32
 	WIN32_FIND_DATA findData;
@@ -108,8 +109,8 @@ String *generateBuildList(Arena *str_arena, String *path) {
 			// printf("%s\n", entry->d_name);
 
 			src_files =
-				string_concat_cstr(str_arena, 6, string(src_files), "\n\"",
-								   string(path), "/", entry->d_name, "\"");
+				string_concat_cstr(str_arena, 5, "\n", string(src_files),
+								   string(path), "/", entry->d_name);
 		}
 	}
 	// printf("Src files: %s\n", string(src_files));
@@ -117,15 +118,205 @@ String *generateBuildList(Arena *str_arena, String *path) {
 #endif
 	return src_files;
 }
+Vector *string_split_lines(Arena *arena, String *str) {
+	Vector *lines = vector_init(String *);
+	char *cstr = string(str);
+	int len = string_len(str);
+	int start = 0;
 
+	for (int i = 0; i < len; i++) {
+		if (cstr[i] == '\n') {
+			String *line = string_sub(arena, str, start, i);
+			append(String *, lines, line);
+			start = i + 1; // Move past the '\n'
+		}
+	}
+
+	// Add the last segment (or the whole string if no '\n' was found)
+	if (start <= len) {
+		String *line = string_sub(arena, str, start, len);
+		append(String *, lines, line);
+	}
+
+	return lines;
+}
 int checkProjectLang(char *lang) {
 	if (STR_CMP(lang, "c++") == 0 || STR_CMP(lang, "cpp") == 0) {
 		return 0;
 	}
 	return 1;
 }
+String *getCurrentWorkingDir(Arena *arena) {
+	char cwd[1024];
+	GET_WD(cwd, sizeof(cwd));
+	return string_from(arena, cwd);
+}
+int generateCompileCommands() {
+	Arena *str_arena = arena_init(1024);
+	// Use defaults if NULL
+	char *input_file = "myBuild.json";
+	char *output_file = "compile_commands.json";
 
-void generateCompileFlags() {
+	// Read and parse myBuild.json
+	yyjson_read_err err;
+	yyjson_doc *doc = yyjson_read_file(input_file, 0, NULL, &err);
+
+	if (!doc) {
+		fprintf(stderr, "Failed to read %s: %s\n", input_file, err.msg);
+		return -1;
+	}
+
+	yyjson_val *root = yyjson_doc_get_root(doc);
+
+	// Get compiler path
+	yyjson_val *compiler_val = yyjson_obj_get(root, "compiler_path");
+	const char *compiler = yyjson_get_str(compiler_val);
+	String *cwd = getCurrentWorkingDir(str_arena);
+
+	Vector *include_paths = vector_init(char *);
+
+	yyjson_val *inc_arr = yyjson_obj_get(root, "include_paths");
+	if (yyjson_is_arr(inc_arr)) {
+		yyjson_arr_iter iter;
+		yyjson_arr_iter_init(inc_arr, &iter);
+		yyjson_val *val;
+		while ((val = yyjson_arr_iter_next(&iter))) {
+			append(char *, include_paths,
+				   string(string_concat_cstr(str_arena, 3, string(cwd), "/",
+											 (char *)yyjson_get_str(val))));
+		}
+	}
+
+	yyjson_val *deps = yyjson_obj_get(root, "dependencies");
+	if (yyjson_is_obj(deps)) {
+		yyjson_obj_iter iter;
+		yyjson_obj_iter_init(deps, &iter);
+		yyjson_val *key, *dep_obj;
+		while ((key = yyjson_obj_iter_next(&iter))) {
+			dep_obj = yyjson_obj_iter_get_val(key);
+			const char *dep_name = yyjson_get_str(key);
+
+			yyjson_val *dep_inc = yyjson_obj_get(dep_obj, "include_paths");
+			if (yyjson_is_arr(dep_inc)) {
+				yyjson_arr_iter inc_iter;
+				yyjson_arr_iter_init(dep_inc, &inc_iter);
+				yyjson_val *inc_val;
+				while ((inc_val = yyjson_arr_iter_next(&inc_iter))) {
+					String *path = string_concat_cstr(
+						str_arena, 5, string(cwd), "/deps/", (char *)dep_name,
+						"/", (char *)yyjson_get_str(inc_val));
+					append(char *, include_paths, string(path));
+				}
+			}
+		}
+	}
+
+	Vector *source_files = vector_init(char *);
+
+	yyjson_val *src_arr = yyjson_obj_get(root, "src");
+	if (yyjson_is_arr(src_arr)) {
+		yyjson_arr_iter iter;
+		yyjson_arr_iter_init(src_arr, &iter);
+		yyjson_val *val;
+		while ((val = yyjson_arr_iter_next(&iter))) {
+			Vector *src_temp_arr = string_split_lines(
+				str_arena,
+				collect_src_files(
+					str_arena,
+					string_from(str_arena, (char *)yyjson_get_str(val))));
+			for (int i = 0; i < length(src_temp_arr); i++) {
+				char *elem = string(at(String *, src_temp_arr, i));
+				if (STR_CMP(elem, "") != 0) {
+					append(char *, source_files,
+						   string(string_concat_cstr(str_arena, 3, string(cwd),
+													 "/", elem)));
+				}
+			}
+			vector_free(src_temp_arr);
+		}
+	}
+
+	if (yyjson_is_obj(deps)) {
+		yyjson_obj_iter iter;
+		yyjson_obj_iter_init(deps, &iter);
+		yyjson_val *key, *dep_obj;
+		while ((key = yyjson_obj_iter_next(&iter))) {
+			dep_obj = yyjson_obj_iter_get_val(key);
+			const char *dep_name = yyjson_get_str(key);
+
+			yyjson_val *dep_src = yyjson_obj_get(dep_obj, "src");
+			if (yyjson_is_arr(dep_src)) {
+				yyjson_arr_iter src_iter;
+				yyjson_arr_iter_init(dep_src, &src_iter);
+				yyjson_val *src_val;
+				while ((src_val = yyjson_arr_iter_next(&src_iter))) {
+					String *path = string_concat_cstr(
+						str_arena, 5, string(cwd), "/deps/", (char *)dep_name,
+						"/", (char *)yyjson_get_str(src_val));
+					Vector *src_temp_arr = string_split_lines(
+						str_arena, collect_src_files(str_arena, path));
+					for (int i = 0; i < length(src_temp_arr); i++) {
+						char *elem = string(at(String *, src_temp_arr, i));
+						if (STR_CMP(elem, "") != 0) {
+							append(char *, source_files, elem);
+						}
+						// append(char *, source_files,
+						// 	   string(at(String *, src_temp_arr, i)));
+					}
+					vector_free(src_temp_arr);
+				}
+			}
+		}
+	}
+
+	yyjson_mut_doc *out_doc = yyjson_mut_doc_new(NULL);
+	yyjson_mut_val *out_root = yyjson_mut_arr(out_doc);
+	yyjson_mut_doc_set_root(out_doc, out_root);
+
+	String *includes = string_from(str_arena, "");
+	for (size_t i = 0; i < length(include_paths); i++) {
+		includes = string_concat_cstr(str_arena, 3, string(includes), " -I",
+									  at(char *, include_paths, i));
+	}
+
+	for (size_t i = 0; i < length(source_files); i++) {
+		yyjson_mut_val *entry = yyjson_mut_arr_add_obj(out_doc, out_root);
+
+		yyjson_mut_obj_add_str(out_doc, entry, "directory", string(cwd));
+		yyjson_mut_obj_add_str(out_doc, entry, "file",
+							   at(char *, source_files, i));
+
+		String *command = string_from(str_arena, "");
+		command = string_concat_cstr(
+			str_arena, 7, (char *)compiler, " -c ", at(char *, source_files, i),
+			string(includes), " -o ", at(char *, source_files, i), ".o");
+
+		yyjson_mut_obj_add_str(out_doc, entry, "command", string(command));
+	}
+
+	yyjson_write_err write_err;
+	yyjson_write_flag flg = YYJSON_WRITE_PRETTY | YYJSON_WRITE_ESCAPE_UNICODE;
+	int success =
+		yyjson_mut_write_file(output_file, out_doc, flg, NULL, &write_err);
+
+	if (!success) {
+		fprintf(stderr, "Failed to write %s: %s\n", output_file, write_err.msg);
+	} else {
+		printf("Generated %s with %d source files\n", output_file,
+			   length(source_files));
+	}
+
+	vector_free(include_paths);
+	vector_free(source_files);
+	yyjson_mut_doc_free(out_doc);
+	yyjson_doc_free(doc);
+	arena_free(&str_arena);
+
+	return success ? 0 : -1;
+}
+
+/*
+void generateCompileCommands() {
 	Arena *str_arena = arena_init(1024);
 	yyjson_read_err err;
 	yyjson_doc *current_doc = yyjson_read_file("./myBuild.json", 0, NULL, &err);
@@ -155,6 +346,7 @@ void generateCompileFlags() {
 	yyjson_doc_free(current_doc);
 	arena_free(&str_arena);
 }
+*/
 
 int initProject() {
 	struct STAT info;
@@ -256,7 +448,7 @@ int initProject() {
 		break;
 	}
 	}
-	generateCompileFlags();
+	generateCompileCommands();
 
 CLEANUP:
 	arena_free(&str_arena);
@@ -307,7 +499,7 @@ String *buildProject(Arena *global_str_arena) {
 	yyjson_arr_foreach(src_arr, idx, max, val) {
 		src_list = string_concat_cstr(
 			str_arena, 2, string(src_list),
-			string(generateBuildList(
+			string(collect_src_files(
 				str_arena, string_concat_cstr(str_arena, 2, "./",
 											  (char *)yyjson_get_str(val)))));
 	}
@@ -328,7 +520,7 @@ String *buildProject(Arena *global_str_arena) {
 			yyjson_arr_foreach(dep_src_arr, index, max_val, elem) {
 				src_list = string_concat_cstr(
 					str_arena, 2, string(src_list),
-					string(generateBuildList(
+					string(collect_src_files(
 						str_arena, string_concat_cstr(
 									   str_arena, 4, "./deps/", key_str, "/",
 									   (char *)yyjson_get_str(elem)))));
@@ -500,7 +692,7 @@ void fetchLibrary(Vector *v, char *libURL) {
 		fprintf(stderr, "Write error: %s\n", err.msg);
 	}
 
-	generateCompileFlags();
+	generateCompileCommands();
 
 	yyjson_mut_doc_free(current_mut_doc);
 
@@ -541,6 +733,8 @@ int main(int argc, char *argv[]) {
 		buildProject(global_str_arena);
 	} else if (STR_CMP(opt, "run") == 0) {
 		runProject(global_str_arena);
+	} else if (STR_CMP(opt, "gen") == 0) {
+		generateCompileCommands();
 	} else {
 		printf("Unknown command: %s\n", opt);
 		return 1;

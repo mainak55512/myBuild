@@ -14,7 +14,10 @@ set(LIBS
 
 # Add include directory path here
 set(HEADERS
-    ${CMAKE_CURRENT_SOURCE_DIR}/deps/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/deps/arena/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/deps/container/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/deps/CString/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/deps/yyjson/include
 )
 
 # Create imported targets for each library
@@ -42,7 +45,7 @@ foreach(lib_path ${LIBS})
 
 endforeach()
 
-add_executable(${PROJECT_NAME} main.c)
+add_executable(${PROJECT_NAME} src/main.c)
 
 # Add all include directories to the executable
 target_include_directories(${PROJECT_NAME} PRIVATE ${HEADERS} ${CMAKE_CURRENT_SOURCE_DIR}/include)
