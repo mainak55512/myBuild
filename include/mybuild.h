@@ -23,10 +23,22 @@
 #define GET_WD getcwd
 #endif
 
-int createOrAppendFile(char *file_path, char *content);
-void createMyBuildConfig(char *config_file_path, char *project_name,
-						 char *project_lang, char *compiler_path);
-int checkProjectLang(char *lang);
-String *buildProject(Arena *global_str_arena);
-void fetchLibrary(Vector *v, char *libURL);
-int initProject();
+int create_append_file(char *file_path, char *content);
+void create_my_build_config(char *config_file_path, char *project_name,
+							char *project_lang, char *compiler_path);
+int check_project_lang(char *lang);
+String *build_project(Arena *global_str_arena);
+void fetch_library(Vector *v, char *libURL);
+bool set_contains(Vector *v, char *elem);
+void set_add(Vector *v, char *elem);
+String *cloneLib(Arena *arena, char *libURL);
+bool is_mybuild_config_present(char *filename);
+int init_project();
+String *collect_src_files(Arena *str_arena, String *path);
+Vector *string_split_lines(Arena *arena, String *str);
+String *get_current_working_dir(Arena *arena);
+int generate_compile_commands();
+String *build_project(Arena *global_str_arena);
+char *get_repo_name(Arena *arena, const char *git_url);
+void add_library(char *libURL);
+void run_project(Arena *global_str_arena);

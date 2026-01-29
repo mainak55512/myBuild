@@ -1,10 +1,12 @@
+#include "container.h"
 #include "cstring.h"
+#include "yyjson.h"
 #include <mybuild.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <strings.h>
 
-int createOrAppendFile(char *file_path, char *content) {
+int create_append_file(char *file_path, char *content) {
 	FILE *fp = fopen(file_path, "w+");
 	if (fp == NULL) {
 		perror("fopen failed");
@@ -15,9 +17,9 @@ int createOrAppendFile(char *file_path, char *content) {
 	return 0;
 }
 
-void createMyBuildConfig(char *config_file_path, char *project_name,
-						 char *project_lang, char *compiler_path) {
-	Arena *str_arena = arena_init(200);
+void create_my_build_config(char *config_file_path, char *project_name,
+							char *project_lang, char *compiler_path) {
+	Arena *str_arena = arena_init(1024);
 	yyjson_mut_doc *doc = yyjson_mut_doc_new(NULL);
 	yyjson_mut_val *root = yyjson_mut_obj(doc);
 	yyjson_mut_doc_set_root(doc, root);
@@ -55,36 +57,40 @@ String *collect_src_files(Arena *str_arena, String *path) {
 #ifdef _WIN32
 	WIN32_FIND_DATA findData;
 	HANDLE hFind;
-	char searchPath[MAX_PATH];
+	String *searchPath;
 
 	// Create search pattern (path\*.*)
 	snprintf(searchPath, MAX_PATH, "%s\\*.*", string(path));
+	searchPath = string_concat_cstr(str_arena, 2, string(path), "\\*.*");
 
-	hFind = FindFirstFile(searchPath, &findData);
+	handleFind = FindFirstFile(string(searchPath), &findData);
 
-	if (hFind == INVALID_HANDLE_VALUE) {
+	if (handleFind == INVALID_HANDLE_VALUE) {
 		printf("Unable to open directory: %s\n", path);
 		return;
 	}
 
 	do {
-		// Skip "." and ".." entries
 		if (STR_CMP(findData.cFileName, ".") == 0 ||
 			STR_CMP(findData.cFileName, "..") == 0) {
 			continue;
 		}
+		if (findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
+			continue;
+		}
 
-		// Get the length of the filename
 		size_t len = strlen(findData.cFileName);
 
-		// Check if filename ends with .c or .cpp
-		if ((len > 2 && strcmp(findData.cFileName + len - 2, ".c") == 0) ||
-			(len > 4 && strcmp(findData.cFileName + len - 4, ".cpp") == 0)) {
+		if ((len > 2 && STR_CMP(findData.cFileName + len - 2, ".c") == 0) ||
+			(len > 4 && STR_CMP(findData.cFileName + len - 4, ".cpp") == 0)) {
 			printf("%s\n", findData.cFileName);
+			src_files =
+				string_concat_cstr(str_arena, 5, "\n", string(src_files),
+								   string(path), "\\", findData.cFileName);
 		}
-	} while (FindNextFile(hFind, &findData) != 0);
+	} while (FindNextFile(handleFind, &findData) != 0);
 
-	FindClose(hFind);
+	FindClose(handleFind);
 #else
 	DIR *dir;
 	struct dirent *entry;
@@ -128,11 +134,10 @@ Vector *string_split_lines(Arena *arena, String *str) {
 		if (cstr[i] == '\n') {
 			String *line = string_sub(arena, str, start, i);
 			append(String *, lines, line);
-			start = i + 1; // Move past the '\n'
+			start = i + 1;
 		}
 	}
 
-	// Add the last segment (or the whole string if no '\n' was found)
 	if (start <= len) {
 		String *line = string_sub(arena, str, start, len);
 		append(String *, lines, line);
@@ -140,24 +145,109 @@ Vector *string_split_lines(Arena *arena, String *str) {
 
 	return lines;
 }
-int checkProjectLang(char *lang) {
+int check_project_lang(char *lang) {
 	if (STR_CMP(lang, "c++") == 0 || STR_CMP(lang, "cpp") == 0) {
 		return 0;
 	}
 	return 1;
 }
-String *getCurrentWorkingDir(Arena *arena) {
+String *get_current_working_dir(Arena *arena) {
 	char cwd[1024];
 	GET_WD(cwd, sizeof(cwd));
 	return string_from(arena, cwd);
 }
-int generateCompileCommands() {
+
+// TODO:
+void tidy_dependency() {
+	Vector *installed = vector_init(char *);
+	Vector *dep_arr = vector_init(char *);
+	Vector *not_installed = vector_init(char *);
+
+	char *myBuildConfigFile = "myBuild.json";
+	char *packageFile = "deps/.package";
+	yyjson_read_err err;
+	yyjson_doc *buildConf = yyjson_read_file(myBuildConfigFile, 0, NULL, &err);
+	if (!buildConf) {
+		fprintf(stderr, "Failed to read %s: %s\n", myBuildConfigFile, err.msg);
+		return;
+	}
+	yyjson_doc *packageConf = yyjson_read_file(packageFile, 0, NULL, &err);
+	if (!packageConf) {
+		fprintf(stderr, "Failed to read %s: %s\n", packageFile, err.msg);
+		return;
+	}
+
+	yyjson_mut_doc *buildConf_mut = yyjson_doc_mut_copy(buildConf, NULL);
+	yyjson_mut_doc *packageConf_mut = yyjson_doc_mut_copy(packageConf, NULL);
+
+	yyjson_doc_free(buildConf);
+	yyjson_doc_free(packageConf);
+
+	yyjson_mut_val *build_root = yyjson_mut_doc_get_root(buildConf_mut);
+	yyjson_mut_val *package_root = yyjson_mut_doc_get_root(packageConf_mut);
+
+	yyjson_mut_val *deps = yyjson_mut_obj_get(build_root, "dependencies");
+	yyjson_mut_val *inst_pkg = yyjson_mut_obj_get(package_root, "packages");
+
+	if (yyjson_mut_is_obj(deps)) {
+		yyjson_mut_obj_iter iter;
+		yyjson_mut_obj_iter_init(deps, &iter);
+		yyjson_mut_val *key, *dep_obj;
+		while ((key = yyjson_mut_obj_iter_next(&iter))) {
+			dep_obj = yyjson_mut_obj_iter_get_val(key);
+			const char *dep_name = yyjson_mut_get_str(key);
+
+			yyjson_mut_val *dep_remote = yyjson_mut_obj_get(dep_obj, "remote");
+			set_add(dep_arr, (char *)yyjson_mut_get_str(dep_remote));
+		}
+	}
+
+	if (yyjson_mut_is_arr(inst_pkg)) {
+		yyjson_mut_arr_iter iter;
+		yyjson_mut_arr_iter_init(deps, &iter);
+		yyjson_mut_val *val;
+		while ((val = yyjson_mut_arr_iter_next(&iter))) {
+			set_add(installed, (char *)yyjson_mut_get_str(val));
+		}
+	}
+
+	for (int i = 0; i < length(dep_arr); i++) {
+		bool dep_installed = false;
+		char *elem = at(char *, dep_arr, i);
+		for (int j = 0; j < length(installed); j++) {
+			if (STR_CMP(elem, at(char *, installed, j)) == 0) {
+				dep_installed = true;
+				break;
+			}
+		}
+		if (!dep_installed) {
+			set_add(not_installed, elem);
+		}
+	}
+
+	if (length(not_installed) > 0) {
+		Arena *arena = arena_init(1024);
+		for (int i = 0; i < length(not_installed); i++) {
+			String *repo_name = cloneLib(arena, at(char *, not_installed, i));
+			String *config_path = string_concat_cstr(
+				arena, 3, "./deps/", repo_name, "/myBuild.json");
+			if (is_mybuild_config_present(string(config_path))) {
+			}
+		}
+		arena_free(&arena);
+	}
+	yyjson_mut_doc_free(buildConf_mut);
+	yyjson_mut_doc_free(packageConf_mut);
+	vector_free(installed);
+	vector_free(dep_arr);
+	vector_free(not_installed);
+}
+
+int generate_compile_commands() {
 	Arena *str_arena = arena_init(1024);
-	// Use defaults if NULL
 	char *input_file = "myBuild.json";
 	char *output_file = "compile_commands.json";
 
-	// Read and parse myBuild.json
 	yyjson_read_err err;
 	yyjson_doc *doc = yyjson_read_file(input_file, 0, NULL, &err);
 
@@ -168,10 +258,9 @@ int generateCompileCommands() {
 
 	yyjson_val *root = yyjson_doc_get_root(doc);
 
-	// Get compiler path
 	yyjson_val *compiler_val = yyjson_obj_get(root, "compiler_path");
 	const char *compiler = yyjson_get_str(compiler_val);
-	String *cwd = getCurrentWorkingDir(str_arena);
+	String *cwd = get_current_working_dir(str_arena);
 
 	Vector *include_paths = vector_init(char *);
 
@@ -315,40 +404,7 @@ int generateCompileCommands() {
 	return success ? 0 : -1;
 }
 
-/*
-void generateCompileCommands() {
-	Arena *str_arena = arena_init(1024);
-	yyjson_read_err err;
-	yyjson_doc *current_doc = yyjson_read_file("./myBuild.json", 0, NULL, &err);
-	yyjson_val *current_root = yyjson_doc_get_root(current_doc);
-
-	yyjson_val *headers = yyjson_obj_get(current_root, "include_paths");
-	int idx = 0, max = 0;
-	yyjson_val *val, *key;
-	String *header_str = string_from(str_arena, "");
-	yyjson_arr_foreach(headers, idx, max, val) {
-		header_str = string_concat_cstr(str_arena, 4, string(header_str),
-										"-I./", yyjson_get_str(val), "\n");
-	}
-	yyjson_val *dependencies = yyjson_obj_get(current_root, "dependencies");
-	idx = 0, max = 0;
-	yyjson_obj_foreach(dependencies, idx, max, key, val) {
-		yyjson_val *dep_headers = yyjson_obj_get(val, "include_paths");
-		int index = 0, max_val = 0;
-		yyjson_val *elem;
-		yyjson_arr_foreach(dep_headers, index, max_val, elem) {
-			header_str = string_concat_cstr(
-				str_arena, 7, string(header_str), "-I./", "deps/",
-				yyjson_get_str(key), "/", yyjson_get_str(elem), "\n");
-		}
-	}
-	createOrAppendFile("./compile_flags.txt", string(header_str));
-	yyjson_doc_free(current_doc);
-	arena_free(&str_arena);
-}
-*/
-
-int initProject() {
+int init_project() {
 	struct STAT info;
 	Arena *str_arena;
 	String *project_name, *project_dir, *project_lang, *dep_dir, *dep_incl,
@@ -379,6 +435,30 @@ int initProject() {
 		goto CLEANUP;
 	}
 
+	yyjson_mut_doc *doc = yyjson_mut_doc_new(NULL);
+	yyjson_mut_val *root = yyjson_mut_obj(doc);
+	yyjson_mut_doc_set_root(doc, root);
+	yyjson_mut_val *initial_package = yyjson_mut_arr(doc);
+	yyjson_mut_obj_add_val(doc, root, "packages", initial_package);
+
+	yyjson_write_err werr;
+	yyjson_write_flag flg = YYJSON_WRITE_PRETTY | YYJSON_WRITE_ESCAPE_UNICODE;
+	if (!yyjson_mut_write_file("./deps/.package", doc, flg, NULL, &werr)) {
+		fprintf(stderr, "Write error: %s\n", werr.msg);
+	}
+
+	yyjson_mut_doc_free(doc);
+
+	// file_create_status = create_append_file(
+	// 	string(string_concat_cstr(str_arena, 2, string(project_dir),
+	// 							  "/deps/.package")),
+	// 	"");
+
+	// if (file_create_status == 1) {
+	// 	ret = 1;
+	// 	goto CLEANUP;
+	// }
+
 	dir_create_status = MAKE_DIR(
 		string(string_concat_cstr(str_arena, 2, string(project_dir), "/src")));
 
@@ -394,9 +474,9 @@ int initProject() {
 		goto CLEANUP;
 	}
 
-	switch (checkProjectLang(string(project_lang))) {
+	switch (check_project_lang(string(project_lang))) {
 	case 0: {
-		file_create_status = createOrAppendFile(
+		file_create_status = create_append_file(
 			string(string_concat_cstr(str_arena, 2, string(project_dir),
 									  "/src/main.cpp")),
 			"#include <iostream>\n\nint main() "
@@ -407,7 +487,7 @@ int initProject() {
 			goto CLEANUP;
 		}
 		file_create_status =
-			createOrAppendFile(string(string_concat_cstr(
+			create_append_file(string(string_concat_cstr(
 								   str_arena, 4, string(project_dir),
 								   "/include/", string(project_name), ".hpp")),
 							   "");
@@ -416,14 +496,14 @@ int initProject() {
 			ret = 1;
 			goto CLEANUP;
 		}
-		createMyBuildConfig(
+		create_my_build_config(
 			string(string_concat_cstr(str_arena, 2, string(project_dir),
 									  "/myBuild.json")),
 			string(project_name), "cpp", string(compiler_path));
 		break;
 	}
 	default: {
-		file_create_status = createOrAppendFile(
+		file_create_status = create_append_file(
 			string(string_concat_cstr(str_arena, 2, string(project_dir),
 									  "/src/main.c")),
 			"#include <stdio.h>\n\nint main() "
@@ -433,7 +513,7 @@ int initProject() {
 			ret = 1;
 			goto CLEANUP;
 		}
-		file_create_status = createOrAppendFile(
+		file_create_status = create_append_file(
 			string(string_concat_cstr(str_arena, 4, string(project_dir),
 									  "/include/", string(project_name), ".h")),
 			"");
@@ -441,21 +521,21 @@ int initProject() {
 			ret = 1;
 			goto CLEANUP;
 		}
-		createMyBuildConfig(
+		create_my_build_config(
 			string(string_concat_cstr(str_arena, 2, string(project_dir),
 									  "/myBuild.json")),
 			string(project_name), "c", string(compiler_path));
 		break;
 	}
 	}
-	generateCompileCommands();
+	generate_compile_commands();
 
 CLEANUP:
 	arena_free(&str_arena);
 	return ret;
 }
 
-String *buildProject(Arena *global_str_arena) {
+String *build_project(Arena *global_str_arena) {
 	String *command;
 
 	MAKE_DIR("build");
@@ -549,7 +629,7 @@ String *buildProject(Arena *global_str_arena) {
 						   "\n./build/", string(project_name));
 
 	MAKE_DIR("./build/.cache");
-	createOrAppendFile("./build/.cache/build.rsp", string(response_content));
+	create_append_file("./build/.cache/build.rsp", string(response_content));
 
 	/*
 	command = string_concat_cstr(str_arena, 6, string(compiler), string(src),
@@ -614,7 +694,16 @@ void set_add(Vector *v, char *elem) {
 	}
 }
 
-void addLibrary(char *libURL) {
+bool is_mybuild_config_present(char *filename) {
+	FILE *file = fopen(filename, "r");
+	if (file) {
+		fclose(file);
+		return true;
+	}
+	return false;
+}
+
+void add_library(char *libURL) {
 	yyjson_read_err err;
 	yyjson_doc *current_doc = yyjson_read_file("./myBuild.json", 0, NULL, &err);
 	yyjson_val *current_root = yyjson_doc_get_root(current_doc);
@@ -629,21 +718,48 @@ void addLibrary(char *libURL) {
 	yyjson_doc_free(current_doc);
 	if (!set_contains(set, libURL)) {
 		set_add(set, libURL);
-		fetchLibrary(set, libURL);
+		fetch_library(set, libURL);
 	}
+	yyjson_doc *package = yyjson_read_file("./deps/.package", 0, NULL, &err);
+	yyjson_mut_doc *package_mut = yyjson_doc_mut_copy(package, NULL);
+	yyjson_doc_free(package);
+	yyjson_mut_val *root = yyjson_mut_doc_get_root(package_mut);
+	yyjson_mut_val *package_arr = yyjson_mut_arr(package_mut);
+	// yyjson_mut_val *package_arr = yyjson_mut_obj_get(root, "packages");
+
+	for (int i = 0; i < length(set); i++) {
+		yyjson_mut_val *val = yyjson_mut_str(package_mut, at(char *, set, i));
+		yyjson_mut_arr_append(package_arr, val);
+	}
+	yyjson_mut_obj_put(root, yyjson_mut_str(package_mut, "packages"),
+					   package_arr);
+	// yyjson_mut_obj_add_val(package_mut, root, "packages", package_arr);
+
+	yyjson_write_err werr;
+	yyjson_write_flag flg = YYJSON_WRITE_PRETTY | YYJSON_WRITE_ESCAPE_UNICODE;
+	if (!yyjson_mut_write_file("./deps/.package", package_mut, flg, NULL,
+							   &werr)) {
+		fprintf(stderr, "Write error: %s\n", werr.msg);
+	}
+	yyjson_mut_doc_free(package_mut);
 	vector_free(set);
 }
 
-void fetchLibrary(Vector *v, char *libURL) {
+String *cloneLib(Arena *arena, char *libURL) {
+	String *repo_name = string_from(arena, get_repo_name(arena, libURL));
+	String *command = string_concat_cstr(arena, 4, "git clone ", libURL,
+										 " ./deps/", string(repo_name));
+	system(string(command));
+	return repo_name;
+}
+
+void fetch_library(Vector *v, char *libURL) {
 	String *command, *repo_name, *dep_mybuild_path;
 	Arena *str_arena;
 	yyjson_read_err err;
 
 	str_arena = arena_init(1024);
-	repo_name = string_from(str_arena, get_repo_name(str_arena, libURL));
-	command = string_concat_cstr(str_arena, 4, "git clone ", libURL, " ./deps/",
-								 string(repo_name));
-	system(string(command));
+	repo_name = cloneLib(str_arena, libURL);
 
 	yyjson_doc *current_doc = yyjson_read_file("./myBuild.json", 0, NULL, &err);
 	yyjson_mut_doc *current_mut_doc = yyjson_doc_mut_copy(current_doc, NULL);
@@ -692,7 +808,7 @@ void fetchLibrary(Vector *v, char *libURL) {
 		fprintf(stderr, "Write error: %s\n", err.msg);
 	}
 
-	generateCompileCommands();
+	generate_compile_commands();
 
 	yyjson_mut_doc_free(current_mut_doc);
 
@@ -703,7 +819,7 @@ void fetchLibrary(Vector *v, char *libURL) {
 		yyjson_val *remote = yyjson_obj_get(val, "remote");
 		if (!set_contains(v, (char *)yyjson_get_str(remote))) {
 			set_add(v, (char *)yyjson_get_str(remote));
-			fetchLibrary(v, (char *)yyjson_get_str(remote));
+			fetch_library(v, (char *)yyjson_get_str(remote));
 		}
 	}
 	yyjson_doc_free(dep_doc);
@@ -711,8 +827,8 @@ void fetchLibrary(Vector *v, char *libURL) {
 	return;
 }
 
-void runProject(Arena *global_str_arena) {
-	system(string(buildProject(global_str_arena)));
+void run_project(Arena *global_str_arena) {
+	system(string(build_project(global_str_arena)));
 }
 
 int main(int argc, char *argv[]) {
@@ -726,15 +842,15 @@ int main(int argc, char *argv[]) {
 	char *opt = argv[1];
 
 	if (STR_CMP(opt, "init") == 0) {
-		initProject();
+		init_project();
 	} else if (STR_CMP(opt, "add") == 0) {
-		addLibrary(argv[2]);
+		add_library(argv[2]);
 	} else if (STR_CMP(opt, "build") == 0) {
-		buildProject(global_str_arena);
+		build_project(global_str_arena);
 	} else if (STR_CMP(opt, "run") == 0) {
-		runProject(global_str_arena);
+		run_project(global_str_arena);
 	} else if (STR_CMP(opt, "gen") == 0) {
-		generateCompileCommands();
+		generate_compile_commands();
 	} else {
 		printf("Unknown command: %s\n", opt);
 		return 1;
