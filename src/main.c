@@ -157,92 +157,6 @@ String *get_current_working_dir(Arena *arena) {
 	return string_from(arena, cwd);
 }
 
-// TODO:
-void tidy_dependency() {
-	Vector *installed = vector_init(char *);
-	Vector *dep_arr = vector_init(char *);
-	Vector *not_installed = vector_init(char *);
-
-	char *myBuildConfigFile = "myBuild.json";
-	char *packageFile = "deps/.package";
-	yyjson_read_err err;
-	yyjson_doc *buildConf = yyjson_read_file(myBuildConfigFile, 0, NULL, &err);
-	if (!buildConf) {
-		fprintf(stderr, "Failed to read %s: %s\n", myBuildConfigFile, err.msg);
-		return;
-	}
-	yyjson_doc *packageConf = yyjson_read_file(packageFile, 0, NULL, &err);
-	if (!packageConf) {
-		fprintf(stderr, "Failed to read %s: %s\n", packageFile, err.msg);
-		return;
-	}
-
-	yyjson_mut_doc *buildConf_mut = yyjson_doc_mut_copy(buildConf, NULL);
-	yyjson_mut_doc *packageConf_mut = yyjson_doc_mut_copy(packageConf, NULL);
-
-	yyjson_doc_free(buildConf);
-	yyjson_doc_free(packageConf);
-
-	yyjson_mut_val *build_root = yyjson_mut_doc_get_root(buildConf_mut);
-	yyjson_mut_val *package_root = yyjson_mut_doc_get_root(packageConf_mut);
-
-	yyjson_mut_val *deps = yyjson_mut_obj_get(build_root, "dependencies");
-	yyjson_mut_val *inst_pkg = yyjson_mut_obj_get(package_root, "packages");
-
-	if (yyjson_mut_is_obj(deps)) {
-		yyjson_mut_obj_iter iter;
-		yyjson_mut_obj_iter_init(deps, &iter);
-		yyjson_mut_val *key, *dep_obj;
-		while ((key = yyjson_mut_obj_iter_next(&iter))) {
-			dep_obj = yyjson_mut_obj_iter_get_val(key);
-			const char *dep_name = yyjson_mut_get_str(key);
-
-			yyjson_mut_val *dep_remote = yyjson_mut_obj_get(dep_obj, "remote");
-			set_add(dep_arr, (char *)yyjson_mut_get_str(dep_remote));
-		}
-	}
-
-	if (yyjson_mut_is_arr(inst_pkg)) {
-		yyjson_mut_arr_iter iter;
-		yyjson_mut_arr_iter_init(deps, &iter);
-		yyjson_mut_val *val;
-		while ((val = yyjson_mut_arr_iter_next(&iter))) {
-			set_add(installed, (char *)yyjson_mut_get_str(val));
-		}
-	}
-
-	for (int i = 0; i < length(dep_arr); i++) {
-		bool dep_installed = false;
-		char *elem = at(char *, dep_arr, i);
-		for (int j = 0; j < length(installed); j++) {
-			if (STR_CMP(elem, at(char *, installed, j)) == 0) {
-				dep_installed = true;
-				break;
-			}
-		}
-		if (!dep_installed) {
-			set_add(not_installed, elem);
-		}
-	}
-
-	if (length(not_installed) > 0) {
-		Arena *arena = arena_init(1024);
-		for (int i = 0; i < length(not_installed); i++) {
-			String *repo_name = cloneLib(arena, at(char *, not_installed, i));
-			String *config_path = string_concat_cstr(
-				arena, 3, "./deps/", repo_name, "/myBuild.json");
-			if (is_mybuild_config_present(string(config_path))) {
-			}
-		}
-		arena_free(&arena);
-	}
-	yyjson_mut_doc_free(buildConf_mut);
-	yyjson_mut_doc_free(packageConf_mut);
-	vector_free(installed);
-	vector_free(dep_arr);
-	vector_free(not_installed);
-}
-
 int generate_compile_commands() {
 	Arena *str_arena = arena_init(1024);
 	char *input_file = "myBuild.json";
@@ -703,6 +617,101 @@ bool is_mybuild_config_present(char *filename) {
 	return false;
 }
 
+void update_package_file(yyjson_mut_doc *package) {
+	yyjson_write_err werr;
+	yyjson_write_flag flg = YYJSON_WRITE_PRETTY | YYJSON_WRITE_ESCAPE_UNICODE;
+	if (!yyjson_mut_write_file("./deps/.package", package, flg, NULL, &werr)) {
+		fprintf(stderr, "Write error: %s\n", werr.msg);
+	}
+}
+
+void sync_dependency() {
+	Vector *installed = vector_init(char *);
+	Vector *dep_arr = vector_init(char *);
+	Vector *not_installed = vector_init(char *);
+
+	char *myBuildConfigFile = "myBuild.json";
+	char *packageFile = "deps/.package";
+	yyjson_read_err err;
+	yyjson_doc *buildConf = yyjson_read_file(myBuildConfigFile, 0, NULL, &err);
+	if (!buildConf) {
+		fprintf(stderr, "Failed to read %s: %s\n", myBuildConfigFile, err.msg);
+		return;
+	}
+	yyjson_doc *packageConf = yyjson_read_file(packageFile, 0, NULL, &err);
+	if (!packageConf) {
+		fprintf(stderr, "Failed to read %s: %s\n", packageFile, err.msg);
+		return;
+	}
+
+	yyjson_mut_doc *buildConf_mut = yyjson_doc_mut_copy(buildConf, NULL);
+	yyjson_mut_doc *packageConf_mut = yyjson_doc_mut_copy(packageConf, NULL);
+
+	yyjson_doc_free(buildConf);
+	yyjson_doc_free(packageConf);
+
+	yyjson_mut_val *build_root = yyjson_mut_doc_get_root(buildConf_mut);
+	yyjson_mut_val *package_root = yyjson_mut_doc_get_root(packageConf_mut);
+
+	yyjson_mut_val *deps = yyjson_mut_obj_get(build_root, "dependencies");
+	yyjson_mut_val *inst_pkg = yyjson_mut_obj_get(package_root, "packages");
+
+	if (yyjson_mut_is_arr(inst_pkg)) {
+		yyjson_mut_arr_iter iter;
+		yyjson_mut_arr_iter_init(deps, &iter);
+		yyjson_mut_val *val;
+		while ((val = yyjson_mut_arr_iter_next(&iter))) {
+			set_add(installed, (char *)yyjson_mut_get_str(val));
+		}
+	}
+
+	if (yyjson_mut_is_obj(deps)) {
+		// Arena *local_arena = arena_init(1024);
+		yyjson_mut_obj_iter iter;
+		yyjson_mut_obj_iter_init(deps, &iter);
+		yyjson_mut_val *key, *dep_obj;
+		while ((key = yyjson_mut_obj_iter_next(&iter))) {
+			dep_obj = yyjson_mut_obj_iter_get_val(key);
+			const char *dep_name = yyjson_mut_get_str(key);
+
+			yyjson_mut_val *dep_remote = yyjson_mut_obj_get(dep_obj, "remote");
+			if (!set_contains(installed,
+							  (char *)yyjson_mut_get_str(dep_remote))) {
+
+				// String *repo_name = clone_lib(
+				// 	local_arena, (char *)yyjson_mut_get_str(dep_remote));
+				// String *config_path = string_concat_cstr(
+				// 	local_arena, 3, "./deps/", repo_name, "/myBuild.json");
+				// if (is_mybuild_config_present(string(config_path))) {
+				// }
+				set_add(installed, (char *)yyjson_mut_get_str(dep_remote));
+				fetch_library(installed, (char *)yyjson_mut_get_str(dep_remote),
+							  true);
+				// set_add(installed, (char *)yyjson_mut_get_str(dep_remote));
+			}
+		}
+
+		yyjson_mut_val *package_arr = yyjson_mut_arr(packageConf_mut);
+		// yyjson_mut_val *package_arr = yyjson_mut_obj_get(root, "packages");
+
+		for (int i = 0; i < length(installed); i++) {
+			yyjson_mut_val *val =
+				yyjson_mut_str(packageConf_mut, at(char *, installed, i));
+			yyjson_mut_arr_append(package_arr, val);
+		}
+		yyjson_mut_obj_put(package_root,
+						   yyjson_mut_str(packageConf_mut, "packages"),
+						   package_arr);
+		update_package_file(packageConf_mut);
+		// arena_free(&local_arena);
+	}
+
+	yyjson_mut_doc_free(buildConf_mut);
+	yyjson_mut_doc_free(packageConf_mut);
+	vector_free(installed);
+	vector_free(dep_arr);
+}
+
 void add_library(char *libURL) {
 	yyjson_read_err err;
 	yyjson_doc *current_doc = yyjson_read_file("./myBuild.json", 0, NULL, &err);
@@ -718,7 +727,7 @@ void add_library(char *libURL) {
 	yyjson_doc_free(current_doc);
 	if (!set_contains(set, libURL)) {
 		set_add(set, libURL);
-		fetch_library(set, libURL);
+		fetch_library(set, libURL, false);
 	}
 	yyjson_doc *package = yyjson_read_file("./deps/.package", 0, NULL, &err);
 	yyjson_mut_doc *package_mut = yyjson_doc_mut_copy(package, NULL);
@@ -735,17 +744,20 @@ void add_library(char *libURL) {
 					   package_arr);
 	// yyjson_mut_obj_add_val(package_mut, root, "packages", package_arr);
 
+	/*
 	yyjson_write_err werr;
 	yyjson_write_flag flg = YYJSON_WRITE_PRETTY | YYJSON_WRITE_ESCAPE_UNICODE;
 	if (!yyjson_mut_write_file("./deps/.package", package_mut, flg, NULL,
 							   &werr)) {
 		fprintf(stderr, "Write error: %s\n", werr.msg);
 	}
+	*/
+	update_package_file(package_mut);
 	yyjson_mut_doc_free(package_mut);
 	vector_free(set);
 }
 
-String *cloneLib(Arena *arena, char *libURL) {
+String *clone_lib(Arena *arena, char *libURL) {
 	String *repo_name = string_from(arena, get_repo_name(arena, libURL));
 	String *command = string_concat_cstr(arena, 4, "git clone ", libURL,
 										 " ./deps/", string(repo_name));
@@ -753,14 +765,21 @@ String *cloneLib(Arena *arena, char *libURL) {
 	return repo_name;
 }
 
-void fetch_library(Vector *v, char *libURL) {
+void fetch_library(Vector *v, char *libURL, bool sync) {
 	String *command, *repo_name, *dep_mybuild_path;
 	Arena *str_arena;
 	yyjson_read_err err;
 
 	str_arena = arena_init(1024);
-	repo_name = cloneLib(str_arena, libURL);
+	repo_name = clone_lib(str_arena, libURL);
 
+	String *config_path = string_concat_cstr(
+		str_arena, 3, "./deps/", string(repo_name), "/myBuild.json");
+	if (!is_mybuild_config_present(string(config_path))) {
+		generate_compile_commands();
+		arena_free(&str_arena);
+		return;
+	}
 	yyjson_doc *current_doc = yyjson_read_file("./myBuild.json", 0, NULL, &err);
 	yyjson_mut_doc *current_mut_doc = yyjson_doc_mut_copy(current_doc, NULL);
 
@@ -787,25 +806,28 @@ void fetch_library(Vector *v, char *libURL) {
 		yyjson_val_mut_copy(current_mut_doc, headers);
 	yyjson_mut_val *dep_src_arr = yyjson_val_mut_copy(current_mut_doc, src);
 
-	yyjson_mut_val *target_obj = yyjson_mut_obj(current_mut_doc);
+	if (!sync) {
+		yyjson_mut_val *target_obj = yyjson_mut_obj(current_mut_doc);
 
-	yyjson_mut_obj_add_str(current_mut_doc, target_obj, "version", version);
-	yyjson_mut_obj_add(target_obj,
-					   yyjson_mut_str(current_mut_doc, "include_paths"),
-					   dep_header_arr);
-	yyjson_mut_obj_add(target_obj, yyjson_mut_str(current_mut_doc, "src"),
-					   dep_src_arr);
+		yyjson_mut_obj_add_str(current_mut_doc, target_obj, "version", version);
+		yyjson_mut_obj_add(target_obj,
+						   yyjson_mut_str(current_mut_doc, "include_paths"),
+						   dep_header_arr);
+		yyjson_mut_obj_add(target_obj, yyjson_mut_str(current_mut_doc, "src"),
+						   dep_src_arr);
 
-	yyjson_mut_obj_add_str(current_mut_doc, target_obj, "remote", libURL);
-	yyjson_mut_obj_add(dependencies,
-					   yyjson_mut_str(current_mut_doc, string(repo_name)),
-					   target_obj);
+		yyjson_mut_obj_add_str(current_mut_doc, target_obj, "remote", libURL);
+		yyjson_mut_obj_add(dependencies,
+						   yyjson_mut_str(current_mut_doc, string(repo_name)),
+						   target_obj);
 
-	yyjson_write_err werr;
-	yyjson_write_flag flg = YYJSON_WRITE_PRETTY | YYJSON_WRITE_ESCAPE_UNICODE;
-	if (!yyjson_mut_write_file("./myBuild.json", current_mut_doc, flg, NULL,
-							   &werr)) {
-		fprintf(stderr, "Write error: %s\n", err.msg);
+		yyjson_write_err werr;
+		yyjson_write_flag flg =
+			YYJSON_WRITE_PRETTY | YYJSON_WRITE_ESCAPE_UNICODE;
+		if (!yyjson_mut_write_file("./myBuild.json", current_mut_doc, flg, NULL,
+								   &werr)) {
+			fprintf(stderr, "Write error: %s\n", err.msg);
+		}
 	}
 
 	generate_compile_commands();
@@ -819,7 +841,7 @@ void fetch_library(Vector *v, char *libURL) {
 		yyjson_val *remote = yyjson_obj_get(val, "remote");
 		if (!set_contains(v, (char *)yyjson_get_str(remote))) {
 			set_add(v, (char *)yyjson_get_str(remote));
-			fetch_library(v, (char *)yyjson_get_str(remote));
+			fetch_library(v, (char *)yyjson_get_str(remote), false);
 		}
 	}
 	yyjson_doc_free(dep_doc);
@@ -851,6 +873,8 @@ int main(int argc, char *argv[]) {
 		run_project(global_str_arena);
 	} else if (STR_CMP(opt, "gen") == 0) {
 		generate_compile_commands();
+	} else if (STR_CMP(opt, "sync") == 0) {
+		sync_dependency();
 	} else {
 		printf("Unknown command: %s\n", opt);
 		return 1;
