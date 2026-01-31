@@ -658,7 +658,7 @@ void sync_dependency() {
 
 	if (yyjson_mut_is_arr(inst_pkg)) {
 		yyjson_mut_arr_iter iter;
-		yyjson_mut_arr_iter_init(deps, &iter);
+		yyjson_mut_arr_iter_init(inst_pkg, &iter);
 		yyjson_mut_val *val;
 		while ((val = yyjson_mut_arr_iter_next(&iter))) {
 			set_add(installed, (char *)yyjson_mut_get_str(val));
@@ -706,6 +706,7 @@ void sync_dependency() {
 		// arena_free(&local_arena);
 	}
 
+	generate_compile_commands();
 	yyjson_mut_doc_free(buildConf_mut);
 	yyjson_mut_doc_free(packageConf_mut);
 	vector_free(installed);
@@ -752,6 +753,8 @@ void add_library(char *libURL) {
 		fprintf(stderr, "Write error: %s\n", werr.msg);
 	}
 	*/
+
+	generate_compile_commands();
 	update_package_file(package_mut);
 	yyjson_mut_doc_free(package_mut);
 	vector_free(set);
@@ -776,7 +779,8 @@ void fetch_library(Vector *v, char *libURL, bool sync) {
 	String *config_path = string_concat_cstr(
 		str_arena, 3, "./deps/", string(repo_name), "/myBuild.json");
 	if (!is_mybuild_config_present(string(config_path))) {
-		generate_compile_commands();
+		printf("Config not present! path: %s", string(config_path));
+		// generate_compile_commands();
 		arena_free(&str_arena);
 		return;
 	}
@@ -829,8 +833,6 @@ void fetch_library(Vector *v, char *libURL, bool sync) {
 			fprintf(stderr, "Write error: %s\n", err.msg);
 		}
 	}
-
-	generate_compile_commands();
 
 	yyjson_mut_doc_free(current_mut_doc);
 
