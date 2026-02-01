@@ -762,9 +762,11 @@ void add_library(char *libURL) {
 
 String *clone_lib(Arena *arena, char *libURL) {
 	String *repo_name = string_from(arena, get_repo_name(arena, libURL));
-	String *command = string_concat_cstr(arena, 4, "git clone ", libURL,
+	printf("Installing %s...\n", string(repo_name));
+	String *command = string_concat_cstr(arena, 4, "git clone --quiet ", libURL,
 										 " ./deps/", string(repo_name));
 	system(string(command));
+	printf("Done!\n");
 	return repo_name;
 }
 
@@ -779,7 +781,7 @@ void fetch_library(Vector *v, char *libURL, bool sync) {
 	String *config_path = string_concat_cstr(
 		str_arena, 3, "./deps/", string(repo_name), "/myBuild.json");
 	if (!is_mybuild_config_present(string(config_path))) {
-		printf("Config not present! path: %s", string(config_path));
+		// printf("Config not present! path: %s", string(config_path));
 		// generate_compile_commands();
 		arena_free(&str_arena);
 		return;
@@ -810,7 +812,7 @@ void fetch_library(Vector *v, char *libURL, bool sync) {
 		yyjson_val_mut_copy(current_mut_doc, headers);
 	yyjson_mut_val *dep_src_arr = yyjson_val_mut_copy(current_mut_doc, src);
 
-	if (!sync) {
+	if (!sync && !yyjson_mut_obj_get(dependencies, string(repo_name))) {
 		yyjson_mut_val *target_obj = yyjson_mut_obj(current_mut_doc);
 
 		yyjson_mut_obj_add_str(current_mut_doc, target_obj, "version", version);
