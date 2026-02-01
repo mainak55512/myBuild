@@ -1,8 +1,10 @@
-# myBuild (Early Development)
+# myBuild
 
 **Disclaimer: This project is in an early alpha stage and is not production-ready. Use with caution.**
 
 myBuild is an experimental build system and package manager for C/C++ projects. It aims to simplify the development workflow by managing dependencies directly through Git and automating the compilation process via a single JSON configuration file.
+
+**NOTE:** Recipes of the dependencies are/will be updated in [myBuild Cookbook](https://github.com/mainak55512/myBuild-cookbook)
 
 ## Project Structure
 
@@ -84,6 +86,12 @@ myBuild init
 myBuild add <git_remote_url>
 
 ```
+or
+Add the recipe in the `dependencies` section in myBuild.json and run
+```bash
+myBuild sync
+```
+**N.B.** recipes are/will be available in [myBuild Cookbook](https://github.com/mainak55512/myBuild-cookbook)
 
 ### Build
 
