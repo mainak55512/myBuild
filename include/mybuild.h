@@ -25,7 +25,8 @@
 
 int create_append_file(char *file_path, char *content);
 void create_my_build_config(char *config_file_path, char *project_name,
-							char *project_lang, char *compiler_path);
+							char *project_lang, char *compiler_path,
+							bool isExec);
 int check_project_lang(char *lang);
 String *build_project(Arena *global_str_arena);
 void fetch_library(Vector *v, char *libURL, bool sync);

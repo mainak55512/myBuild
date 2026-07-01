@@ -18,7 +18,8 @@ int create_append_file(char *file_path, char *content) {
 }
 
 void create_my_build_config(char *config_file_path, char *project_name,
-							char *project_lang, char *compiler_path) {
+							char *project_lang, char *compiler_path,
+							bool isExec) {
 	Arena *str_arena = arena_init(1024);
 	yyjson_mut_doc *doc = yyjson_mut_doc_new(NULL);
 	yyjson_mut_val *root = yyjson_mut_obj(doc);
@@ -31,7 +32,11 @@ void create_my_build_config(char *config_file_path, char *project_name,
 	yyjson_mut_val *headers = yyjson_mut_arr(doc);
 	yyjson_mut_val *sources = yyjson_mut_arr(doc);
 
-	yyjson_mut_arr_add_str(doc, sources, "src");
+	if (isExec) {
+		yyjson_mut_arr_add_str(doc, sources, "src");
+	} else {
+		yyjson_mut_arr_add_str(doc, sources, "lib");
+	}
 	yyjson_mut_obj_add_val(doc, root, "include_paths", headers);
 	yyjson_mut_obj_add_val(doc, root, "src", sources);
 
@@ -322,20 +327,28 @@ int init_project() {
 	struct STAT info;
 	Arena *str_arena;
 	String *project_name, *project_dir, *project_lang, *dep_dir, *dep_incl,
-		*dep_lib, *compiler_path;
+		*dep_lib, *compiler_path, *project_type;
 	int ret, dir_create_status, file_create_status;
+	bool isExec;
 
+	isExec = true;
 	ret = 0;
 	str_arena = arena_init(4096);
-	printf("Project Name: ");
+	printf("=============================\n");
+	printf("Bootstrapping New Project\n");
+	printf("=============================\n");
+	printf("? Project Name: ");
 	project_name = string_trim(str_arena, string_get(str_arena));
 
 	project_dir = string_from(str_arena, ".");
 
-	printf("Language (c/c++): ");
+	printf("? Language (c/c++): ");
 	project_lang = string_trim(str_arena, string_get(str_arena));
 
-	printf("Compiler path (default: gcc): ");
+	printf("? Project type (exec/lib): ");
+	project_type = string_trim(str_arena, string_get(str_arena));
+
+	printf("? Compiler path (default: gcc): ");
 	compiler_path = string_trim(str_arena, string_get(str_arena));
 
 	if (STR_CMP(string(compiler_path), "") == 0) {
@@ -373,8 +386,14 @@ int init_project() {
 	// 	goto CLEANUP;
 	// }
 
-	dir_create_status = MAKE_DIR(
-		string(string_concat_cstr(str_arena, 2, string(project_dir), "/src")));
+	isExec = STR_CMP(string(project_type), "exec") == 0 ? true : false;
+	if (isExec) {
+		dir_create_status = MAKE_DIR(string(
+			string_concat_cstr(str_arena, 2, string(project_dir), "/src")));
+	} else {
+		dir_create_status = MAKE_DIR(string(
+			string_concat_cstr(str_arena, 2, string(project_dir), "/lib")));
+	}
 
 	if (dir_create_status != 0) {
 		ret = 1;
@@ -390,9 +409,14 @@ int init_project() {
 
 	switch (check_project_lang(string(project_lang))) {
 	case 0: {
+		char *file_name;
+		file_name =
+			isExec ? "/src/main.cpp"
+				   : string(string_concat_cstr(str_arena, 3, "/lib/",
+											   string(project_name), ".cpp"));
 		file_create_status = create_append_file(
 			string(string_concat_cstr(str_arena, 2, string(project_dir),
-									  "/src/main.cpp")),
+									  file_name)),
 			"#include <iostream>\n\nint main() "
 			"{\n\tstd::cout << \"Hello, World!\" << std::endl;\n}");
 
@@ -413,13 +437,18 @@ int init_project() {
 		create_my_build_config(
 			string(string_concat_cstr(str_arena, 2, string(project_dir),
 									  "/myBuild.json")),
-			string(project_name), "cpp", string(compiler_path));
+			string(project_name), "cpp", string(compiler_path), isExec);
 		break;
 	}
 	default: {
+		char *file_name;
+		file_name =
+			isExec ? "/src/main.c"
+				   : string(string_concat_cstr(str_arena, 3, "/lib/",
+											   string(project_name), ".c"));
 		file_create_status = create_append_file(
 			string(string_concat_cstr(str_arena, 2, string(project_dir),
-									  "/src/main.c")),
+									  file_name)),
 			"#include <stdio.h>\n\nint main() "
 			"{\n\tprintf(\"Hello, World!\");\n}");
 
@@ -438,7 +467,7 @@ int init_project() {
 		create_my_build_config(
 			string(string_concat_cstr(str_arena, 2, string(project_dir),
 									  "/myBuild.json")),
-			string(project_name), "c", string(compiler_path));
+			string(project_name), "c", string(compiler_path), isExec);
 		break;
 	}
 	}
