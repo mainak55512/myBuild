@@ -3,6 +3,7 @@
     "project_language": "c",
     "version": "0.0.3",
     "compiler_path": "/usr/bin/clang-18",
+    "executable": true,
     "include_paths": [
         "include"
     ],

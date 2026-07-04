@@ -4,6 +4,7 @@
 #include <mybuild.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <strings.h>
 
 int create_append_file(char *file_path, char *content) {
@@ -17,6 +18,21 @@ int create_append_file(char *file_path, char *content) {
 	return 0;
 }
 
+const char *get_filename_without_path(const char *path) {
+	const char *last_slash = strrchr(path, '/');
+	const char *last_backslash = strrchr(path, '\\');
+
+	const char *filename = path;
+	if (last_slash && last_slash > filename) {
+		filename = last_slash + 1;
+	}
+	if (last_backslash && last_backslash > filename) {
+		filename = last_backslash + 1;
+	}
+
+	return filename;
+}
+
 void create_my_build_config(char *config_file_path, char *project_name,
 							char *project_lang, char *compiler_path,
 							bool isExec) {
@@ -28,6 +44,7 @@ void create_my_build_config(char *config_file_path, char *project_name,
 	yyjson_mut_obj_add_str(doc, root, "project_name", project_name);
 	yyjson_mut_obj_add_str(doc, root, "project_language", project_lang);
 	yyjson_mut_obj_add_str(doc, root, "compiler_path", compiler_path);
+	yyjson_mut_obj_add_bool(doc, root, "executable", isExec);
 
 	yyjson_mut_val *headers = yyjson_mut_arr(doc);
 	yyjson_mut_val *sources = yyjson_mut_arr(doc);
@@ -129,6 +146,7 @@ String *collect_src_files(Arena *str_arena, String *path) {
 #endif
 	return src_files;
 }
+
 Vector *string_split_lines(Arena *arena, String *str) {
 	Vector *lines = vector_init(String *);
 	char *cstr = string(str);
@@ -160,6 +178,66 @@ String *get_current_working_dir(Arena *arena) {
 	char cwd[1024];
 	GET_WD(cwd, sizeof(cwd));
 	return string_from(arena, cwd);
+}
+
+void get_src_vec(Arena *str_arena, Vector *source_files, yyjson_val *root,
+				 yyjson_val *deps, String *cwd) {
+
+	yyjson_val *src_arr = yyjson_obj_get(root, "src");
+	if (yyjson_is_arr(src_arr)) {
+		yyjson_arr_iter iter;
+		yyjson_arr_iter_init(src_arr, &iter);
+		yyjson_val *val;
+		while ((val = yyjson_arr_iter_next(&iter))) {
+			Vector *src_temp_arr = string_split_lines(
+				str_arena,
+				collect_src_files(
+					str_arena,
+					string_from(str_arena, (char *)yyjson_get_str(val))));
+			for (int i = 0; i < length(src_temp_arr); i++) {
+				char *elem = string(at(String *, src_temp_arr, i));
+				if (STR_CMP(elem, "") != 0) {
+					append(char *, source_files,
+						   string(string_concat_cstr(str_arena, 3, string(cwd),
+													 "/", elem)));
+				}
+			}
+			vector_free(src_temp_arr);
+		}
+	}
+
+	if (yyjson_is_obj(deps)) {
+		yyjson_obj_iter iter;
+		yyjson_obj_iter_init(deps, &iter);
+		yyjson_val *key, *dep_obj;
+		while ((key = yyjson_obj_iter_next(&iter))) {
+			dep_obj = yyjson_obj_iter_get_val(key);
+			const char *dep_name = yyjson_get_str(key);
+
+			yyjson_val *dep_src = yyjson_obj_get(dep_obj, "src");
+			if (yyjson_is_arr(dep_src)) {
+				yyjson_arr_iter src_iter;
+				yyjson_arr_iter_init(dep_src, &src_iter);
+				yyjson_val *src_val;
+				while ((src_val = yyjson_arr_iter_next(&src_iter))) {
+					String *path = string_concat_cstr(
+						str_arena, 5, string(cwd), "/deps/", (char *)dep_name,
+						"/", (char *)yyjson_get_str(src_val));
+					Vector *src_temp_arr = string_split_lines(
+						str_arena, collect_src_files(str_arena, path));
+					for (int i = 0; i < length(src_temp_arr); i++) {
+						char *elem = string(at(String *, src_temp_arr, i));
+						if (STR_CMP(elem, "") != 0) {
+							append(char *, source_files, elem);
+						}
+						// append(char *, source_files,
+						// 	   string(at(String *, src_temp_arr, i)));
+					}
+					vector_free(src_temp_arr);
+				}
+			}
+		}
+	}
 }
 
 int generate_compile_commands() {
@@ -220,7 +298,8 @@ int generate_compile_commands() {
 	}
 
 	Vector *source_files = vector_init(char *);
-
+	get_src_vec(str_arena, source_files, root, deps, cwd);
+	/*
 	yyjson_val *src_arr = yyjson_obj_get(root, "src");
 	if (yyjson_is_arr(src_arr)) {
 		yyjson_arr_iter iter;
@@ -275,7 +354,7 @@ int generate_compile_commands() {
 				}
 			}
 		}
-	}
+	}*/
 
 	yyjson_mut_doc *out_doc = yyjson_mut_doc_new(NULL);
 	yyjson_mut_val *out_root = yyjson_mut_arr(out_doc);
@@ -479,6 +558,7 @@ CLEANUP:
 }
 
 String *build_project(Arena *global_str_arena) {
+	printf("[✓] Compilation started\n");
 	String *command;
 
 	MAKE_DIR("build");
@@ -503,6 +583,9 @@ String *build_project(Arena *global_str_arena) {
 	yyjson_val *src_arr = yyjson_obj_get(root, "src");
 	yyjson_val *dep_arr = yyjson_obj_get(root, "dependencies");
 	yyjson_val *compiler_path = yyjson_obj_get(root, "compiler_path");
+	yyjson_val *executable = yyjson_obj_get(root, "executable");
+
+	bool isExec = yyjson_get_bool(executable);
 
 	String *header_list = string_from(str_arena, "");
 	String *src_list = string_from(str_arena, "");
@@ -519,13 +602,17 @@ String *build_project(Arena *global_str_arena) {
 
 	idx = 0, max = 0;
 
-	yyjson_arr_foreach(src_arr, idx, max, val) {
-		src_list = string_concat_cstr(
-			str_arena, 2, string(src_list),
-			string(collect_src_files(
-				str_arena, string_concat_cstr(str_arena, 2, "./",
-											  (char *)yyjson_get_str(val)))));
-	}
+	Vector *src_file_arr = vector_init(char *);
+	get_src_vec(str_arena, src_file_arr, root, dep_arr,
+				get_current_working_dir(str_arena));
+
+	// yyjson_arr_foreach(src_arr, idx, max, val) {
+	// src_list = string_concat_cstr(
+	// 	str_arena, 2, string(src_list),
+	// 	string(collect_src_files(
+	// 		str_arena, string_concat_cstr(str_arena, 2, "./",
+	// 									  (char *)yyjson_get_str(val)))));
+	// }
 
 	idx = 0, max = 0;
 
@@ -536,18 +623,18 @@ String *build_project(Arena *global_str_arena) {
 			char *key_str = (char *)yyjson_get_str(key);
 
 			// local = yyjson_obj_get(val, "local");
-			dep_src_arr = yyjson_obj_get(val, "src");
+			// dep_src_arr = yyjson_obj_get(val, "src");
 			dep_include_arr = yyjson_obj_get(val, "include_paths");
 
-			index = 0, max_val = 0;
-			yyjson_arr_foreach(dep_src_arr, index, max_val, elem) {
-				src_list = string_concat_cstr(
-					str_arena, 2, string(src_list),
-					string(collect_src_files(
-						str_arena, string_concat_cstr(
-									   str_arena, 4, "./deps/", key_str, "/",
-									   (char *)yyjson_get_str(elem)))));
-			}
+			// index = 0, max_val = 0;
+			// yyjson_arr_foreach(dep_src_arr, index, max_val, elem) {
+			// 	src_list = string_concat_cstr(
+			// 		str_arena, 2, string(src_list),
+			// 		string(collect_src_files(
+			// 			str_arena, string_concat_cstr(
+			// 						   str_arena, 4, "./deps/", key_str, "/",
+			// 						   (char *)yyjson_get_str(elem)))));
+			// }
 
 			index = 0, max_val = 0;
 			yyjson_arr_foreach(dep_include_arr, index, max_val, elem) {
@@ -562,17 +649,21 @@ String *build_project(Arena *global_str_arena) {
 
 	String *headers, *src;
 	headers = string_trim(str_arena, header_list);
-	src = string_trim(str_arena, src_list);
+	// src = string_trim(str_arena, src_list);
 
 	// printf("Headers: %s\n", string(headers));
 	// printf("SRCs: %s\n", string(src));
 
+	// String *response_content = string_concat_cstr(
+	// 	str_arena, 6, "-c\n-fPIC\n", string(headers), string(src), "\n-o",
+	// 	"\n./build/", string(project_name));
+
 	String *response_content =
-		string_concat_cstr(str_arena, 5, string(headers), string(src), "\n-o",
-						   "\n./build/", string(project_name));
+		string_concat_cstr(str_arena, 2, "-c\n-fPIC\n", string(headers));
 
 	MAKE_DIR("./build/.cache");
-	create_append_file("./build/.cache/build.rsp", string(response_content));
+	create_append_file("./build/.cache/flags.rsp", string(response_content));
+	// create_append_file("./build/.cache/sources.rsp", string(src));
 
 	/*
 	command = string_concat_cstr(str_arena, 6, string(compiler), string(src),
@@ -581,10 +672,41 @@ String *build_project(Arena *global_str_arena) {
 
 	// printf("Compile Command: %s\n", string(command));
 	*/
-	system(string(string_concat_cstr(str_arena, 2, string(compiler),
-									 " @./build/.cache/build.rsp")));
+	// system(string(string_concat_cstr(str_arena, 2, string(compiler),
+	// " @./build/.cache/build.rsp")));
+
+	for (int i = 0; i < length(src_file_arr); i++) {
+		const char *base_name =
+			get_filename_without_path(at(char *, src_file_arr, i));
+		String *obj_file = string_concat_cstr(str_arena, 3, "./build/.cache/",
+											  base_name, ".o");
+		system(string(string_concat_cstr(
+			str_arena, 5, string(compiler), " @./build/.cache/flags.rsp ",
+			at(char *, src_file_arr, i), " -o ", string(obj_file))));
+
+		printf("[✓] Compiled '%s'\n", base_name);
+	}
+
+	vector_free(src_file_arr);
+
 	String *output = string_concat_cstr(global_str_arena, 2, "./build/",
 										string(project_name));
+
+	if (isExec) {
+		system(string(string_concat_cstr(str_arena, 3, string(compiler),
+										 " ./build/.cache/*.o -o ",
+										 string(output))));
+		printf("[✓] Executable ganerated");
+	} else {
+		system(string(
+			string_concat_cstr(str_arena, 4, string(compiler),
+							   " -shared ./build/.cache/*.o -o ./build/lib",
+							   string(project_name), ".so")));
+		system(string(string_concat_cstr(str_arena, 3, "ar rcs ./build/lib",
+										 string(project_name),
+										 ".a ./build/.cache/*.o")));
+		printf("[✓] Libraries ganerated");
+	}
 
 CLEANUP:
 	arena_free(&str_arena);
