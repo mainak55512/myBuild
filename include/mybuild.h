@@ -41,6 +41,7 @@ String *clone_lib(Arena *arena, char *libURL);
 bool is_mybuild_config_present(char *filename);
 int init_project();
 String *collect_src_files(Arena *str_arena, String *path);
+String *collect_files(Arena *str_arena, String *path, String *type);
 Vector *string_split_lines(Arena *arena, String *str);
 String *get_current_working_dir(Arena *arena);
 int generate_compile_commands();

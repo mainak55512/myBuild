@@ -1,3 +1,4 @@
+#include "cstring.h"
 #include <mybuild.h>
 
 int create_append_file(char *file_path, char *content) {
@@ -11,15 +12,26 @@ int create_append_file(char *file_path, char *content) {
 	return 0;
 }
 
-String *collect_src_files(Arena *str_arena, String *path) {
+String *collect_files(Arena *str_arena, String *path, String *type) {
 	String *src_files = string_from(str_arena, "");
+	String *ext_1 = string_from(str_arena, ".c");
+	String *ext_2 = string_from(str_arena, ".cpp");
+
+	if (STR_CMP(string(type), "static") == 0) {
+		ext_1 = string_from(str_arena, ".a");
+		ext_2 = string_from(str_arena, ".lib");
+	} else if (STR_CMP(string(type), "dyn") == 0) {
+		ext_1 = string_from(str_arena, ".so");
+		ext_2 = string_from(str_arena, ".dll");
+	}
+
 #ifdef _WIN32
 	WIN32_FIND_DATA findData;
 	HANDLE handleFind;
 	String *searchPath;
 
 	// Create search pattern (path\*.*)
-	snprintf(searchPath, MAX_PATH, "%s\\*.*", string(path));
+	// snprintf(searchPath, MAX_PATH, "%s\\*.*", string(path));
 	searchPath = string_concat_cstr(str_arena, 2, string(path), "\\*.*");
 
 	handleFind = FindFirstFile(string(searchPath), &findData);
@@ -40,8 +52,10 @@ String *collect_src_files(Arena *str_arena, String *path) {
 
 		size_t len = strlen(findData.cFileName);
 
-		if ((len > 2 && STR_CMP(findData.cFileName + len - 2, ".c") == 0) ||
-			(len > 4 && STR_CMP(findData.cFileName + len - 4, ".cpp") == 0)) {
+		if ((len > 2 &&
+			 STR_CMP(findData.cFileName + len - 2, string(ext_1)) == 0) ||
+			(len > 4 &&
+			 STR_CMP(findData.cFileName + len - 4, string(ext_2)) == 0)) {
 
 			if (strlen(string(src_files)) > 0) {
 				src_files =
@@ -72,8 +86,8 @@ String *collect_src_files(Arena *str_arena, String *path) {
 			continue;
 		}
 		char *dot = strrchr(entry->d_name, '.');
-		if (dot != NULL &&
-			(STR_CMP(dot, ".c") == 0 || STR_CMP(dot, ".cpp") == 0)) {
+		if (dot != NULL && (STR_CMP(dot, string(ext_1)) == 0 ||
+							STR_CMP(dot, string(ext_2)) == 0)) {
 
 			if (strlen(string(src_files)) > 0) {
 				src_files =
@@ -100,9 +114,10 @@ void get_src_vec(Arena *str_arena, Vector *source_files, yyjson_val *root,
 		while ((val = yyjson_arr_iter_next(&iter))) {
 			Vector *src_temp_arr = string_split_lines(
 				str_arena,
-				collect_src_files(
+				collect_files(
 					str_arena,
-					string_from(str_arena, (char *)yyjson_get_str(val))));
+					string_from(str_arena, (char *)yyjson_get_str(val)),
+					string_from(str_arena, "src")));
 			for (int i = 0; i < length(src_temp_arr); i++) {
 				char *elem = string(at(String *, src_temp_arr, i));
 				if (STR_CMP(elem, "") != 0) {
@@ -131,7 +146,9 @@ void get_src_vec(Arena *str_arena, Vector *source_files, yyjson_val *root,
 						str_arena, 5, string(cwd), "/deps/", (char *)dep_name,
 						"/", (char *)yyjson_get_str(src_val));
 					Vector *src_temp_arr = string_split_lines(
-						str_arena, collect_src_files(str_arena, path));
+						str_arena,
+						collect_files(str_arena, path,
+									  string_from(str_arena, "src")));
 					for (int i = 0; i < length(src_temp_arr); i++) {
 						char *elem = string(at(String *, src_temp_arr, i));
 						if (STR_CMP(elem, "") != 0) {

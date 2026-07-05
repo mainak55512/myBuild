@@ -1,3 +1,4 @@
+#include "cstring.h"
 #include <mybuild.h>
 
 int init_project() {
@@ -68,6 +69,10 @@ int init_project() {
 	}
 	dir_create_status = MAKE_DIR(string(
 		string_concat_cstr(str_arena, 2, string(project_dir), "/include")));
+	dir_create_status = MAKE_DIR(string(
+		string_concat_cstr(str_arena, 2, string(project_dir), "/static")));
+	dir_create_status = MAKE_DIR(string(
+		string_concat_cstr(str_arena, 2, string(project_dir), "/dynamic")));
 
 	if (dir_create_status != 0) {
 		ret = 1;
@@ -194,6 +199,14 @@ String *build_project(Arena *global_str_arena) {
 	get_src_vec(str_arena, src_file_arr, root, dep_arr,
 				get_current_working_dir(str_arena));
 
+	String *static_libs = collect_files(
+		str_arena,
+		string_concat_cstr(str_arena, 2,
+						   string(get_current_working_dir(str_arena)),
+						   "/static"),
+		// string_from(str_arena, "./static"),
+		string_from(str_arena, "static"));
+
 	idx = 0, max = 0;
 
 	if (dep_arr) {
@@ -219,10 +232,12 @@ String *build_project(Arena *global_str_arena) {
 	headers = string_trim(str_arena, header_list);
 
 	String *response_content =
-		string_concat_cstr(str_arena, 2, "-c\n-fPIC\n", string(headers));
+		string_concat_cstr(str_arena, 4, "-c\n-fPIC\n", string(headers), "\n",
+						   string(static_libs));
 
 	MAKE_DIR("./build/.cache");
-	create_append_file("./build/.cache/flags.rsp", string(response_content));
+	create_append_file("./build/.cache/compile.rsp", string(response_content));
+	// create_append_file("./build/.cache/compile.rsp", string(static_libs));
 
 	for (int i = 0; i < length(src_file_arr); i++) {
 		const char *base_name =
@@ -230,7 +245,7 @@ String *build_project(Arena *global_str_arena) {
 		String *obj_file = string_concat_cstr(str_arena, 3, "./build/.cache/",
 											  base_name, ".o");
 		system(string(string_concat_cstr(
-			str_arena, 5, string(compiler), " @./build/.cache/flags.rsp ",
+			str_arena, 5, string(compiler), " @./build/.cache/compile.rsp ",
 			at(char *, src_file_arr, i), " -o ", string(obj_file))));
 
 		printf("[✓] Compiled '%s'\n", base_name);
@@ -245,7 +260,7 @@ String *build_project(Arena *global_str_arena) {
 		system(string(string_concat_cstr(str_arena, 3, string(compiler),
 										 " ./build/.cache/*.o -o ",
 										 string(output))));
-		printf("[✓] Executable ganerated");
+		printf("[✓] Executable ganerated\n");
 	} else {
 		system(string(
 			string_concat_cstr(str_arena, 4, string(compiler),
@@ -254,7 +269,7 @@ String *build_project(Arena *global_str_arena) {
 		system(string(string_concat_cstr(str_arena, 3, "ar rcs ./build/lib",
 										 string(project_name),
 										 ".a ./build/.cache/*.o")));
-		printf("[✓] Libraries ganerated");
+		printf("[✓] Libraries ganerated\n");
 	}
 
 CLEANUP:
@@ -263,5 +278,6 @@ CLEANUP:
 }
 
 void run_project(Arena *global_str_arena) {
-	system(string(build_project(global_str_arena)));
+	char *command = string(build_project(global_str_arena));
+	system(command);
 }
