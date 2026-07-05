@@ -17,10 +17,14 @@ String *collect_files(Arena *str_arena, String *path, String *type) {
 	String *ext_1 = string_from(str_arena, ".c");
 	String *ext_2 = string_from(str_arena, ".cpp");
 
+	char sep = '\n';
+
 	if (STR_CMP(string(type), "static") == 0) {
+		sep = ' ';
 		ext_1 = string_from(str_arena, ".a");
 		ext_2 = string_from(str_arena, ".lib");
 	} else if (STR_CMP(string(type), "dyn") == 0) {
+		sep = ' ';
 		ext_1 = string_from(str_arena, ".so");
 		ext_2 = string_from(str_arena, ".dll");
 	}
@@ -59,7 +63,7 @@ String *collect_files(Arena *str_arena, String *path, String *type) {
 
 			if (strlen(string(src_files)) > 0) {
 				src_files =
-					string_concat_cstr(str_arena, 2, string(src_files), "\n");
+					string_concat_cstr(str_arena, 2, string(src_files), sep);
 			}
 
 			src_files =
@@ -91,7 +95,7 @@ String *collect_files(Arena *str_arena, String *path, String *type) {
 
 			if (strlen(string(src_files)) > 0) {
 				src_files =
-					string_concat_cstr(str_arena, 2, string(src_files), "\n");
+					string_concat_cstr(str_arena, 2, string(src_files), sep);
 			}
 
 			src_files = string_concat_cstr(str_arena, 4, string(src_files),

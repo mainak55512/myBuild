@@ -72,7 +72,7 @@ int init_project() {
 	dir_create_status = MAKE_DIR(string(
 		string_concat_cstr(str_arena, 2, string(project_dir), "/static")));
 	dir_create_status = MAKE_DIR(string(
-		string_concat_cstr(str_arena, 2, string(project_dir), "/dynamic")));
+		string_concat_cstr(str_arena, 2, string(project_dir), "/shared")));
 
 	if (dir_create_status != 0) {
 		ret = 1;
@@ -156,6 +156,8 @@ String *build_project(Arena *global_str_arena) {
 
 	MAKE_DIR("build");
 
+	MAKE_DIR("./build/.cache");
+
 	Arena *str_arena = arena_init(1024);
 
 	yyjson_read_err err;
@@ -206,6 +208,21 @@ String *build_project(Arena *global_str_arena) {
 						   "/static"),
 		// string_from(str_arena, "./static"),
 		string_from(str_arena, "static"));
+	String *stat_lib = string_trim(str_arena, static_libs);
+	if (string_len(stat_lib) > 0) {
+		system(string(string_concat_cstr(
+			str_arena, 3, "for f in ", string(stat_lib),
+			"; do (cd ./build/.cache && ar x \"$f\"); done")));
+	}
+
+	String *shared_libs = collect_files(
+		str_arena,
+		string_concat_cstr(str_arena, 2,
+						   string(get_current_working_dir(str_arena)),
+						   "/shared"),
+		// string_from(str_arena, "./static"),
+		string_from(str_arena, "dyn"));
+	String *shared_lib = string_trim(str_arena, shared_libs);
 
 	idx = 0, max = 0;
 
@@ -232,10 +249,8 @@ String *build_project(Arena *global_str_arena) {
 	headers = string_trim(str_arena, header_list);
 
 	String *response_content =
-		string_concat_cstr(str_arena, 4, "-c\n-fPIC\n", string(headers), "\n",
-						   string(static_libs));
+		string_concat_cstr(str_arena, 2, "-c\n-fPIC\n", string(headers));
 
-	MAKE_DIR("./build/.cache");
 	create_append_file("./build/.cache/compile.rsp", string(response_content));
 	// create_append_file("./build/.cache/compile.rsp", string(static_libs));
 
@@ -257,9 +272,9 @@ String *build_project(Arena *global_str_arena) {
 										string(project_name));
 
 	if (isExec) {
-		system(string(string_concat_cstr(str_arena, 3, string(compiler),
-										 " ./build/.cache/*.o -o ",
-										 string(output))));
+		system(string(string_concat_cstr(
+			str_arena, 5, string(compiler), " ./build/.cache/*.o ",
+			string(shared_lib), " -o ", string(output))));
 		printf("[✓] Executable ganerated\n");
 	} else {
 		system(string(
