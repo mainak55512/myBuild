@@ -4,6 +4,11 @@
 #include <sys/stat.h>
 #include <yyjson.h>
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+
 #ifdef _WIN32
 #include <direct.h>
 #include <string.h>
@@ -44,3 +49,8 @@ char *get_repo_name(Arena *arena, const char *git_url);
 void add_library(char *libURL);
 void run_project(Arena *global_str_arena);
 void sync_dependency();
+void get_src_vec(Arena *str_arena, Vector *source_files, yyjson_val *root,
+				 yyjson_val *deps, String *cwd);
+const char *get_filename_without_path(const char *path);
+
+int cli(int argc, char *argv[], Arena *global_str_arena);
