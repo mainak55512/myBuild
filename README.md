@@ -59,14 +59,8 @@ Clone the repo
 ```bash
 git clone https://github.com/mainak55512/myBuild
 cd myBuild
-```
-build with gcc or clang
-```bash
-gcc @build.rsp
-```
-or
-```bash
-clang @build.rsp
+chmod +x ./build.sh
+./build.sh
 ```
 
 ## Usage
