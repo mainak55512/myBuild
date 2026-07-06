@@ -248,8 +248,8 @@ String *build_project(Arena *global_str_arena) {
 	String *headers, *src;
 	headers = string_trim(str_arena, header_list);
 
-	String *response_content =
-		string_concat_cstr(str_arena, 2, "-c\n-fPIC\n", string(headers));
+	String *response_content = string_concat_cstr(
+		str_arena, 2, "-c\n-fPIC\n-MMD\n-MP\n", string(headers));
 
 	create_append_file("./build/.cache/compile.rsp", string(response_content));
 	// create_append_file("./build/.cache/compile.rsp", string(static_libs));
@@ -259,11 +259,29 @@ String *build_project(Arena *global_str_arena) {
 			get_filename_without_path(at(char *, src_file_arr, i));
 		String *obj_file = string_concat_cstr(str_arena, 3, "./build/.cache/",
 											  base_name, ".o");
-		system(string(string_concat_cstr(
-			str_arena, 5, string(compiler), " @./build/.cache/compile.rsp ",
-			at(char *, src_file_arr, i), " -o ", string(obj_file))));
 
-		printf("[✓] Compiled '%s'\n", base_name);
+		String *d_file = string_concat_cstr(str_arena, 3, "./build/.cache/",
+											base_name, ".d");
+
+		long long src_time =
+			get_file_modified_time(at(char *, src_file_arr, i));
+		long long obj_time = get_file_modified_time(string(obj_file));
+
+		bool need_recompile = false;
+
+		if (obj_time == 0 || src_time > obj_time) {
+			need_recompile = true;
+		} else if (are_headers_newer(string(d_file), obj_time)) {
+			need_recompile = true;
+		}
+
+		if (need_recompile) {
+			system(string(string_concat_cstr(
+				str_arena, 5, string(compiler), " @./build/.cache/compile.rsp ",
+				at(char *, src_file_arr, i), " -o ", string(obj_file))));
+
+			printf("[✓] Compiled '%s'\n", base_name);
+		}
 	}
 
 	vector_free(src_file_arr);

@@ -17,14 +17,14 @@ String *collect_files(Arena *str_arena, String *path, String *type) {
 	String *ext_1 = string_from(str_arena, ".c");
 	String *ext_2 = string_from(str_arena, ".cpp");
 
-	char sep = '\n';
+	char sep[2] = {'\n', '\0'};
 
 	if (STR_CMP(string(type), "static") == 0) {
-		sep = ' ';
+		sep[0] = ' ';
 		ext_1 = string_from(str_arena, ".a");
 		ext_2 = string_from(str_arena, ".lib");
 	} else if (STR_CMP(string(type), "dyn") == 0) {
-		sep = ' ';
+		sep[0] = ' ';
 		ext_1 = string_from(str_arena, ".so");
 		ext_2 = string_from(str_arena, ".dll");
 	}
@@ -164,4 +164,51 @@ void get_src_vec(Arena *str_arena, Vector *source_files, yyjson_val *root,
 			}
 		}
 	}
+}
+
+long long get_file_modified_time(const char *path) {
+	struct stat attr;
+	if (stat(path, &attr) == 0) {
+		return (long long)attr.st_mtime;
+	}
+	return 0;
+}
+
+bool are_headers_newer(const char *d_file_path, long long obj_time) {
+	FILE *f = fopen(d_file_path, "r");
+	if (!f)
+		return false;
+
+	char token[1024];
+	bool should_recompile = false;
+
+	while (fscanf(f, "%1023s", token) == 1) {
+		size_t len = strlen(token);
+		if (len == 0)
+			continue;
+
+		if (strcmp(token, "\\") == 0)
+			continue;
+
+		if (token[len - 1] == ':') {
+			token[len - 1] = '\0';
+			len--;
+
+			if (len == 0)
+				continue;
+		}
+
+		if (strstr(token, ".cache/") != NULL && strstr(token, ".o") != NULL) {
+			continue;
+		}
+
+		long long dep_file_time = get_file_modified_time(token);
+		if (dep_file_time > obj_time) {
+			should_recompile = true;
+			break;
+		}
+	}
+
+	fclose(f);
+	return should_recompile;
 }

@@ -1,6 +1,6 @@
 # myBuild
 
-**Disclaimer: This project is in an early alpha stage and is not production-ready. Use with caution.**
+**Disclaimer: This project is in an early alpha stage and is not production-ready. Use with caution. This is only available for Linux for now.**
 
 myBuild is an experimental build system and package manager for C/C++ projects. It aims to simplify the development workflow by managing dependencies directly through Git and automating the compilation process via a single JSON configuration file.
 
@@ -13,6 +13,8 @@ myBuild expects a specific directory layout to function correctly:
 * **src/**: All local project source files (.c, .cpp).
 * **include/**: Local header files (.h, .hpp).
 * **deps/**: External libraries (managed by myBuild).
+* **static/**: Contains all the static library (.a) files.
+* **shared/**: Contains all the dynamic/shared (.so) libraries.
 * **myBuild.json**: The project manifest.
 
 ## How it Works
@@ -31,6 +33,7 @@ Currently, myBuild uses a "manifest-first" approach:
     "project_language": "c",
     "version": "0.1.0",
     "compiler_path": "/usr/bin/gcc",
+    "executable": true,
     "include_paths": ["include"],
     "src": ["src"],
     "dependencies": {
@@ -52,7 +55,7 @@ As this is an early development prototype, please be aware of the following:
 * **No Build Flags**: Custom compiler flags (e.g., -O3, -Wall) are not yet supported.
 * **Naming Conflicts**: There is currently no resolution logic for dependencies that share the same directory or project names.
 * **Strict Compatibility**: Only repositories containing a `myBuild.json` file can be added as dependencies at this time.
-* **No Incremental Builds**: The system currently performs full builds.
+* ~~**No Incremental Builds**: The system currently performs full builds.~~
 
 ## Build
 Clone the repo
