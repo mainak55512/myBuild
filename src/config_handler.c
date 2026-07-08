@@ -15,6 +15,7 @@ void create_my_build_config(char *config_file_path, char *project_name,
 
 	yyjson_mut_val *headers = yyjson_mut_arr(doc);
 	yyjson_mut_val *sources = yyjson_mut_arr(doc);
+	yyjson_mut_val *flags = yyjson_mut_arr(doc);
 
 	if (isExec) {
 		yyjson_mut_arr_add_str(doc, sources, "src");
@@ -23,6 +24,7 @@ void create_my_build_config(char *config_file_path, char *project_name,
 	}
 	yyjson_mut_obj_add_val(doc, root, "include_paths", headers);
 	yyjson_mut_obj_add_val(doc, root, "src", sources);
+	yyjson_mut_obj_add_val(doc, root, "flags", flags);
 
 	yyjson_mut_arr_add_str(doc, headers, "include");
 	// yyjson_mut_arr_add_str(doc, headers, "./deps/include");
@@ -154,4 +156,26 @@ bool is_mybuild_config_present(char *filename) {
 		return true;
 	}
 	return false;
+}
+
+String *get_build_flags(Arena *str_arena, yyjson_val *root) {
+	Arena *local_arena = arena_init(1024);
+	String *flag_list = string_from(local_arena, "");
+	yyjson_val *flag_arr = yyjson_obj_get(root, "flags");
+
+	size_t idx = 0, max = 0;
+	yyjson_val *val;
+
+	yyjson_arr_foreach(flag_arr, idx, max, val) {
+		if (string_len(flag_list) == 0) {
+			flag_list = string_from(local_arena, (char *)yyjson_get_str(val));
+		} else {
+			flag_list = string_concat_cstr(local_arena, 3, string(flag_list),
+										   "\n", (char *)yyjson_get_str(val));
+		}
+	}
+
+	String *export_list = string_from(str_arena, string(flag_list));
+	arena_free(&local_arena);
+	return export_list;
 }

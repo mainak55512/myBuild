@@ -1,4 +1,3 @@
-#include "cstring.h"
 #include <mybuild.h>
 
 int create_append_file(char *file_path, char *content) {
@@ -211,4 +210,15 @@ bool are_headers_newer(const char *d_file_path, long long obj_time) {
 
 	fclose(f);
 	return should_recompile;
+}
+
+bool directory_exists(const char *path) {
+#ifdef _WIN32
+	DWORD dwAttrib = GetFileAttributesA(path);
+	return (dwAttrib != INVALID_FILE_ATTRIBUTES &&
+			(dwAttrib & FILE_ATTRIBUTE_DIRECTORY));
+#else
+	struct stat stats;
+	return (stat(path, &stats) == 0 && S_ISDIR(stats.st_mode));
+#endif
 }

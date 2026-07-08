@@ -7,7 +7,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <strings.h>
-#include <sys/stat.h>
 #include <yyjson.h>
 
 #ifdef _WIN32
@@ -21,6 +20,7 @@
 #else
 #include <dirent.h>
 #include <strings.h>
+#include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
 #define MAKE_DIR(dir) mkdir(dir, 0777)
@@ -57,3 +57,5 @@ const char *get_filename_without_path(const char *path);
 int cli(int argc, char *argv[], Arena *global_str_arena);
 long long get_file_modified_time(const char *path);
 bool are_headers_newer(const char *d_file_path, long long obj_time);
+bool directory_exists(const char *path);
+String *get_build_flags(Arena *str_arena, yyjson_val *root);

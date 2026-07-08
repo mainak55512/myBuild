@@ -1,4 +1,3 @@
-#include "cstring.h"
 #include <mybuild.h>
 
 int init_project() {
@@ -201,28 +200,35 @@ String *build_project(Arena *global_str_arena) {
 	get_src_vec(str_arena, src_file_arr, root, dep_arr,
 				get_current_working_dir(str_arena));
 
-	String *static_libs = collect_files(
-		str_arena,
-		string_concat_cstr(str_arena, 2,
-						   string(get_current_working_dir(str_arena)),
-						   "/static"),
-		// string_from(str_arena, "./static"),
-		string_from(str_arena, "static"));
-	String *stat_lib = string_trim(str_arena, static_libs);
-	if (string_len(stat_lib) > 0) {
-		system(string(string_concat_cstr(
-			str_arena, 3, "for f in ", string(stat_lib),
-			"; do (cd ./build/.cache && ar x \"$f\"); done")));
+	String *stat_lib = string_from(str_arena, "");
+	String *shared_lib = string_from(str_arena, "");
+
+	if (directory_exists("./static")) {
+		String *static_libs = collect_files(
+			str_arena,
+			string_concat_cstr(str_arena, 2,
+							   string(get_current_working_dir(str_arena)),
+							   "/static"),
+			// string_from(str_arena, "./static"),
+			string_from(str_arena, "static"));
+		stat_lib = string_trim(str_arena, static_libs);
+		if (string_len(stat_lib) > 0) {
+			system(string(string_concat_cstr(
+				str_arena, 3, "for f in ", string(stat_lib),
+				"; do (cd ./build/.cache && ar x \"$f\"); done")));
+		}
 	}
 
-	String *shared_libs = collect_files(
-		str_arena,
-		string_concat_cstr(str_arena, 2,
-						   string(get_current_working_dir(str_arena)),
-						   "/shared"),
-		// string_from(str_arena, "./static"),
-		string_from(str_arena, "dyn"));
-	String *shared_lib = string_trim(str_arena, shared_libs);
+	if (directory_exists("./shared")) {
+		String *shared_libs = collect_files(
+			str_arena,
+			string_concat_cstr(str_arena, 2,
+							   string(get_current_working_dir(str_arena)),
+							   "/shared"),
+			// string_from(str_arena, "./static"),
+			string_from(str_arena, "dyn"));
+		shared_lib = string_trim(str_arena, shared_libs);
+	}
 
 	idx = 0, max = 0;
 
@@ -243,13 +249,14 @@ String *build_project(Arena *global_str_arena) {
 		}
 	}
 
-	yyjson_doc_free(doc);
-
 	String *headers, *src;
 	headers = string_trim(str_arena, header_list);
 
 	String *response_content = string_concat_cstr(
-		str_arena, 2, "-c\n-fPIC\n-MMD\n-MP\n", string(headers));
+		str_arena, 4, "-c\n-fPIC\n-MMD\n-MP\n", string(headers), "\n",
+		string(get_build_flags(str_arena, root)));
+
+	yyjson_doc_free(doc);
 
 	create_append_file("./build/.cache/compile.rsp", string(response_content));
 	// create_append_file("./build/.cache/compile.rsp", string(static_libs));
