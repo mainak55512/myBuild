@@ -1,3 +1,4 @@
+#include "cstring.h"
 #include <mybuild.h>
 
 int create_append_file(char *file_path, char *content) {
@@ -88,11 +89,29 @@ String *collect_files(Arena *str_arena, String *path, String *type) {
 			STR_CMP(entry->d_name, "..") == 0) {
 			continue;
 		}
+
+		if (entry->d_type == DT_DIR) {
+			String *sub_dir_path = string_concat_cstr(
+				str_arena, 3, string(path), "/", entry->d_name);
+
+			String *sub_files = collect_files(str_arena, sub_dir_path, type);
+			if (sub_files != NULL && string_len(sub_files) > 0) {
+				if (string_len(src_files) > 0) {
+					src_files =
+						string_concat_cstr(str_arena, 3, string(src_files), sep,
+										   string(sub_files));
+				} else {
+					src_files = sub_files;
+				}
+			}
+			continue;
+		}
+
 		char *dot = strrchr(entry->d_name, '.');
 		if (dot != NULL && (STR_CMP(dot, string(ext_1)) == 0 ||
 							STR_CMP(dot, string(ext_2)) == 0)) {
 
-			if (strlen(string(src_files)) > 0) {
+			if (string_len(src_files) > 0) {
 				src_files =
 					string_concat_cstr(str_arena, 2, string(src_files), sep);
 			}

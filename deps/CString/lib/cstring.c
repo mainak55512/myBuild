@@ -21,6 +21,9 @@ String *string_from(Arena *arena, char *str) {
 	}
 	new_str = (char *)arena_alloc(arena, strlen + 1); // +1 for null terminator
 	memcpy(new_str, str, strlen);
+
+	new_str[strlen] = '\0';
+
 	st->str = new_str;
 	st->length = strlen;
 
