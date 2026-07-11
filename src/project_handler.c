@@ -3,14 +3,14 @@
 int init_project() {
 	struct STAT info;
 	Arena *str_arena;
-	String *project_name, *project_dir, *project_lang, *dep_dir, *dep_incl,
+	String *dep_dir, *project_name, *project_dir, *project_lang, *dep_incl,
 		*dep_lib, *compiler_path, *project_type;
 	int ret, dir_create_status, file_create_status;
 	bool isExec;
 
 	isExec = true;
 	ret = 0;
-	str_arena = arena_init(4096);
+	str_arena = arena_init(1024);
 	printf("=============================\n");
 	printf("Bootstrapping New Project\n");
 	printf("=============================\n");
@@ -33,6 +33,7 @@ int init_project() {
 	}
 
 	dep_dir = string_concat_cstr(str_arena, 2, string(project_dir), "/deps");
+
 	dir_create_status = MAKE_DIR(string(dep_dir));
 	if (dir_create_status != 0) {
 		ret = 1;
@@ -55,11 +56,13 @@ int init_project() {
 
 	isExec = STR_CMP(string(project_type), "exec") == 0 ? true : false;
 	if (isExec) {
-		dir_create_status = MAKE_DIR(string(
-			string_concat_cstr(str_arena, 2, string(project_dir), "/src")));
+		String *src_dir =
+			string_concat_cstr(str_arena, 2, string(project_dir), "/src");
+		dir_create_status = MAKE_DIR(string(src_dir));
 	} else {
-		dir_create_status = MAKE_DIR(string(
-			string_concat_cstr(str_arena, 2, string(project_dir), "/lib")));
+		String *lib_dir =
+			string_concat_cstr(str_arena, 2, string(project_dir), "/lib");
+		dir_create_status = MAKE_DIR(string(lib_dir));
 	}
 
 	if (dir_create_status != 0) {
@@ -82,63 +85,54 @@ int init_project() {
 	case 0: {
 		char *file_name;
 		file_name =
-			isExec ? "/src/main.cpp"
-				   : string(string_concat_cstr(str_arena, 3, "/lib/",
+			isExec ? "./src/main.cpp"
+				   : string(string_concat_cstr(str_arena, 3, "./lib/",
 											   string(project_name), ".cpp"));
 		file_create_status = create_append_file(
-			string(string_concat_cstr(str_arena, 2, string(project_dir),
-									  file_name)),
-			"#include <iostream>\n\nint main() "
-			"{\n\tstd::cout << \"Hello, World!\" << std::endl;\n}");
+			file_name, "#include <iostream>\n\nint main() "
+					   "{\n\tstd::cout << \"Hello, World!\" << std::endl;\n}");
 
 		if (file_create_status == 1) {
 			ret = 1;
 			goto CLEANUP;
 		}
-		file_create_status =
-			create_append_file(string(string_concat_cstr(
-								   str_arena, 4, string(project_dir),
-								   "/include/", string(project_name), ".hpp")),
-							   "");
+		file_create_status = create_append_file(
+			string(string_concat_cstr(str_arena, 3, "./include/",
+									  string(project_name), ".hpp")),
+			"");
 
 		if (file_create_status == 1) {
 			ret = 1;
 			goto CLEANUP;
 		}
-		create_my_build_config(
-			string(string_concat_cstr(str_arena, 2, string(project_dir),
-									  "/myBuild.json")),
-			string(project_name), "cpp", string(compiler_path), isExec);
+		create_my_build_config("./myBuild.json", string(project_name), "cpp",
+							   string(compiler_path), isExec);
 		break;
 	}
 	default: {
 		char *file_name;
 		file_name =
-			isExec ? "/src/main.c"
-				   : string(string_concat_cstr(str_arena, 3, "/lib/",
+			isExec ? "./src/main.c"
+				   : string(string_concat_cstr(str_arena, 3, "./lib/",
 											   string(project_name), ".c"));
-		file_create_status = create_append_file(
-			string(string_concat_cstr(str_arena, 2, string(project_dir),
-									  file_name)),
-			"#include <stdio.h>\n\nint main() "
-			"{\n\tprintf(\"Hello, World!\");\n}");
+		file_create_status =
+			create_append_file(file_name, "#include <stdio.h>\n\nint main() "
+										  "{\n\tprintf(\"Hello, World!\");\n}");
 
 		if (file_create_status == 1) {
 			ret = 1;
 			goto CLEANUP;
 		}
 		file_create_status = create_append_file(
-			string(string_concat_cstr(str_arena, 4, string(project_dir),
-									  "/include/", string(project_name), ".h")),
+			string(string_concat_cstr(str_arena, 3, "./include/",
+									  string(project_name), ".h")),
 			"");
 		if (file_create_status == 1) {
 			ret = 1;
 			goto CLEANUP;
 		}
-		create_my_build_config(
-			string(string_concat_cstr(str_arena, 2, string(project_dir),
-									  "/myBuild.json")),
-			string(project_name), "c", string(compiler_path), isExec);
+		create_my_build_config("./myBuild.json", string(project_name), "c",
+							   string(compiler_path), isExec);
 		break;
 	}
 	}
@@ -159,6 +153,7 @@ String *build_project(Arena *global_str_arena) {
 
 	Arena *str_arena = arena_init(1024);
 
+	String *cwd = get_current_working_dir(str_arena);
 	yyjson_read_err err;
 	yyjson_doc *doc = yyjson_read_file("./myBuild.json", 0, NULL, &err);
 
@@ -185,6 +180,7 @@ String *build_project(Arena *global_str_arena) {
 	String *src_list = string_from(str_arena, "");
 	String *compiler = string_concat_cstr(
 		str_arena, 2, (char *)yyjson_get_str(compiler_path), " ");
+
 	size_t idx = 0, max = 0;
 	yyjson_val *val, *key;
 
@@ -205,10 +201,7 @@ String *build_project(Arena *global_str_arena) {
 
 	if (directory_exists("./static")) {
 		String *static_libs = collect_files(
-			str_arena,
-			string_concat_cstr(str_arena, 2,
-							   string(get_current_working_dir(str_arena)),
-							   "/static"),
+			str_arena, string_concat_cstr(str_arena, 2, string(cwd), "/static"),
 			// string_from(str_arena, "./static"),
 			string_from(str_arena, "static"));
 		stat_lib = string_trim(str_arena, static_libs);
@@ -221,10 +214,7 @@ String *build_project(Arena *global_str_arena) {
 
 	if (directory_exists("./shared")) {
 		String *shared_libs = collect_files(
-			str_arena,
-			string_concat_cstr(str_arena, 2,
-							   string(get_current_working_dir(str_arena)),
-							   "/shared"),
+			str_arena, string_concat_cstr(str_arena, 2, string(cwd), "/shared"),
 			// string_from(str_arena, "./static"),
 			string_from(str_arena, "dyn"));
 		shared_lib = string_trim(str_arena, shared_libs);
@@ -302,14 +292,39 @@ String *build_project(Arena *global_str_arena) {
 			string(shared_lib), " -o ", string(output))));
 		printf("[✓] Executable ganerated\n");
 	} else {
+		Vector *header_vec = vector_init(char *);
+
+		get_header_vec(str_arena, header_vec, root, dep_arr, cwd);
+
+		MAKE_DIR("./build/static");
+		MAKE_DIR("./build/shared");
+		MAKE_DIR("./build/static/lib");
+		MAKE_DIR("./build/shared/lib");
+		MAKE_DIR("./build/static/include");
+		MAKE_DIR("./build/shared/include");
+
+		system(string(string_concat_cstr(
+			str_arena, 4, string(compiler),
+			" -shared ./build/.cache/*.o -o ./build/shared/lib/lib",
+			string(project_name), ".so")));
 		system(string(
-			string_concat_cstr(str_arena, 4, string(compiler),
-							   " -shared ./build/.cache/*.o -o ./build/lib",
-							   string(project_name), ".so")));
-		system(string(string_concat_cstr(str_arena, 3, "ar rcs ./build/lib",
-										 string(project_name),
-										 ".a ./build/.cache/*.o")));
+			string_concat_cstr(str_arena, 3, "ar rcs ./build/static/lib/lib",
+							   string(project_name), ".a ./build/.cache/*.o")));
+
+		for (int i = 0; i < length(header_vec); i++) {
+			char *src_path = at(char *, header_vec, i);
+			const char *file_name = get_filename_without_path(src_path);
+			char *dest_path_1 = string(string_concat_cstr(
+				str_arena, 2, "./build/static/include/", file_name));
+			char *dest_path_2 = string(string_concat_cstr(
+				str_arena, 2, "./build/shared/include/", file_name));
+
+			copy_file(src_path, dest_path_1);
+			copy_file(src_path, dest_path_2);
+		}
+
 		printf("[✓] Libraries ganerated\n");
+		vector_free(header_vec);
 	}
 
 CLEANUP:

@@ -94,3 +94,36 @@ void set_add(Vector *v, char *elem) {
 		append(char *, v, elem);
 	}
 }
+
+int copy_file(const char *src_path, const char *dest_path) {
+	FILE *src = fopen(src_path, "rb");
+	if (src == NULL) {
+		perror("Error opening source file");
+		return -1;
+	}
+
+	FILE *dest = fopen(dest_path, "wb");
+	if (dest == NULL) {
+		perror("Error opening/creating destination file");
+		fclose(src);
+		return -1;
+	}
+
+	char buffer[BUFFER_SIZE];
+
+	size_t bytes_read;
+
+	while ((bytes_read = fread(buffer, 1, BUFFER_SIZE, src)) > 0) {
+		size_t bytes_written = fwrite(buffer, 1, bytes_read, dest);
+		if (bytes_written < bytes_read) {
+			perror("Error writing to destination file");
+			fclose(src);
+			fclose(dest);
+			return -1;
+		}
+	}
+
+	fclose(src);
+	fclose(dest);
+	return 0;
+}

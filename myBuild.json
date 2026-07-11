@@ -1,7 +1,7 @@
 {
     "project_name": "myBuild",
     "project_language": "c",
-    "version": "0.0.3",
+    "version": "0.1.0",
     "compiler_path": "/usr/bin/clang-18",
     "executable": true,
     "include_paths": [

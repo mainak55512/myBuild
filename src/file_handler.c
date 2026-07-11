@@ -1,4 +1,3 @@
-#include "cstring.h"
 #include <mybuild.h>
 
 int create_append_file(char *file_path, char *content) {
@@ -27,6 +26,10 @@ String *collect_files(Arena *str_arena, String *path, String *type) {
 		sep[0] = ' ';
 		ext_1 = string_from(str_arena, ".so");
 		ext_2 = string_from(str_arena, ".dll");
+	} else if (STR_CMP(string(type), "header") == 0) {
+		sep[0] = '\n';
+		ext_1 = string_from(str_arena, ".h");
+		ext_2 = string_from(str_arena, ".hpp");
 	}
 
 #ifdef _WIN32
@@ -125,10 +128,17 @@ String *collect_files(Arena *str_arena, String *path, String *type) {
 	return src_files;
 }
 
-void get_src_vec(Arena *str_arena, Vector *source_files, yyjson_val *root,
-				 yyjson_val *deps, String *cwd) {
+void get_files_vec(Arena *str_arena, Vector *source_files, yyjson_val *root,
+				   yyjson_val *deps, String *cwd, String *file_type) {
+	String *retrieve_type = string_from(str_arena, "");
 
-	yyjson_val *src_arr = yyjson_obj_get(root, "src");
+	if (STR_CMP(string(file_type), "src") == 0) {
+		retrieve_type = string_clone(str_arena, file_type);
+	} else if (STR_CMP(string(file_type), "header") == 0) {
+		retrieve_type = string_from(str_arena, "include_paths");
+	}
+
+	yyjson_val *src_arr = yyjson_obj_get(root, string(retrieve_type));
 	if (yyjson_is_arr(src_arr)) {
 		yyjson_arr_iter iter;
 		yyjson_arr_iter_init(src_arr, &iter);
@@ -139,7 +149,7 @@ void get_src_vec(Arena *str_arena, Vector *source_files, yyjson_val *root,
 				collect_files(
 					str_arena,
 					string_from(str_arena, (char *)yyjson_get_str(val)),
-					string_from(str_arena, "src")));
+					string_from(str_arena, string(file_type))));
 			for (int i = 0; i < length(src_temp_arr); i++) {
 				char *elem = string(at(String *, src_temp_arr, i));
 				if (STR_CMP(elem, "") != 0) {
@@ -158,7 +168,8 @@ void get_src_vec(Arena *str_arena, Vector *source_files, yyjson_val *root,
 			dep_obj = yyjson_obj_iter_get_val(key);
 			const char *dep_name = yyjson_get_str(key);
 
-			yyjson_val *dep_src = yyjson_obj_get(dep_obj, "src");
+			yyjson_val *dep_src =
+				yyjson_obj_get(dep_obj, string(retrieve_type));
 			if (yyjson_is_arr(dep_src)) {
 				yyjson_arr_iter src_iter;
 				yyjson_arr_iter_init(dep_src, &src_iter);
@@ -169,8 +180,9 @@ void get_src_vec(Arena *str_arena, Vector *source_files, yyjson_val *root,
 						"/", (char *)yyjson_get_str(src_val));
 					Vector *src_temp_arr = string_split_lines(
 						str_arena,
-						collect_files(str_arena, path,
-									  string_from(str_arena, "src")));
+						collect_files(
+							str_arena, path,
+							string_from(str_arena, string(file_type))));
 					for (int i = 0; i < length(src_temp_arr); i++) {
 						char *elem = string(at(String *, src_temp_arr, i));
 						if (STR_CMP(elem, "") != 0) {
@@ -182,6 +194,17 @@ void get_src_vec(Arena *str_arena, Vector *source_files, yyjson_val *root,
 			}
 		}
 	}
+}
+
+void get_src_vec(Arena *str_arena, Vector *source_files, yyjson_val *root,
+				 yyjson_val *deps, String *cwd) {
+	get_files_vec(str_arena, source_files, root, deps, cwd,
+				  string_from(str_arena, "src"));
+}
+void get_header_vec(Arena *str_arena, Vector *source_files, yyjson_val *root,
+					yyjson_val *deps, String *cwd) {
+	get_files_vec(str_arena, source_files, root, deps, cwd,
+				  string_from(str_arena, "header"));
 }
 
 long long get_file_modified_time(const char *path) {
