@@ -1,3 +1,5 @@
+#include "container.h"
+#include "yyjson.h"
 #include <mybuild.h>
 
 void create_my_build_config(char *config_file_path, char *project_name,
@@ -47,13 +49,16 @@ int generate_compile_commands() {
 	Arena *str_arena = arena_init(1024);
 	char *input_file = "myBuild.json";
 	char *output_file = "compile_commands.json";
+	int success = 1;
 
 	yyjson_read_err err;
 	yyjson_doc *doc = yyjson_read_file(input_file, 0, NULL, &err);
 
 	if (!doc) {
 		fprintf(stderr, "Failed to read %s: %s\n", input_file, err.msg);
-		return -1;
+		// return -1;
+		success = 0;
+		goto CLEANUP;
 	}
 
 	yyjson_val *root = yyjson_doc_get_root(doc);
@@ -67,7 +72,13 @@ int generate_compile_commands() {
 	yyjson_val *inc_arr = yyjson_obj_get(root, "include_paths");
 	if (yyjson_is_arr(inc_arr)) {
 		yyjson_arr_iter iter;
-		yyjson_arr_iter_init(inc_arr, &iter);
+		success = yyjson_arr_iter_init(inc_arr, &iter);
+		if (!success) {
+			fprintf(stderr, "Non an iterator: include_paths\n");
+			success = 0;
+			vector_free(include_paths);
+			goto CLEANUP;
+		}
 		yyjson_val *val;
 		while ((val = yyjson_arr_iter_next(&iter))) {
 			append(char *, include_paths,
@@ -79,7 +90,13 @@ int generate_compile_commands() {
 	yyjson_val *deps = yyjson_obj_get(root, "dependencies");
 	if (yyjson_is_obj(deps)) {
 		yyjson_obj_iter iter;
-		yyjson_obj_iter_init(deps, &iter);
+		success = yyjson_obj_iter_init(deps, &iter);
+		if (!success) {
+			fprintf(stderr, "Non an iterator: deps\n");
+			success = 0;
+			vector_free(include_paths);
+			goto CLEANUP;
+		}
 		yyjson_val *key, *dep_obj;
 		while ((key = yyjson_obj_iter_next(&iter))) {
 			dep_obj = yyjson_obj_iter_get_val(key);
@@ -88,7 +105,13 @@ int generate_compile_commands() {
 			yyjson_val *dep_inc = yyjson_obj_get(dep_obj, "include_paths");
 			if (yyjson_is_arr(dep_inc)) {
 				yyjson_arr_iter inc_iter;
-				yyjson_arr_iter_init(dep_inc, &inc_iter);
+				success = yyjson_arr_iter_init(dep_inc, &inc_iter);
+				if (!success) {
+					fprintf(stderr, "Non an iterator: deps_include_paths\n");
+					success = 0;
+					vector_free(include_paths);
+					goto CLEANUP;
+				}
 				yyjson_val *inc_val;
 				while ((inc_val = yyjson_arr_iter_next(&inc_iter))) {
 					String *path = string_concat_cstr(
@@ -116,21 +139,50 @@ int generate_compile_commands() {
 	for (size_t i = 0; i < length(source_files); i++) {
 		yyjson_mut_val *entry = yyjson_mut_arr_add_obj(out_doc, out_root);
 
-		yyjson_mut_obj_add_str(out_doc, entry, "directory", string(cwd));
-		yyjson_mut_obj_add_str(out_doc, entry, "file",
-							   at(char *, source_files, i));
+		success =
+			yyjson_mut_obj_add_str(out_doc, entry, "directory", string(cwd));
+		if (!success) {
+			fprintf(stderr,
+					"Error encountered while generating compile commands\n");
+			success = 0;
+			vector_free(include_paths);
+			vector_free(source_files);
+			yyjson_mut_doc_free(out_doc);
+			goto CLEANUP;
+		}
+		success = yyjson_mut_obj_add_str(out_doc, entry, "file",
+										 at(char *, source_files, i));
+		if (!success) {
+			fprintf(stderr,
+					"Error encountered while generating compile commands\n");
+			success = 0;
+			vector_free(include_paths);
+			vector_free(source_files);
+			yyjson_mut_doc_free(out_doc);
+			goto CLEANUP;
+		}
 
 		String *command = string_from(str_arena, "");
 		command = string_concat_cstr(
 			str_arena, 7, (char *)compiler, " -c ", at(char *, source_files, i),
 			string(includes), " -o ", at(char *, source_files, i), ".o");
 
-		yyjson_mut_obj_add_str(out_doc, entry, "command", string(command));
+		success =
+			yyjson_mut_obj_add_str(out_doc, entry, "command", string(command));
+		if (!success) {
+			fprintf(stderr,
+					"Error encountered while generating compile commands\n");
+			success = 0;
+			vector_free(include_paths);
+			vector_free(source_files);
+			yyjson_mut_doc_free(out_doc);
+			goto CLEANUP;
+		}
 	}
 
 	yyjson_write_err write_err;
 	yyjson_write_flag flg = YYJSON_WRITE_PRETTY | YYJSON_WRITE_ESCAPE_UNICODE;
-	int success =
+	success =
 		yyjson_mut_write_file(output_file, out_doc, flg, NULL, &write_err);
 
 	if (!success) {
@@ -143,6 +195,8 @@ int generate_compile_commands() {
 	vector_free(include_paths);
 	vector_free(source_files);
 	yyjson_mut_doc_free(out_doc);
+
+CLEANUP:
 	yyjson_doc_free(doc);
 	arena_free(&str_arena);
 

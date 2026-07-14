@@ -2,6 +2,7 @@
 #include <container.h>
 #include <cstring.h>
 #include <ctype.h>
+#include <errno.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -64,3 +65,4 @@ bool are_headers_newer(const char *d_file_path, long long obj_time);
 bool directory_exists(const char *path);
 String *get_build_flags(Arena *str_arena, yyjson_val *root);
 int copy_file(const char *src_path, const char *dest_path);
+bool file_exists(const char *file_name);

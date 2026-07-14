@@ -10,6 +10,12 @@ int init_project() {
 
 	isExec = true;
 	ret = 0;
+
+	if (file_exists("./myBuild.json")) {
+		printf("myBuild already initiated!");
+		return ret;
+	}
+
 	str_arena = arena_init(1024);
 	printf("=============================\n");
 	printf("Bootstrapping New Project\n");
@@ -146,12 +152,27 @@ CLEANUP:
 String *build_project(Arena *global_str_arena) {
 	printf("[✓] Compilation started\n");
 	String *command;
-
-	MAKE_DIR("build");
-
-	MAKE_DIR("./build/.cache");
-
 	Arena *str_arena = arena_init(1024);
+
+	int mkdir_err = 0, cmd_err = 0, create_append_err = 0, copy_err = 0;
+
+	mkdir_err = MAKE_DIR("build");
+
+	if (mkdir_err) {
+		if (errno != EEXIST) {
+			fprintf(stderr, "Unable to create `build` directory\n");
+			goto CLEANUP;
+		}
+	}
+
+	mkdir_err = MAKE_DIR("./build/.cache");
+
+	if (mkdir_err) {
+		if (errno != EEXIST) {
+			fprintf(stderr, "Unable to create `.cache` directory\n");
+			goto CLEANUP;
+		}
+	}
 
 	String *cwd = get_current_working_dir(str_arena);
 	yyjson_read_err err;
@@ -206,9 +227,13 @@ String *build_project(Arena *global_str_arena) {
 			string_from(str_arena, "static"));
 		stat_lib = string_trim(str_arena, static_libs);
 		if (string_len(stat_lib) > 0) {
-			system(string(string_concat_cstr(
+			cmd_err = system(string(string_concat_cstr(
 				str_arena, 3, "for f in ", string(stat_lib),
 				"; do (cd ./build/.cache && ar x \"$f\"); done")));
+			if (cmd_err) {
+				fprintf(stderr, "Error encountered while adding static libs\n");
+				goto CLEANUP;
+			}
 		}
 	}
 
@@ -248,8 +273,14 @@ String *build_project(Arena *global_str_arena) {
 
 	yyjson_doc_free(doc);
 
-	create_append_file("./build/.cache/compile.rsp", string(response_content));
+	create_append_err = create_append_file("./build/.cache/compile.rsp",
+										   string(response_content));
 	// create_append_file("./build/.cache/compile.rsp", string(static_libs));
+
+	if (create_append_err) {
+		fprintf(stderr, "Error encountered while generating `compile.rsp`\n");
+		goto CLEANUP;
+	}
 
 	for (int i = 0; i < length(src_file_arr); i++) {
 		const char *base_name =
@@ -273,9 +304,13 @@ String *build_project(Arena *global_str_arena) {
 		}
 
 		if (need_recompile) {
-			system(string(string_concat_cstr(
+			cmd_err = system(string(string_concat_cstr(
 				str_arena, 5, string(compiler), " @./build/.cache/compile.rsp ",
 				at(char *, src_file_arr, i), " -o ", string(obj_file))));
+			if (cmd_err) {
+				fprintf(stderr, "Error encountered at compilation\n");
+				goto CLEANUP;
+			}
 
 			printf("[✓] Compiled '%s'\n", base_name);
 		}
@@ -287,29 +322,53 @@ String *build_project(Arena *global_str_arena) {
 										string(project_name));
 
 	if (isExec) {
-		system(string(string_concat_cstr(
+		cmd_err = system(string(string_concat_cstr(
 			str_arena, 5, string(compiler), " ./build/.cache/*.o ",
 			string(shared_lib), " -o ", string(output))));
+
+		if (cmd_err) {
+			fprintf(stderr, "Error encountered while generating executable\n");
+			goto CLEANUP;
+		}
 		printf("[✓] Executable ganerated\n");
 	} else {
 		Vector *header_vec = vector_init(char *);
 
 		get_header_vec(str_arena, header_vec, root, dep_arr, cwd);
 
-		MAKE_DIR("./build/static");
-		MAKE_DIR("./build/shared");
-		MAKE_DIR("./build/static/lib");
-		MAKE_DIR("./build/shared/lib");
-		MAKE_DIR("./build/static/include");
-		MAKE_DIR("./build/shared/include");
+		mkdir_err = MAKE_DIR("./build/static");
+		mkdir_err = MAKE_DIR("./build/shared");
+		mkdir_err = MAKE_DIR("./build/static/lib");
+		mkdir_err = MAKE_DIR("./build/shared/lib");
+		mkdir_err = MAKE_DIR("./build/static/include");
+		mkdir_err = MAKE_DIR("./build/shared/include");
+		if (mkdir_err) {
+			if (errno != EEXIST) {
+				fprintf(
+					stderr,
+					"Error encountered while generating library directories\n");
+				goto CLEANUP;
+			}
+		}
 
-		system(string(string_concat_cstr(
+		cmd_err = system(string(string_concat_cstr(
 			str_arena, 4, string(compiler),
 			" -shared ./build/.cache/*.o -o ./build/shared/lib/lib",
 			string(project_name), ".so")));
-		system(string(
+
+		if (cmd_err) {
+			fprintf(stderr,
+					"Error encountered while generating shared library\n");
+			goto CLEANUP;
+		}
+		cmd_err = system(string(
 			string_concat_cstr(str_arena, 3, "ar rcs ./build/static/lib/lib",
 							   string(project_name), ".a ./build/.cache/*.o")));
+		if (cmd_err) {
+			fprintf(stderr,
+					"Error encountered while generating static library\n");
+			goto CLEANUP;
+		}
 
 		for (int i = 0; i < length(header_vec); i++) {
 			char *src_path = at(char *, header_vec, i);
@@ -319,8 +378,12 @@ String *build_project(Arena *global_str_arena) {
 			char *dest_path_2 = string(string_concat_cstr(
 				str_arena, 2, "./build/shared/include/", file_name));
 
-			copy_file(src_path, dest_path_1);
-			copy_file(src_path, dest_path_2);
+			copy_err = copy_file(src_path, dest_path_1);
+			copy_err = copy_file(src_path, dest_path_2);
+			if (copy_err) {
+				fprintf(stderr, "Error encountered while copying headers\n");
+				goto CLEANUP;
+			}
 		}
 
 		printf("[✓] Libraries ganerated\n");

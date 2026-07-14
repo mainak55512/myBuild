@@ -32,51 +32,52 @@ String *collect_files(Arena *str_arena, String *path, String *type) {
 		ext_2 = string_from(str_arena, ".hpp");
 	}
 
-#ifdef _WIN32
-	WIN32_FIND_DATA findData;
-	HANDLE handleFind;
-	String *searchPath;
+	// #ifdef _WIN32
+	// 	WIN32_FIND_DATA findData;
+	// 	HANDLE handleFind;
+	// 	String *searchPath;
 
-	// Create search pattern (path\*.*)
-	// snprintf(searchPath, MAX_PATH, "%s\\*.*", string(path));
-	searchPath = string_concat_cstr(str_arena, 2, string(path), "\\*.*");
+	// 	// Create search pattern (path\*.*)
+	// 	// snprintf(searchPath, MAX_PATH, "%s\\*.*", string(path));
+	// 	searchPath = string_concat_cstr(str_arena, 2, string(path), "\\*.*");
 
-	handleFind = FindFirstFile(string(searchPath), &findData);
+	// 	handleFind = FindFirstFile(string(searchPath), &findData);
 
-	if (handleFind == INVALID_HANDLE_VALUE) {
-		printf("Unable to open directory: %s\n", path);
-		return;
-	}
+	// 	if (handleFind == INVALID_HANDLE_VALUE) {
+	// 		printf("Unable to open directory: %s\n", path);
+	// 		return;
+	// 	}
 
-	do {
-		if (STR_CMP(findData.cFileName, ".") == 0 ||
-			STR_CMP(findData.cFileName, "..") == 0) {
-			continue;
-		}
-		if (findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
-			continue;
-		}
+	// 	do {
+	// 		if (STR_CMP(findData.cFileName, ".") == 0 ||
+	// 			STR_CMP(findData.cFileName, "..") == 0) {
+	// 			continue;
+	// 		}
+	// 		if (findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
+	// 			continue;
+	// 		}
 
-		size_t len = strlen(findData.cFileName);
+	// 		size_t len = strlen(findData.cFileName);
 
-		if ((len > 2 &&
-			 STR_CMP(findData.cFileName + len - 2, string(ext_1)) == 0) ||
-			(len > 4 &&
-			 STR_CMP(findData.cFileName + len - 4, string(ext_2)) == 0)) {
+	// 		if ((len > 2 &&
+	// 			 STR_CMP(findData.cFileName + len - 2, string(ext_1)) == 0) ||
+	// 			(len > 4 &&
+	// 			 STR_CMP(findData.cFileName + len - 4, string(ext_2)) == 0)) {
 
-			if (strlen(string(src_files)) > 0) {
-				src_files =
-					string_concat_cstr(str_arena, 2, string(src_files), sep);
-			}
+	// 			if (strlen(string(src_files)) > 0) {
+	// 				src_files =
+	// 					string_concat_cstr(str_arena, 2, string(src_files),
+	// sep);
+	// 			}
 
-			src_files =
-				string_concat_cstr(str_arena, 4, string(src_files),
-								   string(path), "\\", findData.cFileName);
-		}
-	} while (FindNextFile(handleFind, &findData) != 0);
+	// 			src_files =
+	// 				string_concat_cstr(str_arena, 4, string(src_files),
+	// 								   string(path), "\\", findData.cFileName);
+	// 		}
+	// 	} while (FindNextFile(handleFind, &findData) != 0);
 
-	FindClose(handleFind);
-#else
+	// 	FindClose(handleFind);
+	// #else
 	DIR *dir;
 	struct dirent *entry;
 
@@ -124,7 +125,7 @@ String *collect_files(Arena *str_arena, String *path, String *type) {
 		}
 	}
 	closedir(dir);
-#endif
+	// #endif
 	return src_files;
 }
 
@@ -263,4 +264,11 @@ bool directory_exists(const char *path) {
 	struct stat stats;
 	return (stat(path, &stats) == 0 && S_ISDIR(stats.st_mode));
 #endif
+}
+
+bool file_exists(const char *file_name) {
+	if (access(file_name, F_OK) == 0) {
+		return true;
+	}
+	return false;
 }
