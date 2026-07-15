@@ -9,9 +9,6 @@ void update_package_file(yyjson_mut_doc *package) {
 }
 
 void sync_dependency() {
-	Vector *installed = vector_init(char *);
-	Vector *dep_arr = vector_init(char *);
-	Vector *not_installed = vector_init(char *);
 
 	char *myBuildConfigFile = "myBuild.json";
 	char *packageFile = "deps/.package";
@@ -38,6 +35,10 @@ void sync_dependency() {
 
 	yyjson_mut_val *deps = yyjson_mut_obj_get(build_root, "dependencies");
 	yyjson_mut_val *inst_pkg = yyjson_mut_obj_get(package_root, "packages");
+
+	Vector *installed = vector_init(char *);
+	Vector *dep_arr = vector_init(char *);
+	Vector *not_installed = vector_init(char *);
 
 	if (yyjson_mut_is_arr(inst_pkg)) {
 		yyjson_mut_arr_iter iter;
@@ -172,7 +173,22 @@ void fetch_library(Vector *v, char *libURL, bool sync) {
 
 	yyjson_val *src = yyjson_obj_get(dep_root, "src");
 	yyjson_val *headers = yyjson_obj_get(dep_root, "include_paths");
+	yyjson_val *dep_flags = yyjson_obj_get(dep_root, "flags");
+	yyjson_mut_val *current_flags = yyjson_mut_obj_get(current_root, "flags");
 	char *version = (char *)yyjson_get_str(yyjson_obj_get(dep_root, "version"));
+
+	Vector *flag_vec = vector_init(char *);
+
+	int idx = 0, max = 0;
+	yyjson_val *val, *key;
+	yyjson_mut_val *val_mut, *key_mut;
+
+	yyjson_mut_arr_foreach(current_flags, idx, max, val_mut) {
+		set_add(flag_vec, (char *)yyjson_mut_get_str(val_mut));
+	}
+	yyjson_arr_foreach(dep_flags, idx, max, val) {
+		set_add(flag_vec, (char *)yyjson_get_str(val));
+	}
 
 	yyjson_mut_val *dep_header_arr =
 		yyjson_val_mut_copy(current_mut_doc, headers);
@@ -193,6 +209,12 @@ void fetch_library(Vector *v, char *libURL, bool sync) {
 						   yyjson_mut_str(current_mut_doc, string(repo_name)),
 						   target_obj);
 
+		yyjson_mut_arr_clear(current_flags);
+		for (int i = 0; i < length(flag_vec); i++) {
+			yyjson_mut_arr_add_str(current_mut_doc, current_flags,
+								   at(char *, flag_vec, i));
+		}
+
 		yyjson_write_err werr;
 		yyjson_write_flag flg =
 			YYJSON_WRITE_PRETTY | YYJSON_WRITE_ESCAPE_UNICODE;
@@ -205,8 +227,7 @@ void fetch_library(Vector *v, char *libURL, bool sync) {
 	yyjson_mut_doc_free(current_mut_doc);
 
 	yyjson_val *dep_dependencies = yyjson_obj_get(dep_root, "dependencies");
-	int idx = 0, max = 0;
-	yyjson_val *val, *key;
+	idx = 0, max = 0;
 	yyjson_obj_foreach(dep_dependencies, idx, max, key, val) {
 		yyjson_val *remote = yyjson_obj_get(val, "remote");
 		if (!set_contains(v, (char *)yyjson_get_str(remote))) {
@@ -214,6 +235,7 @@ void fetch_library(Vector *v, char *libURL, bool sync) {
 			fetch_library(v, (char *)yyjson_get_str(remote), false);
 		}
 	}
+	vector_free(flag_vec);
 	yyjson_doc_free(dep_doc);
 	arena_free(&str_arena);
 	return;
