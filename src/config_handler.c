@@ -18,6 +18,7 @@ void create_my_build_config(char *config_file_path, char *project_name,
 	yyjson_mut_val *headers = yyjson_mut_arr(doc);
 	yyjson_mut_val *sources = yyjson_mut_arr(doc);
 	yyjson_mut_val *flags = yyjson_mut_arr(doc);
+	yyjson_mut_val *lib_links = yyjson_mut_arr(doc);
 
 	if (isExec) {
 		yyjson_mut_arr_add_str(doc, sources, "src");
@@ -27,6 +28,7 @@ void create_my_build_config(char *config_file_path, char *project_name,
 	yyjson_mut_obj_add_val(doc, root, "include_paths", headers);
 	yyjson_mut_obj_add_val(doc, root, "src", sources);
 	yyjson_mut_obj_add_val(doc, root, "flags", flags);
+	yyjson_mut_obj_add_val(doc, root, "lib_links", lib_links);
 
 	yyjson_mut_arr_add_str(doc, headers, "include");
 	// yyjson_mut_arr_add_str(doc, headers, "./deps/include");
@@ -212,10 +214,17 @@ bool is_mybuild_config_present(char *filename) {
 	return false;
 }
 
-String *get_build_flags(Arena *str_arena, yyjson_val *root) {
+String *get_flags(Arena *str_arena, yyjson_val *root, String *type) {
 	Arena *local_arena = arena_init(1024);
 	String *flag_list = string_from(local_arena, "");
-	yyjson_val *flag_arr = yyjson_obj_get(root, "flags");
+
+	yyjson_val *flag_arr;
+
+	if (STR_CMP(string(type), "build") == 0) {
+		flag_arr = yyjson_obj_get(root, "flags");
+	} else if (STR_CMP(string(type), "lib") == 0) {
+		flag_arr = yyjson_obj_get(root, "lib_links");
+	}
 
 	size_t idx = 0, max = 0;
 	yyjson_val *val;

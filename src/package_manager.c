@@ -148,8 +148,6 @@ void fetch_library(Vector *v, char *libURL, bool sync) {
 	String *config_path = string_concat_cstr(
 		str_arena, 3, "./deps/", string(repo_name), "/myBuild.json");
 	if (!is_mybuild_config_present(string(config_path))) {
-		// printf("Config not present! path: %s", string(config_path));
-		// generate_compile_commands();
 		arena_free(&str_arena);
 		return;
 	}
@@ -174,10 +172,14 @@ void fetch_library(Vector *v, char *libURL, bool sync) {
 	yyjson_val *src = yyjson_obj_get(dep_root, "src");
 	yyjson_val *headers = yyjson_obj_get(dep_root, "include_paths");
 	yyjson_val *dep_flags = yyjson_obj_get(dep_root, "flags");
+	yyjson_val *dep_lib_links = yyjson_obj_get(dep_root, "lib_links");
 	yyjson_mut_val *current_flags = yyjson_mut_obj_get(current_root, "flags");
+	yyjson_mut_val *current_lib_links =
+		yyjson_mut_obj_get(current_root, "lib_links");
 	char *version = (char *)yyjson_get_str(yyjson_obj_get(dep_root, "version"));
 
 	Vector *flag_vec = vector_init(char *);
+	Vector *lib_link_vec = vector_init(char *);
 
 	int idx = 0, max = 0;
 	yyjson_val *val, *key;
@@ -190,9 +192,48 @@ void fetch_library(Vector *v, char *libURL, bool sync) {
 		set_add(flag_vec, (char *)yyjson_get_str(val));
 	}
 
+	idx = 0, max = 0;
+	yyjson_mut_arr_foreach(current_lib_links, idx, max, val_mut) {
+		set_add(lib_link_vec, (char *)yyjson_mut_get_str(val_mut));
+	}
+	yyjson_arr_foreach(dep_lib_links, idx, max, val) {
+		set_add(lib_link_vec, (char *)yyjson_get_str(val));
+	}
+
 	yyjson_mut_val *dep_header_arr =
 		yyjson_val_mut_copy(current_mut_doc, headers);
 	yyjson_mut_val *dep_src_arr = yyjson_val_mut_copy(current_mut_doc, src);
+
+	if (current_flags != NULL) {
+		yyjson_mut_arr_clear(current_flags);
+		for (int i = 0; i < length(flag_vec); i++) {
+			yyjson_mut_arr_add_str(current_mut_doc, current_flags,
+								   at(char *, flag_vec, i));
+		}
+	} else {
+		yyjson_mut_val *temp_flag_arr = yyjson_mut_arr(current_mut_doc);
+		for (int i = 0; i < length(flag_vec); i++) {
+			yyjson_mut_arr_add_str(current_mut_doc, temp_flag_arr,
+								   at(char *, flag_vec, i));
+		}
+		yyjson_mut_obj_add_val(current_mut_doc, current_root, "flags",
+							   temp_flag_arr);
+	}
+	if (current_lib_links != NULL) {
+		yyjson_mut_arr_clear(current_lib_links);
+		for (int i = 0; i < length(lib_link_vec); i++) {
+			yyjson_mut_arr_add_str(current_mut_doc, current_lib_links,
+								   at(char *, lib_link_vec, i));
+		}
+	} else {
+		yyjson_mut_val *temp_lib_link_arr = yyjson_mut_arr(current_mut_doc);
+		for (int i = 0; i < length(lib_link_vec); i++) {
+			yyjson_mut_arr_add_str(current_mut_doc, temp_lib_link_arr,
+								   at(char *, lib_link_vec, i));
+		}
+		yyjson_mut_obj_add_val(current_mut_doc, current_root, "lib_links",
+							   temp_lib_link_arr);
+	}
 
 	if (!sync && !yyjson_mut_obj_get(dependencies, string(repo_name))) {
 		yyjson_mut_val *target_obj = yyjson_mut_obj(current_mut_doc);
@@ -208,20 +249,12 @@ void fetch_library(Vector *v, char *libURL, bool sync) {
 		yyjson_mut_obj_add(dependencies,
 						   yyjson_mut_str(current_mut_doc, string(repo_name)),
 						   target_obj);
-
-		yyjson_mut_arr_clear(current_flags);
-		for (int i = 0; i < length(flag_vec); i++) {
-			yyjson_mut_arr_add_str(current_mut_doc, current_flags,
-								   at(char *, flag_vec, i));
-		}
-
-		yyjson_write_err werr;
-		yyjson_write_flag flg =
-			YYJSON_WRITE_PRETTY | YYJSON_WRITE_ESCAPE_UNICODE;
-		if (!yyjson_mut_write_file("./myBuild.json", current_mut_doc, flg, NULL,
-								   &werr)) {
-			fprintf(stderr, "Write error: %s\n", err.msg);
-		}
+	}
+	yyjson_write_err werr;
+	yyjson_write_flag flg = YYJSON_WRITE_PRETTY | YYJSON_WRITE_ESCAPE_UNICODE;
+	if (!yyjson_mut_write_file("./myBuild.json", current_mut_doc, flg, NULL,
+							   &werr)) {
+		fprintf(stderr, "Write error: %s\n", err.msg);
 	}
 
 	yyjson_mut_doc_free(current_mut_doc);
@@ -236,6 +269,7 @@ void fetch_library(Vector *v, char *libURL, bool sync) {
 		}
 	}
 	vector_free(flag_vec);
+	vector_free(lib_link_vec);
 	yyjson_doc_free(dep_doc);
 	arena_free(&str_arena);
 	return;

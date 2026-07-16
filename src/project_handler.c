@@ -269,12 +269,17 @@ String *build_project(Arena *global_str_arena) {
 
 	String *response_content = string_concat_cstr(
 		str_arena, 4, "-c\n-fPIC\n-MMD\n-MP\n", string(headers), "\n",
-		string(get_build_flags(str_arena, root)));
+		string(get_flags(str_arena, root, string_from(str_arena, "build"))));
+
+	String *lib_links =
+		get_flags(str_arena, root, string_from(str_arena, "lib"));
 
 	yyjson_doc_free(doc);
 
 	create_append_err = create_append_file("./build/.cache/compile.rsp",
 										   string(response_content));
+	create_append_err =
+		create_append_file("./build/.cache/lib_links.rsp", string(lib_links));
 	// create_append_file("./build/.cache/compile.rsp", string(static_libs));
 
 	if (create_append_err) {
@@ -323,8 +328,9 @@ String *build_project(Arena *global_str_arena) {
 
 	if (isExec) {
 		cmd_err = system(string(string_concat_cstr(
-			str_arena, 5, string(compiler), " ./build/.cache/*.o ",
-			string(shared_lib), " -o ", string(output))));
+			str_arena, 6, string(compiler), " ./build/.cache/*.o ",
+			string(shared_lib), " -o ", string(output),
+			" @./build/.cache/lib_links.rsp")));
 
 		if (cmd_err) {
 			fprintf(stderr, "Error encountered while generating executable\n");
@@ -352,9 +358,9 @@ String *build_project(Arena *global_str_arena) {
 		}
 
 		cmd_err = system(string(string_concat_cstr(
-			str_arena, 4, string(compiler),
+			str_arena, 5, string(compiler),
 			" -shared ./build/.cache/*.o -o ./build/shared/lib/lib",
-			string(project_name), ".so")));
+			string(project_name), ".so", " @./build/.cache/lib_links.rsp")));
 
 		if (cmd_err) {
 			fprintf(stderr,
