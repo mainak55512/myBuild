@@ -242,3 +242,65 @@ String *get_flags(Arena *str_arena, yyjson_val *root, String *type) {
 	arena_free(&local_arena);
 	return export_list;
 }
+
+void _add_local(int lib_count, char **lib_link, char *element) {
+
+	Arena *arena = arena_init(1024);
+
+	char *input_file = "myBuild.json";
+
+	char *prefix = "-";
+	if (STR_CMP(element, "lib_links") == 0) {
+		prefix = "-l";
+	}
+
+	yyjson_read_err err;
+	yyjson_doc *doc = yyjson_read_file(input_file, 0, NULL, &err);
+
+	if (!doc) {
+		fprintf(stderr, "Failed to read %s: %s\n", input_file, err.msg);
+		return;
+	}
+	yyjson_mut_doc *mut_doc = yyjson_doc_mut_copy(doc, NULL);
+
+	yyjson_doc_free(doc);
+
+	yyjson_mut_val *root = yyjson_mut_doc_get_root(mut_doc);
+	yyjson_mut_val *local_elem = yyjson_mut_obj_get(root, element);
+
+	Vector *temp_vec = vector_init(char *);
+
+	int idx = 0, max = 0;
+	yyjson_mut_val *val_mut;
+	yyjson_mut_arr_foreach(local_elem, idx, max, val_mut) {
+		set_add(temp_vec, (char *)yyjson_mut_get_str(val_mut));
+	}
+
+	for (int i = 0; i < lib_count; i++) {
+		char *current_lib = lib_link[i];
+		set_add(temp_vec,
+				string(string_concat_cstr(arena, 2, prefix, current_lib)));
+	}
+
+	yyjson_mut_arr_clear(local_elem);
+	for (int i = 0; i < length(temp_vec); i++) {
+		yyjson_mut_arr_add_str(mut_doc, local_elem, at(char *, temp_vec, i));
+	}
+
+	yyjson_write_err werr;
+	yyjson_write_flag flg = YYJSON_WRITE_PRETTY | YYJSON_WRITE_ESCAPE_UNICODE;
+	if (!yyjson_mut_write_file("./myBuild.json", mut_doc, flg, NULL, &werr)) {
+		fprintf(stderr, "Write error: %s\n", werr.msg);
+	}
+
+	vector_free(temp_vec);
+	yyjson_mut_doc_free(mut_doc);
+	arena_free(&arena);
+}
+
+void add_local_lib(int lib_count, char **lib_link) {
+	_add_local(lib_count, lib_link, "lib_links");
+}
+void add_flag(int lib_count, char **lib_link) {
+	_add_local(lib_count, lib_link, "flags");
+}

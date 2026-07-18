@@ -15,14 +15,14 @@ const char *get_filename_without_path(const char *path) {
 	return filename;
 }
 
-Vector *string_split_lines(Arena *arena, String *str) {
+Vector *string_split(Arena *arena, String *str, char sep) {
 	Vector *lines = vector_init(String *);
 	char *cstr = string(str);
 	int len = string_len(str);
 	int start = 0;
 
 	for (int i = 0; i < len; i++) {
-		if (cstr[i] == '\n') {
+		if (cstr[i] == sep) {
 			String *line = string_sub(arena, str, start, i);
 			append(String *, lines, line);
 			start = i + 1;
@@ -35,6 +35,10 @@ Vector *string_split_lines(Arena *arena, String *str) {
 	}
 
 	return lines;
+}
+
+Vector *string_split_lines(Arena *arena, String *str) {
+	return string_split(arena, str, '\n');
 }
 
 int check_project_lang(char *lang) {

@@ -13,6 +13,12 @@ int cli(int argc, char *argv[], Arena *global_str_arena) {
 	} else if (STR_CMP(opt, "add") == 0) {
 		add_library(argv[2]);
 		return 0;
+	} else if (STR_CMP(opt, "add-lib") == 0) {
+		add_local_lib(argc - 2, argv + 2);
+		return 0;
+	} else if (STR_CMP(opt, "add-flag") == 0) {
+		add_flag(argc - 2, argv + 2);
+		return 0;
 	} else if (STR_CMP(opt, "build") == 0) {
 		build_project(global_str_arena);
 		return 0;

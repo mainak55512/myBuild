@@ -38,7 +38,8 @@ void create_my_build_config(char *config_file_path, char *project_name,
 							bool isExec);
 int check_project_lang(char *lang);
 String *build_project(Arena *global_str_arena);
-void fetch_library(Vector *v, char *libURL, bool sync);
+void fetch_library(Vector *v, char *libURL, yyjson_mut_val *sync_flags,
+				   yyjson_mut_val *sync_lib_links, bool sync);
 bool set_contains(Vector *v, char *elem);
 void set_add(Vector *v, char *elem);
 String *clone_lib(Arena *arena, char *libURL);
@@ -46,6 +47,7 @@ bool is_mybuild_config_present(char *filename);
 int init_project();
 String *collect_src_files(Arena *str_arena, String *path);
 String *collect_files(Arena *str_arena, String *path, String *type);
+Vector *string_split(Arena *arena, String *str, char sep);
 Vector *string_split_lines(Arena *arena, String *str);
 String *get_current_working_dir(Arena *arena);
 int generate_compile_commands();
@@ -66,3 +68,5 @@ bool directory_exists(const char *path);
 String *get_flags(Arena *str_arena, yyjson_val *root, String *type);
 int copy_file(const char *src_path, const char *dest_path);
 bool file_exists(const char *file_name);
+void add_local_lib(int lib_count, char **lib_link);
+void add_flag(int lib_count, char **lib_link);
