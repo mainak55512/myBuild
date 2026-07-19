@@ -5,7 +5,9 @@
 myBuild is an experimental build system and package manager for C/C++ projects. It aims to simplify the development workflow by managing dependencies directly through Git and automating the compilation process via a single JSON configuration file.
 
 **NOTE:** 
+
 CLI Docs available here: [myBuild](https://mainak55512.github.io/myBuild-cookbook/)
+
 Recipes of the dependencies are/will be updated here: [myBuild Cookbook](https://mainak55512.github.io/myBuild-cookbook/cookbook/)
 
 ## Project Structure
