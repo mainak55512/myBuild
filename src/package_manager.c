@@ -155,7 +155,7 @@ void fetch_library(Vector *v, char *libURL, yyjson_mut_val *sync_flags,
 
 	String *config_path = string_concat_cstr(
 		str_arena, 3, "./deps/", string(repo_name), "/myBuild.json");
-	if (!is_mybuild_config_present(string(config_path))) {
+	if (!sync && !is_mybuild_config_present(string(config_path))) {
 		arena_free(&str_arena);
 		return;
 	}
