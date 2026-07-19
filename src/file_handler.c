@@ -94,6 +94,7 @@ String *collect_files(Arena *str_arena, String *path, String *type) {
 			continue;
 		}
 
+		/*
 		if (entry->d_type == DT_DIR) {
 			String *sub_dir_path = string_concat_cstr(
 				str_arena, 3, string(path), "/", entry->d_name);
@@ -110,6 +111,7 @@ String *collect_files(Arena *str_arena, String *path, String *type) {
 			}
 			continue;
 		}
+		*/
 
 		char *dot = strrchr(entry->d_name, '.');
 		if (dot != NULL && (STR_CMP(dot, string(ext_1)) == 0 ||
