@@ -38,6 +38,8 @@ Currently, myBuild uses a "manifest-first" approach:
     "version": "0.1.0",
     "compiler_path": "/usr/bin/gcc",
     "executable": true,
+    "flags": [],
+    "lib_links": [],
     "include_paths": ["include"],
     "src": ["src"],
     "dependencies": {
@@ -92,7 +94,7 @@ Add the recipe in the `dependencies` section in myBuild.json and run
 ```bash
 myBuild sync
 ```
-**N.B.** recipes are/will be available in [myBuild Cookbook](https://github.com/mainak55512/myBuild-cookbook)
+**N.B.** recipes are/will be available in [myBuild Cookbook](https://mainak55512.github.io/myBuild-cookbook/cookbook/)
 
 ### Build
 
